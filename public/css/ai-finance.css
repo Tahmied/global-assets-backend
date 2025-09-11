@@ -1,0 +1,261 @@
+    * { 
+        box-sizing: border-box; 
+        margin: 0; 
+        padding: 0; 
+    }
+    
+    body {
+        font-family: 'Inter', sans-serif;
+    }
+
+    .ai-finance-container {
+        background: #f5f5f5;
+        color: #2d3436;
+        line-height: 1.6;
+        padding: 2rem;
+        min-height: 100vh;
+    }
+
+    /* Dashboard Header Section */
+    .dashboard-header {
+        background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+        border-radius: 24px;
+        padding: 2.5rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        max-width: 1300px;
+        margin: 2rem auto;
+    }
+
+    .dashboard-header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
+        transform: rotate(45deg);
+    }
+
+    .header-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .custody-section {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .custody-label {
+        font-size: 1rem;
+        color: rgba(255,255,255,0.8);
+        margin-bottom: 0.5rem;
+    }
+
+    .custody-amount {
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: white;
+        letter-spacing: -0.03em;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-card {
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 1.5rem;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+        color: rgba(255,255,255,0.8);
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: white;
+    }
+
+    .order-button {
+        position: absolute;
+        right: 2rem;
+        top: 2rem;
+    }
+
+    .order-button button {
+        background: white;
+        color: #000;
+        padding: 0.75rem 1.5rem;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+
+    .order-button button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Product Cycle Section */
+    .product-cycle {
+        max-width: 1300px;
+        margin: 0 auto;
+    }
+
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1a1a1a;
+    }
+
+    .rule-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #666;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .rule-link:hover {
+        color: #000;
+    }
+
+    .cycle-grid {
+        display: grid;
+        gap: 1.5rem;
+    }
+
+    .cycle-card {
+        background: white;
+        border-radius: 20px;
+        padding: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #eee;
+    }
+
+    .cycle-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .cycle-content {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .cycle-icon {
+        width: 48px;
+        height: 48px;
+        background: #f8f9fa;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #1a1a1a;
+    }
+
+    .cycle-details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .cycle-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #1a1a1a;
+    }
+
+    .cycle-range {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1a1a1a;
+    }
+
+    .cycle-label {
+        font-size: 0.875rem;
+        color: #666;
+    }
+
+    .cycle-return {
+        text-align: right;
+    }
+
+    .return-percent {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #10b981;
+    }
+
+    .buy-button button {
+        background: #1a1a1a;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .buy-button button:hover {
+        background: #000;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        body {
+            padding: 1rem;
+        }
+
+        .custody-amount {
+            font-size: 2.5rem;
+        }
+
+        .stats-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .cycle-card {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .order-button {
+            position: static;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+    }

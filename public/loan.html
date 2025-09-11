@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Assets</title>
+    <link rel="stylesheet" href="./css/homepage.css">
+    <link rel="stylesheet" href="./css/loan.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="./Images/favicon.ico">
+</head>
+
+
+<header id="header">
+    <div class="header-container">
+        <div class="nav-menu">
+            <div class="logo-container">
+               <a href="./"> <img src="./Images/home_logo.png" alt="Company Logo"> </a>
+            </div>
+            <nav class="desktop-nav">
+                <a href="./" class="nav-item">Home</a>
+                <a href="./market.html" class="nav-item">Market</a>
+                <a href="./ai-finance.html" class="nav-item">AI Finance</a>
+                <a href="./loan.html" class="nav-item">Loans</a>
+                <a href="./profile.html" class="nav-item">Account</a>
+            </nav>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+
+        <button class="mobile-menu-toggle">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+         <a href="./" class="nav-item">Home</a>
+         <a href="./market.html" class="nav-item">Market</a>
+         <a href="./ai-finance.html" class="nav-item">AI Finance</a>
+         <a href="./loan.html" class="nav-item">Loans</a>
+         <a href="./profile.html" class="nav-item">Account</a>
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">  Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+    </nav>
+  </header>
+  
+  <main class="loan-container">
+    <!-- Account Balance -->
+    <div class="balance-card">
+        <div class="balance-header">
+            <span>Available Balance</span>
+            <a href="./loan-history.html" class="history-link">
+                <i class="fas fa-history"></i>
+            </a>
+        </div>
+        <div class="balance-amount">$Loading...</div>
+    </div>
+
+    <!-- Loan Form -->
+    <form class="loan-form">
+        <!-- Loan Amount -->
+        <div class="form-group">
+            <label class="input-label">Loan Amount</label>
+            <div class="amount-input">
+                <input type="number" placeholder="0.00" required>
+                <span class="currency">USD</span>
+            </div>
+        </div>
+
+        <!-- Loan Term -->
+        <div class="form-group">
+            <label class="input-label">Select Loan Term</label>
+            <div class="term-buttons">
+                <button type="button" class="term-btn active">3 Days</button>
+                <button type="button" class="term-btn">7 Days</button>
+                <button type="button" class="term-btn">15 Days</button>
+                <button type="button" class="term-btn">30 Days</button>
+                <button type="button" class="term-btn">60 Days</button>
+                <button type="button" class="term-btn">90 Days</button>
+            </div>
+        </div>
+
+        <!-- Interest Details -->
+        <div class="interest-details">
+            <div class="interest-item">
+                <span>Daily Interest:</span>
+                <span class="interest-rate">0.08%</span>
+            </div>
+            <div class="interest-item">
+                <span>Total Interest:</span>
+                <span class="total-interest">$240.00</span>
+            </div>
+        </div>
+
+        <!-- Terms Checkbox -->
+        <div class="terms-group">
+            <input type="checkbox" id="loanTerms" required>
+            <label for="loanTerms">I agree to the <a href="./loan-agrt.html" class="terms-link">Loan agreement</a> , <a href="./loan-explain.html" class="terms-link">Loan rules explanation</a> , <a href="./legal-liability.html" class="terms-link">Legal liability</a></label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="loan-now-btn">
+            Get Loan Now
+            <i class="fas fa-arrow-right"></i>
+        </button>
+    </form>
+</main>
+   <footer class="footer">
+    <div class="footer-content">
+      <!-- Logo / Brand -->
+      <div class="footer-section logo-section">
+        <img src="./Images/logo_foot.png" alt="Global Assets Logo" class="footer-logo">
+      </div>
+      <!-- Company -->
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./team.html">About the Team</a></li>
+          <li><a href="./faq.html">Help Center</a></li>
+          <li><a href="#">Email support</a></li>
+          <li><a href="mailto:service@global-assets.com">service@global‑assets.io</a></li>
+        </ul>
+      </div>
+      <!-- Product -->
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="./market.html">Market List</a></li>
+          <li><a href="./loan.html">Investment loans</a></li>
+          <li><a href="./ai-finance.html">AI Finance</a></li>
+        </ul>
+      </div>
+      <!-- Policy -->
+      <div class="footer-section">
+        <h4>Policy</h4>
+        <ul>
+          <li><a href="./agrt.html">User Services Agreement</a></li>
+          <li><a href="./loan-agrt.html">Loan agreement</a></li>
+          <li><a href="./loan-explain.html">Loan rules explanation</a></li>
+          <li><a href="./legal-liability.html">Legal liability</a></li>
+        </ul>
+      </div>
+      <!-- Statement -->
+      <div class="footer-section">
+        <h4>Statement</h4>
+        <ul>
+          <li><a href="./risk.html">Risk Warning</a></li>
+          <li><a href="./privacy-statement.html">Privacy Statement</a></li>
+          <li><a href="./anti-laundaring.html">Anti‑Money Laundering Policy</a></li>
+          <li><a href="./rglt-licence.html">Regulatory license</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; Copyright 2016 – 2025 Global Assets. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="./javascript/common-script.js"></script>
+    <script src="./javascript/loing-check.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // --- TOAST SETUP ---
+    const style = document.createElement('style');
+    style.textContent = `
+      .toast-container {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        z-index: 9999;
+      }
+      .toast {
+        min-width: 200px;
+        max-width: 300px;
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        color: #fff;
+        font-family: sans-serif;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+      .toast.show {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .toast.success { background: #38a169; }
+      .toast.error   { background: #e53e3e; }
+    `;
+    document.head.appendChild(style);
+
+    const toastContainer = document.createElement('div');
+    toastContainer.className = 'toast-container';
+    document.body.appendChild(toastContainer);
+
+    function showToast(message, type = 'success', duration = 3000) {
+      const t = document.createElement('div');
+      t.className = `toast ${type}`;
+      t.textContent = message;
+      toastContainer.appendChild(t);
+      requestAnimationFrame(() => t.classList.add('show'));
+      setTimeout(() => {
+        t.classList.remove('show');
+        t.addEventListener('transitionend', () => t.remove());
+      }, duration);
+    }
+
+    // --- RATE MAPPING ---
+    const rateMap = {
+      3: 0.0820,
+      7: 0.0770,
+      15: 0.0710,
+      30: 0.0660,
+      60: 0.0600,
+      90: 0.0550
+    };
+
+    // --- PAGE ELEMENTS ---
+    const balanceEl       = document.querySelector('.balance-amount');
+    const amountInput     = document.querySelector('.amount-input input');
+    const termButtons     = Array.from(document.querySelectorAll('.term-btn'));
+    const dailyRateEl     = document.querySelector('.interest-rate');
+    const totalInterestEl = document.querySelector('.total-interest');
+    const termsCheckbox   = document.getElementById('loanTerms');
+    const form            = document.querySelector('.loan-form');
+    const submitBtn       = document.querySelector('.loan-now-btn');
+
+    let accountBalance = 0;
+    let selectedTerm   = parseInt(document.querySelector('.term-btn.active').textContent, 10);
+
+    // --- FETCH ACCOUNT BALANCE ---
+    async function fetchBalance() {
+      try {
+        const res = await fetch('/api/v1/users/account-balance', { credentials: 'include' });
+        const json = await res.json();
+        if (json.success && typeof json.data.balance === 'number') {
+          accountBalance = json.data.balance;
+          balanceEl.textContent = '$' + accountBalance.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+          });
+        }
+      } catch (err) {
+        console.error('Balance fetch error:', err);
+      }
+    }
+
+    // --- UPDATE INTEREST DISPLAY ---
+    function updateInterestDisplay() {
+      const amt = parseFloat(amountInput.value) || 0;
+      const rate = rateMap[selectedTerm] || 0;
+      dailyRateEl.textContent = rate.toFixed(4) + '%';
+      const total = amt * (rate / 100) * selectedTerm;
+      totalInterestEl.textContent = '$' + total.toFixed(2);
+    }
+
+    // --- TERM BUTTON HANDLING ---
+    termButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        termButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedTerm = parseInt(btn.textContent, 10);
+        updateInterestDisplay();
+      });
+    });
+
+    amountInput.addEventListener('input', updateInterestDisplay);
+
+    // --- CHECK LOAN STATUS (prevent duplicate) ---
+    async function canUserRequestLoan() {
+      try {
+        const res = await fetch('/api/v1/users/loan-status', { credentials: 'include' });
+        const json = await res.json();
+        return json.success && json.data.canRequestLoan;
+      } catch (err) {
+        console.error('Loan status error:', err);
+        return false;
+      }
+    }
+
+    // --- FORM SUBMISSION ---
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      const loanAmount = parseFloat(amountInput.value);
+      if (!loanAmount || loanAmount <= 0) {
+        showToast('Please enter a valid loan amount.', 'error');
+        return;
+      }
+
+      if (!termsCheckbox.checked) {
+        showToast('You must agree to the terms & conditions.', 'error');
+        return;
+      }
+
+      submitBtn.disabled = true;
+
+      const eligible = await canUserRequestLoan();
+      if (!eligible) {
+        showToast('You already have a pending loan request.', 'error');
+        submitBtn.disabled = false;
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/v1/users/loan-req', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            loanAmount: loanAmount.toString(),
+            loanTermDays: selectedTerm.toString()
+          })
+        });
+        const json = await res.json();
+        if (json.success) {
+          showToast('Loan submitted successfully.', 'success');
+          setTimeout(() => window.location.href = './profile.html', 1200);
+        } else {
+          showToast(json.message || 'Loan request failed.', 'error');
+          submitBtn.disabled = false;
+        }
+      } catch (err) {
+        console.error('Loan request error:', err);
+        showToast('Network error, please try again.', 'error');
+        submitBtn.disabled = false;
+
+      }
+    });
+
+    // --- INITIALIZE ---
+    fetchBalance();
+    updateInterestDisplay();
+  });
+  </script>
+</body>
+</html>

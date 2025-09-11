@@ -1,0 +1,208 @@
+
+    :root {
+      --primary: #000000;
+      --accent: #000000;
+      --gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      --light-bg: #f8f9ff;
+      --card-bg: #ffffff;
+      --text-dark: #2a2d3b;
+      --text-light: #667085;
+      --border-radius: 16px;
+      --shadow: 0 12px 32px rgba(0,0,0,0.1);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { 
+      box-sizing: border-box; 
+      margin:0; 
+      padding:0; 
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    .kyc {
+      background: var(--light-bg);
+      color: var(--text-dark);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+      line-height: 1.5;
+    }
+
+    .kyc-container {
+      background: var(--card-bg);
+      padding: 3rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      width: 100%;
+      max-width: 680px;
+      border: 1px solid rgba(255,255,255,0.4);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      font-size: 2rem;
+      font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      font-size: 0.875rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      border: 1px solid #e0e7ff;
+      border-radius: 10px;
+      font-size: 0.9375rem;
+      transition: var(--transition);
+      background: #fff;
+      color: var(--text-dark);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(67,97,238,0.15);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .file-group {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .file-input {
+      flex: 1;
+      position: relative;
+      border: 2px dashed #e0e7ff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .file-input:hover {
+      border-color: var(--primary);
+      background: rgba(67,97,238,0.03);
+    }
+
+    .file-input input {
+      opacity: 0;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      cursor: pointer;
+    }
+
+    .file-input label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text-light);
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .file-input label::before {
+      content: '📁';
+      font-size: 1.75rem;
+      opacity: 0.8;
+    }
+
+    .preview {
+      margin-top: 1rem;
+      width: 120px;
+      height: 120px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid #e0e7ff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: var(--transition);
+    }
+
+    .preview:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 1.125rem;
+      background: var(--gradient);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 2rem;
+      transition: var(--transition);
+      letter-spacing: 0.5px;
+    }
+
+    .btn-submit:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(67,97,238,0.25);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 2rem; 
+      right: 2rem;
+      background: rgba(42,45,59,0.95);
+      color: #fff;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: var(--transition);
+      backdrop-filter: blur(8px);
+      font-size: 0.875rem;
+      box-shadow: var(--shadow);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 1.25rem;
+      }
+
+      .kyc-container {
+        padding: 2rem 1.5rem;
+      }
+
+      .file-group {
+        flex-direction: column;
+      }
+    }

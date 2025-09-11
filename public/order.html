@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market - Global Assets</title>
+    
+    <link rel="stylesheet" href="./css/homepage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/order-page.css">
+      <link rel="stylesheet" href="./css/option-trading.css">
+      <link rel="icon" type="image/x-icon" href="./Images/favicon.ico">
+</head>
+<body>
+
+<header id="header">
+    <div class="header-container">
+        <div class="nav-menu">
+            <div class="logo-container">
+               <a href="./"> <img src="./Images/home_logo.png" alt="Company Logo"> </a>
+            </div>
+            <nav class="desktop-nav">
+                <a href="./" class="nav-item">Home</a>
+                <a href="./market.html" class="nav-item">Market</a>
+                <a href="./ai-finance.html" class="nav-item">AI Finance</a>
+                <a href="./loan.html" class="nav-item">Loans</a>
+                <a href="./profile.html" class="nav-item">Account</a>
+            </nav>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+
+        <button class="mobile-menu-toggle">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+         <a href="./" class="nav-item">Home</a>
+         <a href="./market.html" class="nav-item">Market</a>
+         <a href="./ai-finance.html" class="nav-item">AI Finance</a>
+         <a href="./loan.html" class="nav-item">Loans</a>
+         <a href="./profile.html" class="nav-item">Account</a>
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">  Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+    </nav>
+  </header>
+
+    <div class="trading-container">
+        <div class="tab-header">
+            <button class="tab-button active" data-tab="contract">
+                <i class="fas fa-file-contract"></i>
+                Contract
+            </button>
+            <button class="tab-button" data-tab="options">
+                <i class="fas fa-chart-line"></i>
+                Options
+            </button>
+        </div>
+
+        <!-- Contract Interface -->
+        <div class="contract-interface">
+            <div class="leverage-container">
+                <div class="leverage-header">
+                    <span>Leverage</span>
+                    <span id="lever-value">1x</span>
+                </div>
+                <input type="range" class="leverage-slider" min="1" max="100" step="20" value="1">
+            </div>
+
+            <div class="order-type">
+                <button class="active" data-type="market">Market</button>
+                <button data-type="limit">Limit</button>
+            </div>
+
+            <div class="input-group conditional-input" id="limitPriceInput">
+                <label class="input-label">Limit Price</label>
+                <input type="number" class="trade-input" placeholder="0.00">
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Quantity</label>
+                <div class="quantity-controls">
+                    <button class="qty-btn minus"><i class="fas fa-minus"></i></button>
+                    <button class="qty-btn plus"><i class="fas fa-plus"></i></button>
+                </div>
+                <input type="number" class="trade-input" placeholder="0.00">
+            </div>
+
+            <div class="balance-info">
+                Available Account Balance: $3495.00
+            </div>
+
+            <div class="action-buttons">
+                <button class="action-btn buy-btn">
+                    <i class="fas fa-arrow-up"></i>
+                    Buy
+                </button>
+                <button class="action-btn sell-btn">
+                    <i class="fas fa-arrow-down"></i>
+                    Sell
+                </button>
+            </div>
+
+            <div class="advanced-options">
+              <div class="switch-container">
+                <span>Take Profit/Stop Loss</span>
+                <label class="switch">
+                  <input type="checkbox" id="tpSlToggle">
+                  <span class="slider"></span>
+                </label>
+              </div>
+          
+              <!-- hidden by default -->
+              <div class="tp-sl-inputs" style="display: none; margin-top: 1rem;">
+                <div class="input-group">
+                  <label class="input-label">Take Profit</label>
+                  <input id="tpPrice" type="number" step="0.0001" class="trade-input" placeholder="0.00">
+                  <div class="input-hint tp-hint" style="font-size:0.875rem; color:var(--gray)">>=0.0000</div>
+                </div>
+                <div class="input-group" style="margin-top: 0.5rem;">
+                  <label class="input-label">Stop Loss</label>
+                  <input id="slPrice" type="number" step="0.0001" class="trade-input" placeholder="0.00">
+                  <div class="input-hint sl-hint" style="font-size:0.875rem; color:var(--gray)"><=0.0000</div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+
+        <!-- Options Interface -->
+        <div class="options-interface">
+            <div class="asset-selector">
+                <div class="asset-icon">
+                    <img src="https://www.coingecko.com/assets/coingecko-logo-63f3a9b28f0b6a58b453a342d1c1de0dd5f8b893c7e80a5d9c9e3f5c0d6a7f82.png" alt="BTC">
+                </div>
+                <div class="asset-info">
+                    <div class="asset-name">BTC/USDT</div>
+                    <div class="asset-price" style="color: var(--gray); font-size: 0.875rem;">$42,300.00</div>
+                </div>
+            </div>
+
+            <div class="direction-selector">
+                <button class="direction-btn active">
+                    <i class="fas fa-arrow-up"></i>
+                    Bullish
+                </button>
+                <button class="direction-btn">
+                    <i class="fas fa-arrow-down"></i>
+                    Bearish
+                </button>
+            </div>
+
+            <div class="time-selector">
+                <button class="time-btn active">120S</button>
+                <button class="time-btn">180S</button>
+                <button class="time-btn">300S</button>
+                <button class="time-btn">3 Days</button>
+                <button class="time-btn">10 Days</button>
+                <button class="time-btn">15 Days</button>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Investment Amount</label>
+                <input type="number" class="trade-input" placeholder="100.00">
+                <div class="input-label" style="margin-top: 0.5rem;">Minimum: $10.00</div>
+            </div>
+
+            <div class="balance-info">
+                Available Account Balance: $3495.00
+            </div>
+
+            <button class="confirm-btn">
+                <i class="fas fa-check-circle"></i>
+                Confirm Order
+            </button>
+        </div>
+        </div>
+    </div>
+
+     <footer class="footer">
+    <div class="footer-content">
+      <!-- Logo / Brand -->
+      <div class="footer-section logo-section">
+        <img src="./Images/logo_foot.png" alt="Global Assets Logo" class="footer-logo">
+      </div>
+      <!-- Company -->
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./team.html">About the Team</a></li>
+          <li><a href="./faq.html">Help Center</a></li>
+          <li><a href="#">Email support</a></li>
+          <li><a href="mailto:service@global-assets.com">service@global‑assets.io</a></li>
+        </ul>
+      </div>
+      <!-- Product -->
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="./market.html">Market List</a></li>
+          <li><a href="./loan.html">Investment loans</a></li>
+          <li><a href="./ai-finance.html">AI Finance</a></li>
+        </ul>
+      </div>
+      <!-- Policy -->
+      <div class="footer-section">
+        <h4>Policy</h4>
+        <ul>
+          <li><a href="./agrt.html">User Services Agreement</a></li>
+          <li><a href="./loan-agrt.html">Loan agreement</a></li>
+          <li><a href="./loan-explain.html">Loan rules explanation</a></li>
+          <li><a href="./legal-liability.html">Legal liability</a></li>
+        </ul>
+      </div>
+      <!-- Statement -->
+      <div class="footer-section">
+        <h4>Statement</h4>
+        <ul>
+          <li><a href="./risk.html">Risk Warning</a></li>
+          <li><a href="./privacy-statement.html">Privacy Statement</a></li>
+          <li><a href="./anti-laundaring.html">Anti‑Money Laundering Policy</a></li>
+          <li><a href="./rglt-licence.html">Regulatory license</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; Copyright 2016 – 2025 Global Assets. All rights reserved.
+    </div>
+  </footer>
+
+    <script src="./javascript/common-script.js"></script>
+    <script src="./javascript/loing-check.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Tab Switching
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    const showOptions = button.dataset.tab === 'options';
+                    document.querySelector('.contract-interface').style.display = showOptions ? 'none' : 'block';
+                    document.querySelector('.options-interface').style.display = showOptions ? 'block' : 'none';
+                });
+            });
+
+            // Leverage Slider
+            const leverageSlider = document.querySelector('.leverage-slider');
+            const leverageValue = document.getElementById('lever-value');
+            leverageSlider.addEventListener('input', (e) => {
+                leverageValue.textContent = `${e.target.value}x`;
+            });
+
+            // Order Type Toggle
+            document.querySelectorAll('.order-type button, .direction-selector button, .time-selector button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const parent = button.closest('.order-type, .direction-selector, .time-selector');
+                    parent.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Toggle limit price input
+                    if (button.dataset.type === 'limit') {
+                        document.getElementById('limitPriceInput').classList.add('visible');
+                    } else {
+                        document.getElementById('limitPriceInput').classList.remove('visible');
+                    }
+                });
+            });
+
+            // Quantity Controls
+            document.querySelectorAll('.qty-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const input = button.closest('.input-group').querySelector('input');
+                    const currentValue = parseFloat(input.value) || 0;
+                    input.value = button.classList.contains('plus') ? 
+                        (currentValue + 1).toFixed(2) :
+                        Math.max(0, currentValue - 1).toFixed(2);
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+          const toggle = document.getElementById('tpSlToggle');
+          const container = document.querySelector('.tp-sl-inputs');
+          const tpInput = document.getElementById('tpPrice');
+          const slInput = document.getElementById('slPrice');
+          const tpHint  = container.querySelector('.tp-hint');
+          const slHint  = container.querySelector('.sl-hint');
+        
+          // Show/hide TP/SL inputs
+          toggle.addEventListener('change', () => {
+            container.style.display = toggle.checked ? 'block' : 'none';
+          });
+      
+          // Update hints as you type
+          tpInput.addEventListener('input', () => {
+            const v = parseFloat(tpInput.value) || 0;
+            tpHint.textContent = `>=${v.toFixed(4)}`;
+          });
+          slInput.addEventListener('input', () => {
+            const v = parseFloat(slInput.value) || 0;
+            slHint.textContent = `<=${v.toFixed(4)}`;
+          });
+        });
+
+    </script>
+    <!-- option trading -->
+    <script>
+		document.addEventListener('DOMContentLoaded', () => {
+            const params    = new URLSearchParams(window.location.search);
+            const assetPair = decodeURIComponent(params.get('symbol') || 'ETH/USD');
+			const API_KEY = 'e83643f2821847128602cdb2b61731d4';
+			const container = document.querySelector('.trading-container');
+			const confirmBtn = document.querySelector('.options-interface .confirm-btn');
+
+			let currentTradeId,
+				currentDuration,
+				currentDirection,
+				currentQuantity,
+				currentInvestment,
+				currentOpeningPrice,
+				currentTimeText;
+
+			function formatTime(sec) {
+				const m = Math.floor(sec / 60),
+					s = sec % 60;
+				return `${m}:${String(s).padStart(2,'0')}`;
+			}
+
+			// Called once timer reaches zero
+			async function onTimerEnd() {
+				try {
+					const res = await fetch('/api/v1/market/options/trades');
+					const json = await res.json();
+					if (!res.ok) throw new Error(json.message);
+
+					const trade = json.data.trades.find(t => t._id === currentTradeId);
+					if (!trade) throw new Error('Trade not found');
+
+					const isLoss = trade.status === 'Expired_Loss';
+					const pnlValue = isLoss ?
+						`-${currentInvestment.toFixed(4)}` :
+						`+${trade.payoutAmount.toFixed(4)}`;
+					const pnlClass = isLoss ? 'negative' : 'positive';
+
+					const card = container.querySelector('.btc-card');
+					// remove timer circle
+					const timerEl = card.querySelector('.btc-card-circle-timer');
+					if (timerEl) timerEl.remove();
+
+					// *** Start: Add settlement message div ***
+					const settlementMessageDiv = document.createElement('div');
+					settlementMessageDiv.classList.add('settlement-message'); // Add a class for potential styling
+					const messageText = isLoss ?
+						`Your options trade order has expired Your loss is ${pnlValue}` :
+						`Your options trade order has expired Your Profit is ${pnlValue}`;
+					settlementMessageDiv.textContent = messageText;
+
+					const headerEl = card.querySelector('.btc-card-header');
+					const detailsEl = card.querySelector('.btc-card-details');
+
+					// Insert the new div after the header and before the details
+					headerEl.after(settlementMessageDiv);
+					// *** End: Add settlement message div ***
+
+
+					// update details with full settlement info
+					detailsEl.innerHTML = `
+						<div><span>Purchase price:</span><span>${currentOpeningPrice.toFixed(4)}</span></div>
+						<div><span>Direction:</span><span class="btc-card-${currentDirection.toLowerCase()}">${currentDirection}</span></div>
+						<div><span>Quantity:</span><span>${currentQuantity.toFixed(4)}</span></div>
+						<div><span>Delivery time:</span><span>${currentTimeText}</span></div>
+						<div><span>Settlement price:</span><span>${(trade.expiryPrice ?? 0).toFixed(4)}</span></div>
+						<div><span>P&L:</span><span class="${pnlClass}">${pnlValue}</span></div>
+						<div><span>Order time:</span><span>${new Date(trade.purchaseTime)
+							.toLocaleString('en-GB',{hour12:false})}</span></div>
+					`;
+
+					// enable buttons
+					['btc-close', 'btc-continue'].forEach(id => {
+						const btn = document.getElementById(id);
+						btn.disabled = false;
+						btn.onclick = () => window.location.reload();
+					});
+				} catch (err) {
+					console.error('Settlement error', err);
+				}
+			}
+
+			// Countdown
+			function startCountdown(duration) {
+				const el = document.getElementById('btc-card-countdown');
+				let t = duration;
+				const iv = setInterval(() => {
+					t--;
+					if (el) el.textContent = formatTime(Math.max(t, 0));
+					if (t <= 0) {
+						clearInterval(iv);
+						onTimerEnd();
+					}
+				}, 1000);
+			}
+
+			confirmBtn.addEventListener('click', async () => {
+				confirmBtn.disabled = true;
+				confirmBtn.textContent = 'Placing...';
+
+				try {
+					// gather
+					currentDirection = document
+						.querySelector('.direction-selector .direction-btn.active')
+						.textContent.trim();
+					currentTimeText = document
+						.querySelector('.time-selector .time-btn.active')
+						.textContent.trim();
+					currentDuration = currentTimeText.endsWith('S') ?
+						parseInt(currentTimeText, 10) :
+						parseInt(currentTimeText, 10) * 24 * 3600;
+					currentInvestment = parseFloat(
+						document.querySelector('.options-interface .trade-input').value
+					);
+					if (isNaN(currentInvestment) || currentInvestment <= 0)
+						throw new Error('Invalid amount');
+
+					// place trade
+					const p = await fetch('/api/v1/market/options/trades', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify({
+							assetPair,
+							durationSeconds: currentDuration,
+							investmentAmount: currentInvestment,
+							direction: currentDirection
+						})
+					});
+					const pj = await p.json();
+					if (!p.ok) throw new Error(pj.message);
+					currentTradeId = pj.data.tradeId;
+					currentOpeningPrice = pj.data.openingPrice;
+					// calculate quantity
+					currentQuantity = currentInvestment / currentOpeningPrice;
+
+					// render card with timer + details
+					container.innerHTML = `
+						<div class="btc-card-body-container">
+							<div class="btc-card">
+								<div class="btc-card-header">${assetPair}</div>
+								<div class="btc-card-circle-timer" id="btc-card-timer">
+									<span id="btc-card-countdown">${formatTime(currentDuration)}</span>
+								</div>
+								<div class="btc-card-details">
+									<div><span>Purchase price:</span><span>${currentOpeningPrice.toFixed(4)}</span></div>
+									<div><span>Direction:</span><span class="btc-card-${currentDirection.toLowerCase()}">${currentDirection}</span></div>
+									<div><span>Quantity:</span><span>${currentQuantity.toFixed(4)}</span></div>
+									<div><span>Delivery time:</span><span>${currentTimeText}</span></div>
+								</div>
+								<div class="btc-card-buttons">
+									<button class="btc-card-btn btc-card-btn-white" id="btc-close" disabled>Close</button>
+									<button class="btc-card-btn btc-card-btn-black" id="btc-continue" disabled>Continue</button>
+								</div>
+							</div>
+						</div>
+					`;
+					startCountdown(currentDuration);
+
+				} catch (err) {
+					console.error('Error on confirm', err);
+					alert(err.message);
+					confirmBtn.disabled = false;
+					confirmBtn.textContent = 'Confirm Order';
+				}
+			});
+		});
+      
+	</script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          // 1) Read symbol from URL
+          const params    = new URLSearchParams(window.location.search);
+          const assetPair = decodeURIComponent(params.get('symbol') || 'BTC/USD');
+
+          const container = document.querySelector('.contract-interface');
+          const buyBtn    = container.querySelector('.buy-btn');
+          const sellBtn   = container.querySelector('.sell-btn');
+
+          // simple toast helper
+          function showToast(msg, isError = false) {
+            const t = document.createElement('div');
+            t.textContent = msg;
+            Object.assign(t.style, {
+              position: 'fixed',
+              bottom: '1rem',
+              right: '1rem',
+              padding: '0.75rem 1.25rem',
+              background: isError ? 'rgba(220,53,69,0.9)' : 'rgba(40,167,69,0.9)',
+              color: '#fff',
+              borderRadius: '0.25rem',
+              zIndex: 9999
+            });
+            document.body.appendChild(t);
+            setTimeout(() => t.remove(), 3000);
+          }
+
+          async function placeContract(direction) {
+            try {
+              // **Dynamic assetPair**
+              const pair = assetPair;
+
+              // 1) Quantity
+              const qtyGroup = Array.from(container.querySelectorAll('.input-group'))
+                .find(g => g.querySelector('.input-label')?.textContent.trim() === 'Quantity');
+              const quantity = parseFloat(qtyGroup.querySelector('input.trade-input').value);
+
+              // 2) Leverage
+              const leverage = parseInt(container.querySelector('.leverage-slider').value, 10);
+
+              // 3) Order type & limit price
+              const typeBtn    = container.querySelector('.order-type button.active');
+              const type       = typeBtn.dataset.type;
+              const limitPrice = type === 'limit'
+                ? parseFloat(container.querySelector('#limitPriceInput input.trade-input').value)
+                : null;
+
+              // 4) TP/SL
+              const tpSlEnabled    = container.querySelector('#tpSlToggle').checked;
+              let takeProfitPrice  = null;
+              let stopLossPrice    = null;
+              if (tpSlEnabled) {
+                takeProfitPrice = parseFloat(container.querySelector('#tpPrice').value) || null;
+                stopLossPrice   = parseFloat(container.querySelector('#slPrice').value) || null;
+              }
+
+              // 5) Validation
+              if (isNaN(quantity) || isNaN(leverage)) {
+                throw new Error('Quantity and leverage must be valid numbers.');
+              }
+
+              // 6) Build payload & send
+              const body = {
+                assetPair: pair,  // <–– dynamic
+                direction,
+                quantity,
+                leverage,
+                type,
+                limitPrice,
+                takeProfitPrice,
+                stopLossPrice
+              };
+              const res = await fetch('/api/v1/market/contracts/trades', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+              });
+              const js = await res.json();
+              if (!res.ok) throw new Error(js.message || 'Trade failed');
+
+              showToast('Contract trade placed! 👍');
+              setTimeout(() => window.history.back(), 1000);
+
+            } catch (err) {
+              console.error(err);
+              showToast(err.message || 'Error placing contract trade.', true);
+            }
+          }
+
+          buyBtn .addEventListener('click', () => placeContract('Buy'));
+          sellBtn.addEventListener('click', () => placeContract('Sell'));
+        });
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const API_KEY    = 'e83643f2821847128602cdb2b61731d4';
+  const params     = new URLSearchParams(window.location.search);
+  const rawSymbol  = decodeURIComponent(params.get('symbol') || 'BTC/USD');
+  const assetType  = params.get('type')   || 'crypto';
+
+  // Updated formatDisplay
+  function formatDisplay(symbol, type) {
+    const base = symbol.split(/[:/]/)[0];  // grab only the base code
+    if (type === 'stock' || type === 'crypto' || type === 'etf') {
+      return `${base}/USDT`;
+    }
+    if (type === 'forex') {
+      return symbol;    // forex stays EUR/USD etc.
+    }
+    return symbol;
+  }
+
+  const displayName = formatDisplay(rawSymbol, assetType);
+
+  const selector = document.querySelector('.asset-selector');
+  selector.querySelector('.asset-name').textContent  = displayName;
+
+  // fetch price
+  try {
+    const res  = await fetch(
+      `/api/v1/market/get-asset-details?symbol=${encodeURIComponent(rawSymbol)}&type=${assetType}&interval=1min&outputsize=1`
+    );
+    const json = await res.json();
+    const price = json.data?.summary?.price;
+    selector.querySelector('.asset-price').textContent = price!=null
+      ? `$${parseFloat(price).toFixed(4)}`
+      : '–';
+  } catch {
+    selector.querySelector('.asset-price').textContent = '–';
+  }
+
+  // fetch logo
+  try {
+    const logoRes  = await fetch(
+      `https://api.twelvedata.com/logo?symbol=${encodeURIComponent(rawSymbol)}&apikey=${API_KEY}`
+    );
+    const logoJson = await logoRes.json();
+    const url      = logoJson.logo_base||logoJson.logo_quote||logoJson.url||logoJson.logo||null;
+    if (url) {
+      const img = selector.querySelector('.asset-icon img');
+      img.src = url;
+      img.alt = displayName.split('/')[0];
+    }
+  } catch {}
+});
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <link rel="stylesheet" href="./styles/user-management.css">
+    <link rel="stylesheet" href="./styles/pending-trx.css">
+    <style>
+      a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+   
+</head>
+<body>
+    <button class="menu-btn" id="menuToggle">
+        <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <ion-icon name="rocket"></ion-icon>
+           <a href="./admin.html">Global Assets</a> 
+        </div>
+        <div id="dashboard" class="nav-item ">
+            <ion-icon name="speedometer"></ion-icon>
+           <a href="./admin.html">Dashboard</a> 
+        </div>
+        <div id="users" class="nav-item">
+            <ion-icon name="people"></ion-icon>
+          <a href="./user-management.html">Users</a>  
+        </div>
+        <div id="transaction" class="nav-item active">
+            <ion-icon name="cash"></ion-icon>
+           <a href="./transactions.html">Transactions</a> 
+        </div>
+        <div id="kyc-review" class="nav-item">
+            <ion-icon name="document"></ion-icon>
+           <a href="./kyc-review.html">KYC Review</a> 
+        </div>
+        <div id="loan-review" class="nav-item">
+            <ion-icon name="card"></ion-icon>
+            <a href="./loan-review.html">Loan Requests</a>
+        </div>
+        <div id="settings" class="nav-item">
+            <ion-icon name="settings"></ion-icon>
+           <a href="./settings.html">Settings</a> 
+        </div>
+        <div id="announcement" class="nav-item">
+            <ion-icon name="megaphone"></ion-icon>
+            <a href="./announcement.html">Publish Announcement</a>
+        </div>
+         <div id="announcement" class="nav-item">
+            <ion-icon name="trending-up-outline"></ion-icon>
+            <a href="./trades.html">Trades</a>
+        </div>
+        <div id="chats" class="nav-item">
+             <ion-icon name="chatbubble"></ion-icon>
+            <a href="./chat.html">Chats</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="content-header">
+            <h1>Pending Add Fund Requests</h1>
+            <div class="search-box">
+                <input type="text" placeholder="Search transactions...">
+                <ion-icon name="search-outline"></ion-icon>
+            </div>
+        </div>
+
+        <div class="transactions-container">
+            
+        </div>
+        <div class="pagination">
+            <button class="pagination-btn">
+                <ion-icon name="chevron-back"></ion-icon>
+            </button>
+            <span class="active">1</span>
+            <span>2</span>
+            <span>3</span>
+            <button class="pagination-btn">
+                <ion-icon name="chevron-forward"></ion-icon>
+            </button>
+        </div>
+    </div>
+
+    <script src="admin-common.js"></script>
+    <script>
+
+          // Mobile Menu Toggle
+const menuToggle = document.getElementById('menuToggle');
+const sidebar = document.getElementById('sidebar');
+
+if (menuToggle && sidebar) {
+  menuToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+  });
+}
+
+
+        // Navigation Active State
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+  const container       = document.querySelector('.transactions-container');
+  const pagination      = document.querySelector('.pagination');
+  let currentPage       = 1;
+  const limit           = 20;
+
+  async function fetchAndRender(page) {
+    // 1) Fetch & filter
+let res, payload;
+try {
+  res = await fetch(`/api/v1/admin/fund-verification?page=${page}&limit=${limit}`);
+  payload = await res.json();
+} catch (err) {
+  console.error('Failed fetching fund verification:', err);
+  container.innerHTML = '<div class="empty">Unable to load transactions.</div>';
+  pagination.innerHTML = '';
+  return;
+}
+
+if (!res.ok || !payload || !payload.data) {
+  console.error('Bad response for fund verification:', payload);
+  container.innerHTML = '<div class="empty">No transactions found.</div>';
+  pagination.innerHTML = '';
+  return;
+}
+
+const { total, requests } = payload.data;
+
+    const pending   = requests.filter(r => r.status === 'pending');
+
+    // 2) Render transaction cards
+    container.innerHTML = '';
+    pending.forEach(tx => {
+      const imgSrc = tx.user.dpLocalPath
+        .replace(/^public[\\/]/, '/')
+        .replace(/\\/g, '/');
+
+        const card = document.createElement('div');
+const statusClass = tx.status || 'pending';
+card.className = `transaction-card ${statusClass}`;
+
+card.innerHTML = `
+  <div class="user-info">
+    <img src="${imgSrc}" class="user-avatar" alt="${tx.user.fullName}">
+    <div class="user-details">
+      <div class="user-name-row">
+        <a href="#" class="user-name">${tx.user.fullName}</a>
+        <span class="chain-pill">
+          <span class="chain-dot"></span>
+          ${tx.chainName}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="amount-section">
+    <div class="crypto-amount">+${tx.amount} ${tx.currency}</div>
+    <button class="view-prove-btn">
+      <ion-icon name="document-attach-outline"></ion-icon>
+      View Prove
+    </button>
+  </div>
+
+  <div class="status-control">
+<select class="status-select ${statusClass}">
+  <option value="pending" ${statusClass === 'pending' ? 'selected' : ''}>⏳ Pending Review</option>
+  <option value="completed" ${statusClass === 'completed' ? 'selected' : ''}>✅ Confirm Payment</option>
+  <option value="fraud" ${statusClass === 'fraud' ? 'selected' : ''}>❌ Flag as Fraud</option>
+</select>
+  </div>
+`;
+card.dataset.id = tx._id;
+container.appendChild(card);
+
+      card.querySelector('.view-prove-btn').addEventListener('click', () => {
+    const provePath = tx.paymentProve; // Make sure your API returns this field
+    showPaymentProve(provePath);
+});
+}); 
+
+
+    // 3) Render pagination controls
+    const totalPages = Math.ceil(total / limit);
+    let html = '';
+    html += `<button class="pagination-btn" id="prevBtn" ${page === 1 ? 'disabled' : ''}>
+               <ion-icon name="chevron-back"></ion-icon>
+             </button>`;
+
+    for (let i = 1; i <= totalPages; i++) {
+      html += `<span class="${i === page ? 'active' : ''}" data-page="${i}">${i}</span>`;
+    }
+
+    html += `<button class="pagination-btn" id="nextBtn" ${page === totalPages ? 'disabled' : ''}>
+               <ion-icon name="chevron-forward"></ion-icon>
+             </button>`;
+
+    pagination.innerHTML = html;
+
+    // 4) Wire up pagination interactions
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        fetchAndRender(currentPage);
+      }
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        fetchAndRender(currentPage);
+      }
+    });
+
+    pagination.querySelectorAll('span[data-page]').forEach(span => {
+      span.addEventListener('click', () => {
+        const p = Number(span.dataset.page);
+        if (p !== currentPage) {
+          currentPage = p;
+          fetchAndRender(currentPage);
+        }
+      });
+    });
+  }
+
+  // initial load
+  fetchAndRender(currentPage);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Toast Notification System
+  function showToast(message, type = 'info') {
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.innerHTML = `
+      <ion-icon name="${
+        type === 'success'   ? 'checkmark-circle' :
+        type === 'error'     ? 'warning'           :
+                              'information-circle'
+      }"></ion-icon>
+      <span>${message}</span>
+    `;
+    document.body.appendChild(toast);
+    // trigger CSS animation
+    setTimeout(() => toast.classList.add('show'), 10);
+    // hide + remove
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 300);
+    }, 3000);
+  }
+
+  // Delegate change events for all (even dynamically added) status-selects
+  const txContainer = document.querySelector('.transactions-container');
+  txContainer.addEventListener('change', async e => {
+    const select = e.target;
+    if (!select.classList.contains('status-select')) return;
+
+const card = select.closest('.transaction-card');
+const paymentId = card.dataset.id; // payment request _id (not shown)
+const newStatus = select.value;
+
+// if dataset.id missing, revert and notify (safety guard)
+if (!paymentId) {
+  const statuses = ['pending', 'completed', 'fraud'];
+  const prev = statuses.find(s => card.classList.contains(s)) || 'pending';
+  // revert optimistic UI
+  card.classList.replace(newStatus, prev);
+  select.classList.replace(newStatus, prev);
+  select.value = prev;
+  showToast('Unable to update status: payment id missing', 'error');
+  console.error('Missing payment id for card', card);
+  return;
+}
+
+
+    // find the old status class on the card/select
+    const statuses = ['pending', 'completed', 'fraud'];
+    const prevStatus = statuses.find(s => card.classList.contains(s)) || 'pending';
+
+    // Optimistic UI update
+    card.classList.replace(prevStatus, newStatus);
+    select.classList.replace(prevStatus, newStatus);
+
+    try {
+      const res = await fetch('/api/v1/admin/set-fund-status', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: paymentId, status: newStatus })
+      });
+
+      const result = await res.json();
+      if (!res.ok || result.statusCode !== 200) {
+        throw new Error(result.message || 'Server error');
+      }
+
+      showToast(`Status updated to "${newStatus}"`, 'success');
+
+      // Optionally remove non-pending cards
+      if (newStatus !== 'pending') {
+        setTimeout(() => card.remove(), 500);
+      }
+    } catch (err) {
+      // Revert on error
+      card.classList.replace(newStatus, prevStatus);
+      select.classList.replace(newStatus, prevStatus);
+      select.value = prevStatus;
+
+      showToast(`Failed to update status: ${err.message}`, 'error');
+      console.error('Status update error:', err);
+    }
+  });
+});
+
+function showPaymentProve(provePath) {
+    const modal = document.createElement('div');
+    modal.className = 'prove-modal active';
+    
+    // Clean file path (replace backslashes and remove public prefix)
+    const cleanPath = provePath.replace(/^public[\\/]/, '/').replace(/\\/g, '/');
+    const fileUrl = window.location.origin + cleanPath;
+    const fileExt = cleanPath.split('.').pop().toLowerCase();
+
+    let fileContent;
+    if (['png', 'jpg', 'jpeg', 'gif'].includes(fileExt)) {
+        fileContent = `<img src="${fileUrl}" class="prove-file" alt="Payment Proof">`;
+    } else if (fileExt === 'pdf') {
+        fileContent = `<iframe src="${fileUrl}" class="prove-iframe"></iframe>`;
+    } else {
+        fileContent = `
+            <div style="text-align:center; padding:2rem;">
+                <ion-icon name="document-text-outline" style="font-size:3rem;"></ion-icon>
+                <p>File type not previewable - please download</p>
+            </div>
+        `;
+    }
+
+    modal.innerHTML = `
+        <div class="prove-content">
+            <button class="prove-close">&times;</button>
+            ${fileContent}
+            <a href="${fileUrl}" download class="download-btn" style="display:block; margin-top:1rem; color:#6366F1;">
+                <ion-icon name="download-outline"></ion-icon>
+                Download File
+            </a>
+        </div>
+    `;
+
+    // Close modal handlers
+    modal.querySelector('.prove-close').addEventListener('click', () => modal.remove());
+    modal.addEventListener('click', (e) => {
+        if(e.target === modal) modal.remove();
+    });
+
+    document.body.appendChild(modal);
+}
+
+
+    </script>
+      
+</body>
+</html>

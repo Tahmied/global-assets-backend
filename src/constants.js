@@ -1,0 +1,1 @@
+export const dbUser = 'global-asset'

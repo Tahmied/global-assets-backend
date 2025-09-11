@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Finance Dashboard</title>
+  <link rel="stylesheet" href="/css/homepage.css">
+  <link rel="stylesheet" href="/css/ai-order-revenue.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="./Images/favicon.ico">
+  </head>
+<body>
+<header id="header">
+    <div class="header-container">
+        <div class="nav-menu">
+            <div class="logo-container">
+               <a href="/"> <img src="/Images/home_logo.png" alt="Company Logo"> </a>
+            </div>
+            <nav class="desktop-nav">
+                <a href="/" class="nav-item">Home</a>
+                <a href="/market.html" class="nav-item">Market</a>
+                <a href="/ai-finance.html" class="nav-item">AI Finance</a>
+                <a href="/loan.html" class="nav-item">Loans</a>
+                <a href="/profile.html" class="nav-item">Account</a>
+            </nav>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+
+        <button class="mobile-menu-toggle">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+         <a href="/" class="nav-item">Home</a>
+         <a href="/market.html" class="nav-item">Market</a>
+         <a href="/ai-finance.html" class="nav-item">AI Finance</a>
+         <a href="/loan.html" class="nav-item">Loans</a>
+         <a href="/profile.html" class="nav-item">Account</a>
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">  Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+    </nav>
+  </header>
+
+   <div class="revenue-container">
+            <div class="revenue-header">
+                <h2>Total Revenue</h2>
+                <div class="total-amount">$12,450.00</div>
+            </div>
+
+            <div class="revenue-card">
+                <div class="revenue-list-header">
+                    <span class="column-header">Return</span>
+                    <span class="column-header">Date</span>
+                </div>
+
+                <div class="revenue-list">
+                    <!-- Revenue Item -->
+                    <div class="revenue-item">
+                        <span class="return-amount positive">+$234.50</span>
+                        <span class="return-date">2025-05-15 14:30:00</span>
+                    </div>
+
+                    <!-- More items (repeating pattern) -->
+                    <div class="revenue-item">
+                        <span class="return-amount positive">+$150.00</span>
+                        <span class="return-date">2025-05-14 09:15:00</span>
+                    </div>
+
+                    <div class="revenue-item">
+                        <span class="return-amount negative">-$89.25</span>
+                        <span class="return-date">2025-05-13 16:45:00</span>
+                    </div>
+
+                    <!-- Add 10+ more items following the same structure -->
+
+                    <!-- Empty State (optional) -->
+                    <div class="empty-state">
+                        <i class="fas fa-chart-line"></i>
+                        <p>No returns recorded yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+  <footer class="footer">
+    <div class="footer-content">
+      <!-- Logo / Brand -->
+      <div class="footer-section logo-section">
+        <img src="./Images/logo_foot.png" alt="Global Assets Logo" class="footer-logo">
+      </div>
+      <!-- Company -->
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./team.html">About the Team</a></li>
+          <li><a href="./faq.html">Help Center</a></li>
+          <li><a href="#">Email support</a></li>
+          <li><a href="mailto:service@global-assets.com">service@global‑assets.io</a></li>
+        </ul>
+      </div>
+      <!-- Product -->
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="./market.html">Market List</a></li>
+          <li><a href="./loan.html">Investment loans</a></li>
+          <li><a href="./ai-finance.html">AI Finance</a></li>
+        </ul>
+      </div>
+      <!-- Policy -->
+      <div class="footer-section">
+        <h4>Policy</h4>
+        <ul>
+          <li><a href="./agrt.html">User Services Agreement</a></li>
+          <li><a href="./loan-agrt.html">Loan agreement</a></li>
+          <li><a href="./loan-explain.html">Loan rules explanation</a></li>
+          <li><a href="./legal-liability.html">Legal liability</a></li>
+        </ul>
+      </div>
+      <!-- Statement -->
+      <div class="footer-section">
+        <h4>Statement</h4>
+        <ul>
+          <li><a href="./risk.html">Risk Warning</a></li>
+          <li><a href="./privacy-statement.html">Privacy Statement</a></li>
+          <li><a href="./anti-laundaring.html">Anti‑Money Laundering Policy</a></li>
+          <li><a href="./rglt-licence.html">Regulatory license</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; Copyright 2016 – 2025 Global Assets. All rights reserved.
+    </div>
+  </footer>
+   <script src="/javascript/common-script.js"></script>
+   <script src="./javascript/loing-check.js"></script>
+   <script>
+  // Helper: Format date as "YYYY-MM-DD HH:mm:ss"
+  function formatDate(dateStr) {
+    if (!dateStr) return "--";
+    const d = new Date(dateStr);
+    return (
+      d.getFullYear() +
+      "-" +
+      String(d.getMonth() + 1).padStart(2, "0") +
+      "-" +
+      String(d.getDate()).padStart(2, "0") +
+      " " +
+      String(d.getHours()).padStart(2, "0") +
+      ":" +
+      String(d.getMinutes()).padStart(2, "0") +
+      ":" +
+      String(d.getSeconds()).padStart(2, "0")
+    );
+  }
+
+  // Helper: Format amount with sign and commas
+  function formatAmount(amount) {
+    const num = Number(amount);
+    const sign = num >= 0 ? "+" : "-";
+    return (
+      sign +
+      "$" +
+      Math.abs(num).toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })
+    );
+  }
+
+  // Helper: Show toast
+  function showToast(message, type = "error") {
+    let toast = document.createElement("div");
+    toast.className =
+      "custom-toast " +
+      (type === "success"
+        ? "toast-success"
+        : type === "error"
+        ? "toast-error"
+        : "");
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+      toast.classList.add("show");
+    }, 10);
+    setTimeout(() => {
+      toast.classList.remove("show");
+      setTimeout(() => document.body.removeChild(toast), 300);
+    }, 2500);
+  }
+
+  // Toast CSS
+  const style = document.createElement("style");
+  style.textContent = `
+    .custom-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 40px;
+      transform: translateX(-50%) scale(0.95);
+      background: #222;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .custom-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+      pointer-events: auto;
+    }
+    .toast-success { background: #2ecc40; }
+    .toast-error { background: #ff4136; }
+    .revenue-item.negative .return-amount { color: #ff4136; }
+    .revenue-item.positive .return-amount { color: #2ecc40; }
+    .empty-state { text-align: center; color: #888; margin: 2em 0; }
+    .empty-state i { font-size: 2em; margin-bottom: 0.5em; display: block; }
+  `;
+  document.head.appendChild(style);
+
+  document.addEventListener("DOMContentLoaded", async function () {
+    // Get orderId from URL
+    const match = window.location.pathname.match(
+      /\/ai-order-revenue-details\/([a-zA-Z0-9]+)/
+    );
+    const orderId = match ? match[1] : null;
+    if (!orderId) {
+      showToast("Invalid order link.", "error");
+      return;
+    }
+
+    // DOM elements
+    const totalAmountDiv = document.querySelector(".total-amount");
+    const revenueListDiv = document.querySelector(".revenue-list");
+
+    // Loading state
+    revenueListDiv.innerHTML =
+      '<div style="padding:2em;text-align:center;color:#888;">Loading...</div>';
+
+    try {
+      const res = await fetch("/api/v1/users/revenue-history", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderId }),
+      });
+      const data = await res.json();
+      if (
+        !data.success ||
+        !data.data ||
+        !Array.isArray(data.data.dailyRevenueHistory)
+      ) {
+        revenueListDiv.innerHTML =
+          '<div class="empty-state"><i class="fas fa-chart-line"></i><p>No returns recorded yet</p></div>';
+        totalAmountDiv.textContent = "$0.00";
+        return;
+      }
+
+      // Set total revenue
+      totalAmountDiv.textContent =
+        "$" +
+        Number(data.data.totalProfitEarned || 0).toLocaleString("en-US", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        });
+
+      // Render revenue items
+      const history = data.data.dailyRevenueHistory;
+      if (!history.length) {
+        revenueListDiv.innerHTML =
+          '<div class="empty-state"><i class="fas fa-chart-line"></i><p>No returns recorded yet</p></div>';
+        return;
+      }
+
+      // Sort by date descending (latest first)
+      history.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      revenueListDiv.innerHTML = "";
+      history.forEach((item) => {
+        const amount = Number(item.amount);
+        const isPositive = amount >= 0;
+        const revenueItem = document.createElement("div");
+        revenueItem.className =
+          "revenue-item " + (isPositive ? "positive" : "negative");
+        revenueItem.innerHTML = `
+          <span class="return-amount ${isPositive ? "positive" : "negative"}">${formatAmount(amount)}</span>
+          <span class="return-date">${formatDate(item.date)}</span>
+        `;
+        revenueListDiv.appendChild(revenueItem);
+      });
+    } catch (e) {
+      revenueListDiv.innerHTML =
+        '<div class="empty-state"><i class="fas fa-chart-line"></i><p>Failed to load revenue history</p></div>';
+      totalAmountDiv.textContent = "$0.00";
+    }
+  });
+</script>
+
+  </body>
+  </html>

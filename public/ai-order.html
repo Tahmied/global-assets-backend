@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Finance Dashboard</title>
+  <link rel="stylesheet" href="/css/homepage.css">
+  <link rel="stylesheet" href="/css/ai-order.css">
+  <link rel="icon" type="image/x-icon" href="./Images/favicon.ico">
+  </head>
+<body>
+
+<header id="header">
+    <div class="header-container">
+        <div class="nav-menu">
+            <div class="logo-container">
+               <a href="/"> <img src="/Images/home_logo.png" alt="Company Logo"> </a>
+            </div>
+            <nav class="desktop-nav">
+                <a href="/" class="nav-item">Home</a>
+                <a href="/market.html" class="nav-item">Market</a>
+                <a href="/ai-finance.html" class="nav-item">AI Finance</a>
+                <a href="/loan.html" class="nav-item">Loans</a>
+                <a href="/profile.html" class="nav-item">Account</a>
+            </nav>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+
+        <button class="mobile-menu-toggle">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+         <a href="/" class="nav-item">Home</a>
+         <a href="/market.html" class="nav-item">Market</a>
+         <a href="/ai-finance.html" class="nav-item">AI Finance</a>
+         <a href="/loan.html" class="nav-item">Loans</a>
+         <a href="/profile.html" class="nav-item">Account</a>
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">  Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+    </nav>
+  </header>
+
+<div class="ai-order-container">
+    <div class="subscription-container">
+        <div class="subscription-card">
+            <h2 class="subscription-title">New Subscription</h2>
+            <div class="subscription-grid">
+                <div class="subscription-item">
+                    <span class="subscription-label">Subscription price</span>
+                    <span class="subscription-value">10000–50000</span>
+                </div>
+                <div class="subscription-item">
+                    <span class="subscription-label">Rate of return</span>
+                    <span class="subscription-value">1.2–1.7%</span>
+                </div>
+                <div class="subscription-item">
+                    <span class="subscription-label">Name</span>
+                    <select class="subscription-select">
+                        <option>BTC</option>
+                        <option>ETH</option>
+                        <option>USDT</option>
+                        <option>XAUT</option>
+                    </select>
+                </div>
+                <div class="subscription-item">
+                    <span class="subscription-label">Hosting days:</span>
+                    <span class="subscription-value">2 Day</span>
+                </div>
+                <div class="subscription-item">
+                    <span class="subscription-label">Number of purchase restrictions</span>
+                    <span class="subscription-value">∞</span>
+                </div>
+                <div class="subscription-input-group">
+                    <input type="number" class="subscription-input" placeholder="Investment Amount" />
+                    <span class="input-unit">USDT</span>
+                </div>
+            </div>
+            <button class="subscription-button">
+                Host Now
+                <i class="fas fa-arrow-right button-icon"></i>
+            </button>
+        </div>
+    </div>
+</div>
+    
+
+    <footer class="footer">
+    <div class="footer-content">
+      <!-- Logo / Brand -->
+      <div class="footer-section logo-section">
+        <img src="./Images/logo_foot.png" alt="Global Assets Logo" class="footer-logo">
+      </div>
+      <!-- Company -->
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./team.html">About the Team</a></li>
+          <li><a href="./faq.html">Help Center</a></li>
+          <li><a href="#">Email support</a></li>
+          <li><a href="mailto:service@global-assets.com">service@global‑assets.io</a></li>
+        </ul>
+      </div>
+      <!-- Product -->
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="./market.html">Market List</a></li>
+          <li><a href="./loan.html">Investment loans</a></li>
+          <li><a href="./ai-finance.html">AI Finance</a></li>
+        </ul>
+      </div>
+      <!-- Policy -->
+      <div class="footer-section">
+        <h4>Policy</h4>
+        <ul>
+          <li><a href="./agrt.html">User Services Agreement</a></li>
+          <li><a href="./loan-agrt.html">Loan agreement</a></li>
+          <li><a href="./loan-explain.html">Loan rules explanation</a></li>
+          <li><a href="./legal-liability.html">Legal liability</a></li>
+        </ul>
+      </div>
+      <!-- Statement -->
+      <div class="footer-section">
+        <h4>Statement</h4>
+        <ul>
+          <li><a href="./risk.html">Risk Warning</a></li>
+          <li><a href="./privacy-statement.html">Privacy Statement</a></li>
+          <li><a href="./anti-laundaring.html">Anti‑Money Laundering Policy</a></li>
+          <li><a href="./rglt-licence.html">Regulatory license</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; Copyright 2016 – 2025 Global Assets. All rights reserved.
+    </div>
+  </footer>
+
+    <script src="/javascript/common-script.js"></script>
+    <script src="/javascript/loing-check.js"></script>
+  <script>
+  // --- Helper functions ---
+  function getPackageIdFromUrl() {
+    const match = window.location.pathname.match(
+      /\/ai-order\/package-([a-zA-Z0-9]+)/
+    );
+    return match ? match[1] : null;
+  }
+
+  function showToast(message, type = "success") {
+    let toast = document.createElement("div");
+    toast.className =
+      "custom-toast " +
+      (type === "success"
+        ? "toast-success"
+        : type === "error"
+        ? "toast-error"
+        : "");
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+      toast.classList.add("show");
+    }, 10);
+    setTimeout(() => {
+      toast.classList.remove("show");
+      setTimeout(() => document.body.removeChild(toast), 300);
+    }, 2500);
+  }
+
+  function showModal(onSubmit) {
+    // Remove existing modal if any
+    let oldModal = document.getElementById("trx-pass-modal");
+    if (oldModal) oldModal.remove();
+
+    let modal = document.createElement("div");
+    modal.id = "trx-pass-modal";
+    modal.innerHTML = `
+      <div class="modal-backdrop"></div>
+      <div class="modal-content">
+        <h3>Enter the transaction password</h3>
+        <input type="password" id="trx-pass-input" class="modal-input" placeholder="Transaction password" autocomplete="off" />
+        <div class="modal-actions">
+          <button id="modal-cancel" class="modal-btn modal-cancel">Cancel</button>
+          <button id="modal-submit" class="modal-btn modal-submit">Submit</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    // Focus input
+    setTimeout(() => {
+      document.getElementById("trx-pass-input").focus();
+    }, 100);
+
+    // Cancel
+    document.getElementById("modal-cancel").onclick = () => modal.remove();
+
+    // Submit
+    document.getElementById("modal-submit").onclick = () => {
+      const pass = document.getElementById("trx-pass-input").value.trim();
+      if (!pass) {
+        showToast("Please enter your transaction password.", "error");
+        return;
+      }
+      onSubmit(pass, () => modal.remove());
+    };
+
+    // Enter key
+    document
+      .getElementById("trx-pass-input")
+      .addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          document.getElementById("modal-submit").click();
+        }
+      });
+  }
+
+  // --- Modal and Toast CSS ---
+  const style = document.createElement("style");
+  style.textContent = `
+    .custom-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 40px;
+      transform: translateX(-50%) scale(0.95);
+      background: #222;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .custom-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+      pointer-events: auto;
+    }
+    .toast-success { background: #2ecc40; }
+    .toast-error { background: #ff4136; }
+
+    #trx-pass-modal {
+      position: fixed;
+      z-index: 10000;
+      left: 0; top: 0; right: 0; bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #trx-pass-modal .modal-backdrop {
+      position: absolute;
+      left: 0; top: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.35);
+    }
+    #trx-pass-modal .modal-content {
+      position: relative;
+      background: #fff;
+      border-radius: 12px;
+      padding: 32px 24px 20px 24px;
+      min-width: 320px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      animation: modalIn 0.2s;
+    }
+    #trx-pass-modal h3 {
+      margin: 0 0 18px 0;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #222;
+      text-align: center;
+    }
+    #trx-pass-modal .modal-input {
+      padding: 10px 12px;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin-bottom: 18px;
+      outline: none;
+      transition: border 0.2s;
+    }
+    #trx-pass-modal .modal-input:focus {
+      border-color: #007bff;
+    }
+    #trx-pass-modal .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    #trx-pass-modal .modal-btn {
+      padding: 8px 18px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #trx-pass-modal .modal-cancel {
+      background: #eee;
+      color: #333;
+    }
+    #trx-pass-modal .modal-submit {
+      background: #007bff;
+      color: #fff;
+    }
+    @keyframes modalIn {
+      from { transform: translateY(30px) scale(0.98); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // --- Main logic ---
+  document.addEventListener("DOMContentLoaded", async function () {
+    const packageId = getPackageIdFromUrl();
+    if (!packageId) {
+      showToast("Invalid package link.", "error");
+      return;
+    }
+
+    // Fetch package details
+    let packageData = null;
+    try {
+      const res = await fetch("/api/v1/users/ai-robot-packages");
+      const data = await res.json();
+      if (
+        data.success &&
+        data.data &&
+        Array.isArray(data.data.packages)
+      ) {
+        packageData = data.data.packages.find((p) => p._id === packageId);
+      }
+    } catch (e) {
+      showToast("Failed to load package info.", "error");
+    }
+
+    if (!packageData) {
+      showToast("Package not found.", "error");
+      return;
+    }
+
+    // Fill in the subscription info
+    document.querySelectorAll(".subscription-value")[0].textContent =
+      packageData.minInvestmentAmount.toLocaleString() +
+      "–" +
+      packageData.maxInvestmentAmount.toLocaleString();
+    document.querySelectorAll(".subscription-value")[1].textContent =
+      packageData.minDailyReturnPercentage +
+      "–" +
+      packageData.maxDailyReturnPercentage +
+      "%";
+    document.querySelectorAll(".subscription-value")[2].textContent =
+      packageData.cycleDurationDays + " Day";
+
+    // --- Handle Host Now ---
+    const hostBtn = document.querySelector(".subscription-button");
+    hostBtn.onclick = function () {
+      // Get user input
+      const amountInput = document.querySelector(".subscription-input");
+      const assetSelect = document.querySelector(".subscription-select");
+      const investmentAmount = Number(amountInput.value);
+      const selectedAssetName = assetSelect.value;
+
+      // Validate
+      if (
+        !investmentAmount ||
+        investmentAmount < packageData.minInvestmentAmount ||
+        investmentAmount > packageData.maxInvestmentAmount
+      ) {
+        showToast(
+          `Investment amount must be between ${packageData.minInvestmentAmount.toLocaleString()} and ${packageData.maxInvestmentAmount.toLocaleString()}.`,
+          "error"
+        );
+        amountInput.focus();
+        return;
+      }
+
+      // Show modal for transaction password
+      showModal(async (trxPass, closeModal) => {
+        // 1. Check transaction password
+        try {
+          const checkRes = await fetch(
+            "/api/v1/users/check-trx-pass",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ trxPass }),
+            }
+          );
+          const checkData = await checkRes.json();
+          if (!checkData.success) {
+            showToast("Incorrect transaction password.", "error");
+            return;
+          }
+        } catch (e) {
+          showToast("Failed to verify password.", "error");
+          return;
+        }
+
+        // 2. Host investment
+        try {
+          const investRes = await fetch(
+            "/api/v1/users/host-investment",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                packageId,
+                investmentAmount,
+                selectedAssetName,
+                transactionPassword: trxPass,
+              }),
+            }
+          );
+          const investData = await investRes.json();
+          if (!investData.success) {
+            showToast(investData.message || "Investment failed.", "error");
+            return;
+          }
+          closeModal();
+          showToast("Investment hosted successfully!", "success");
+          setTimeout(() => {
+            window.location.href = "/ai-managed-orders.html";
+          }, 1200);
+        } catch (e) {
+          showToast("Failed to host investment.", "error");
+        }
+      });
+    };
+  });
+</script>
+
+
+</body>
+</html>

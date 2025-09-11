@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <link rel="stylesheet" href="./css/update-profile.css">
+
+  <link rel="stylesheet" href="./css/homepage.css">
+  <link rel="icon" type="image/x-icon" href="./Images/favicon.ico">
+</head>
+<body>
+
+     <header id="header">
+    <div class="header-container">
+        <div class="nav-menu">
+            <div class="logo-container">
+               <a href="./"> <img src="./Images/home_logo.png" alt="Company Logo"> </a>
+            </div>
+            <nav class="desktop-nav">
+                <a href="./" class="nav-item">Home</a>
+                <a href="./market.html" class="nav-item">Market</a>
+                <a href="./ai-finance.html" class="nav-item">AI Finance</a>
+                <a href="./loan.html" class="nav-item">Loans</a>
+                <a href="./profile.html" class="nav-item">Account</a>
+            </nav>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+
+        <button class="mobile-menu-toggle">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+         <a href="./" class="nav-item">Home</a>
+         <a href="./market.html" class="nav-item">Market</a>
+         <a href="./ai-finance.html" class="nav-item">AI Finance</a>
+         <a href="./loan.html" class="nav-item">Loans</a>
+         <a href="./profile.html" class="nav-item">Account</a>
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">  Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+    </nav>
+  </header>
+
+<section class="update-profile">
+  <div class="profile-container">
+    <div class="profile-header">
+      <div class="avatar-upload">
+        <input type="file" id="avatarInput" accept="image/*" hidden>
+        <div class="avatar-preview" id="avatarPreview">
+          <img src="placeholder.jpg" alt="Avatar">
+        </div>
+        <div class="avatar-edit" role="button" aria-label="Edit avatar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path>
+            <polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon>
+          </svg>
+        </div>
+      </div>
+      <h1>Update Profile</h1>
+    </div>
+
+    <form id="profileForm">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div style="display:flex;gap:.5rem;align-items:center;">
+          <input type="email" id="email" class="form-control" required>
+          <button type="button" id="sendOtpBtn" class="btn-small">Send OTP</button>
+        </div>
+        <small id="emailHelp" class="muted">If you change your email you'll need to verify it with an OTP.</small>
+      </div>
+
+      <div class="form-group" id="otpGroup" style="display:none;">
+        <label for="otpInput">OTP</label>
+        <div style="display:flex;gap:.5rem;align-items:center;">
+          <input type="text" id="otpInput" class="form-control" placeholder="6-digit code" maxlength="6">
+          <button type="button" id="verifyOtpBtn" class="btn-small">Verify OTP</button>
+        </div>
+        <small id="otpCountdown" class="muted"></small>
+      </div>
+
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">New Password</label>
+        <input type="password" id="password" class="form-control" placeholder="••••••••">
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm New Password</label>
+        <input type="password" id="confirmPassword" class="form-control" placeholder="••••••••">
+      </div>
+
+      <button type="submit" class="btn-save">
+        <span>Save Changes</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+          <polyline points="17 21 17 13 7 13 7 21"></polyline>
+          <polyline points="7 3 7 8 15 8"></polyline>
+        </svg>
+      </button>
+    </form>
+  </div>
+</section>
+
+
+    <footer class="footer">
+    <div class="footer-content">
+      <!-- Logo / Brand -->
+      <div class="footer-section logo-section">
+        <img src="./Images/logo_foot.png" alt="Global Assets Logo" class="footer-logo">
+      </div>
+      <!-- Company -->
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./team.html">About the Team</a></li>
+          <li><a href="./faq.html">Help Center</a></li>
+          <li><a href="#">Email support</a></li>
+          <li><a href="mailto:service@global-assets.com">service@global‑assets.io</a></li>
+        </ul>
+      </div>
+      <!-- Product -->
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="./market.html">Market List</a></li>
+          <li><a href="./loan.html">Investment loans</a></li>
+          <li><a href="./ai-finance.html">AI Finance</a></li>
+        </ul>
+      </div>
+      <!-- Policy -->
+      <div class="footer-section">
+        <h4>Policy</h4>
+        <ul>
+          <li><a href="./agrt.html">User Services Agreement</a></li>
+          <li><a href="./loan-agrt.html">Loan agreement</a></li>
+          <li><a href="./loan-explain.html">Loan rules explanation</a></li>
+          <li><a href="./legal-liability.html">Legal liability</a></li>
+        </ul>
+      </div>
+      <!-- Statement -->
+      <div class="footer-section">
+        <h4>Statement</h4>
+        <ul>
+          <li><a href="./risk.html">Risk Warning</a></li>
+          <li><a href="./privacy-statement.html">Privacy Statement</a></li>
+          <li><a href="./anti-laundaring.html">Anti‑Money Laundering Policy</a></li>
+          <li><a href="./rglt-licence.html">Regulatory license</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; Copyright 2016 – 2025 Global Assets. All rights reserved.
+    </div>
+  </footer>
+
+   
+
+    <div class="toast" id="toast">
+        <span id="toastMessage"></span>
+    </div>
+    <script src="./javascript/common-script.js"></script>
+    <script src="./javascript/loing-check.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const firstNameInput = document.getElementById('firstName');
+  const lastNameInput  = document.getElementById('lastName');
+  const passwordInput  = document.getElementById('password');
+  const confirmPasswordInput = document.getElementById('confirmPassword');
+  const emailInput     = document.getElementById('email');
+  const otpInput       = document.getElementById('otpInput');
+  const profileForm    = document.getElementById('profileForm');
+  const toast          = document.getElementById('toast');
+  const toastMessage   = document.getElementById('toastMessage');
+  const avatarPreview  = document.getElementById('avatarPreview').querySelector('img');
+  const avatarInput    = document.getElementById('avatarInput');
+  const avatarEdit     = document.querySelector('.avatar-edit');
+
+  const sendOtpBtn     = document.getElementById('sendOtpBtn');
+  const verifyOtpBtn   = document.getElementById('verifyOtpBtn');
+  const otpGroup       = document.getElementById('otpGroup');
+  const otpCountdownEl = document.getElementById('otpCountdown');
+
+  let originalEmail = '';
+  let otpVerified = false;
+  let otpTimerId = null;
+  let otpExpiresAt = null;
+  let sendCooldownTimer = null;
+
+  // Toast helper
+  function showToast(msg, type='info') {
+    toastMessage.textContent = msg;
+    toast.className = `toast visible ${type}`;
+    setTimeout(() => toast.classList.remove('visible'), 3000);
+  }
+
+  // Basic email validator
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  // Load initial user data
+  async function loadUserData() {
+    try {
+      const res = await fetch('/api/v1/users/profile', {
+        method: 'GET',
+        credentials: 'include'
+      });
+      const parsed = await res.json();
+      if (!res.ok) throw new Error(parsed.message || 'Failed to load');
+
+      const data = parsed.data || {};
+      firstNameInput.value = data.firstName || '';
+      lastNameInput.value  = data.lastName  || '';
+      emailInput.value     = data.email || '';
+      originalEmail = (data.email || '').toLowerCase();
+
+      // Avatar preview (optional)
+      if (data.dpLocalPath) {
+        const p = data.dpLocalPath.replace(/^public[\\/]/, '').replace(/\\/g,'/');
+        avatarPreview.src = `/${p}`;
+      }
+    } catch (err) {
+      console.error(err);
+      showToast(err.message || 'Error loading profile', 'error');
+    }
+  }
+
+  // Handle avatar edit click to open file dialog
+  if (avatarEdit && avatarInput) {
+    avatarEdit.addEventListener('click', () => avatarInput.click());
+  }
+
+  // Preview selected avatar image
+  if (avatarInput) {
+    avatarInput.addEventListener('change', function() {
+      if (this.files && this.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          avatarPreview.src = e.target.result;
+        };
+        reader.readAsDataURL(this.files[0]);
+      }
+    });
+  }
+
+  // If email input changes after verification, reset otpVerified
+  emailInput.addEventListener('input', () => {
+    const current = (emailInput.value || '').trim().toLowerCase();
+    if (current !== originalEmail) {
+      otpVerified = false;
+      otpGroup.style.display = 'none';
+      otpInput.value = '';
+      otpCountdownEl.textContent = '';
+      clearInterval(otpTimerId);
+    } else {
+      // If user restored original email, OTP not needed
+      otpVerified = true; 
+    }
+  });
+
+  // Send OTP
+  sendOtpBtn.addEventListener('click', async () => {
+    const email = (emailInput.value || '').trim().toLowerCase();
+    if (!isValidEmail(email)) {
+      showToast('Please enter a valid email', 'error');
+      return;
+    }
+    if (email === originalEmail) {
+      showToast('That is already your email — no OTP required', 'info');
+      otpVerified = true;
+      return;
+    }
+
+    try {
+      sendOtpBtn.disabled = true;
+      sendOtpBtn.textContent = 'Sending...';
+
+      const res = await fetch('/api/v1/users/send-otp', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+
+      const parsed = await res.json();
+      if (!res.ok) throw new Error(parsed?.message || 'Failed to send OTP');
+
+      showToast(parsed?.message || 'OTP sent to email', 'success');
+
+      // Show OTP input & start a 5-minute countdown (server expiry is 5 minutes)
+      otpGroup.style.display = 'block';
+      otpVerified = false;
+      otpInput.focus();
+
+      // set simple UI cooldown to prevent rapid resend (60s)
+      let cooldown = 60;
+      sendOtpBtn.disabled = true;
+      sendOtpBtn.textContent = `Resend in ${cooldown}s`;
+      sendCooldownTimer = setInterval(() => {
+        cooldown -= 1;
+        if (cooldown <= 0) {
+          clearInterval(sendCooldownTimer);
+          sendOtpBtn.disabled = false;
+          sendOtpBtn.textContent = 'Send OTP';
+        } else {
+          sendOtpBtn.textContent = `Resend in ${cooldown}s`;
+        }
+      }, 1000);
+
+      // OTP expiry countdown (5 minutes)
+      const totalSeconds = 5 * 60;
+      let remaining = totalSeconds;
+      clearInterval(otpTimerId);
+      otpTimerId = setInterval(() => {
+        remaining -= 1;
+        if (remaining <= 0) {
+          clearInterval(otpTimerId);
+          otpCountdownEl.textContent = 'OTP expired. Request a new code.';
+          otpGroup.style.display = 'block';
+        } else {
+          const mins = Math.floor(remaining / 60);
+          const secs = remaining % 60;
+          otpCountdownEl.textContent = `Expires in ${mins}:${secs.toString().padStart(2,'0')}`;
+        }
+      }, 1000);
+
+    } catch (err) {
+      console.error(err);
+      showToast(err.message || 'Failed to send OTP', 'error');
+      sendOtpBtn.disabled = false;
+      sendOtpBtn.textContent = 'Send OTP';
+    }
+  });
+
+  // Verify OTP
+  verifyOtpBtn.addEventListener('click', async () => {
+    const email = (emailInput.value || '').trim().toLowerCase();
+    const otp = (otpInput.value || '').trim();
+    if (!email || !otp) {
+      showToast('Email and OTP are required', 'error');
+      return;
+    }
+    try {
+      verifyOtpBtn.disabled = true;
+      verifyOtpBtn.textContent = 'Verifying...';
+
+      const res = await fetch('/api/v1/users/verify-otp', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, otp })
+      });
+
+      const parsed = await res.json();
+      if (!res.ok) throw new Error(parsed?.message || 'OTP verification failed');
+
+      otpVerified = true;
+      showToast(parsed?.message || 'OTP verified', 'success');
+      otpGroup.style.display = 'none';
+      otpInput.value = '';
+      clearInterval(otpTimerId);
+      otpCountdownEl.textContent = '';
+      verifyOtpBtn.textContent = 'Verify OTP';
+    } catch (err) {
+      console.error(err);
+      showToast(err.message || 'OTP verification failed', 'error');
+      verifyOtpBtn.disabled = false;
+      verifyOtpBtn.textContent = 'Verify OTP';
+    }
+  });
+
+  // Form submission
+  profileForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const firstName = firstNameInput.value.trim();
+    const lastName  = lastNameInput.value.trim();
+    const password  = passwordInput.value;
+    const confirmPw = confirmPasswordInput.value;
+    const email     = (emailInput.value || '').trim().toLowerCase();
+
+    // password match check
+    if (password || confirmPw) {
+      if (password !== confirmPw) {
+        showToast('Passwords do not match', 'error');
+        return;
+      }
+      if (password.length && password.length < 6) {
+        showToast('Password must be at least 6 characters', 'error');
+        return;
+      }
+    }
+
+    // if email changed, require OTP verified
+    if (email !== originalEmail && !otpVerified) {
+      showToast('Please verify the new email with OTP before saving', 'error');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('firstName', firstName);
+    formData.append('lastName', lastName);
+    if (email) formData.append('email', email);
+    if (password) formData.append('password', password);
+    if (avatarInput.files && avatarInput.files[0]) {
+      formData.append('profilePic', avatarInput.files[0]);
+    }
+
+    try {
+      const res = await fetch('/api/v1/users/update-profile', {
+        method: 'POST',
+        credentials: 'include',
+        body: formData
+      });
+
+      const parsed = await res.json();
+      if (res.ok) {
+        showToast(parsed?.message || 'Profile updated', 'success');
+        // if email changed and was verified, update originalEmail so future saves don't require OTP
+        if (email !== originalEmail) {
+          originalEmail = email;
+          otpVerified = true;
+        }
+        passwordInput.value = '';
+        confirmPasswordInput.value = '';
+      } else {
+        showToast(parsed?.message || 'Update failed', 'error');
+      }
+    } catch (err) {
+      console.error(err);
+      showToast('Network error, try again', 'error');
+    }
+  });
+
+  // Kick it off
+  loadUserData();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+
+        .transaction-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #334155;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .transaction-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .transaction-header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+        
+        .transaction-header p {
+            color: #64748b;
+            font-size: 16px;
+        }
+        
+        .transaction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        
+        .transaction-table thead {
+            background: #f8fafc;
+        }
+        
+        .transaction-table th {
+            padding: 16px 20px;
+            text-align: left;
+            font-weight: 600;
+            color: #475569;
+            font-size: 14px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .transaction-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .transaction-table tr:hover {
+            background: #f8fafc;
+        }
+        
+        .transaction-desc {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .transaction-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1f5f9;
+            color: #000000;
+        }
+        
+        .transaction-amount {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .credit-amount {
+            color: #1d8e68;
+        }
+        
+        .debit-amount {
+            color: #c63535;
+        }
+        
+        .type-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .credit-badge {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .debit-badge {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        
+        .pagination button {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+            font-size: 14px;
+            color: #475569;
+        }
+        
+        .pagination button:hover {
+            background: #f1f5f9;
+        }
+        
+        .pagination button.active {
+            background: #000000;
+            color: white;
+            border-color: #000000;
+        }
+        
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        @media (max-width: 768px) {
+            .transaction-container {
+                padding: 15px;
+            }
+            
+            .transaction-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .transaction-table th,
+            .transaction-table td {
+                padding: 12px 15px;
+            }
+            
+            .transaction-desc {
+                min-width: 200px;
+            }
+        }

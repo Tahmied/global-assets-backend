@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Records | Global Assets</title>
+    <link rel="stylesheet" href="./css/homepage.css">
+    <link rel="stylesheet" href="./css/transaction-history.css">
+    <link rel="icon" type="image/x-icon" href="./Images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    
+</head>
+<body>
+
+    <header id="header">
+    <div class="header-container">
+        <div class="nav-menu">
+            <div class="logo-container">
+               <a href="./"> <img src="./Images/home_logo.png" alt="Company Logo"> </a>
+            </div>
+            <nav class="desktop-nav">
+                <a href="./" class="nav-item">Home</a>
+                <a href="./market.html" class="nav-item">Market</a>
+                <a href="./ai-finance.html" class="nav-item">AI Finance</a>
+                <a href="./loan.html" class="nav-item">Loans</a>
+                <a href="./profile.html" class="nav-item">Account</a>
+            </nav>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+
+        <button class="mobile-menu-toggle">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+         <a href="./" class="nav-item">Home</a>
+         <a href="./market.html" class="nav-item">Market</a>
+         <a href="./ai-finance.html" class="nav-item">AI Finance</a>
+         <a href="./loan.html" class="nav-item">Loans</a>
+         <a href="./profile.html" class="nav-item">Account</a>
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">  Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+    </nav>
+    </header>
+
+    <div class="transaction-container">
+        <div class="transaction-header">
+            <h1>Transaction History</h1>
+            <p>View all your credit and debit transactions</p>
+        </div>
+        
+        <table class="transaction-table">
+            <thead>
+                <tr>
+                    <th>DESCRIPTION</th>
+                    <th>AMOUNT</th>
+                    <th>TYPE</th>
+                    <th>DATE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Transactions will be populated by JavaScript -->
+            </tbody>
+        </table>
+        
+        <div class="pagination">
+            <button id="prev-btn" disabled><i class="fas fa-chevron-left"></i></button>
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button id="next-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-content">
+      <!-- Logo / Brand -->
+      <div class="footer-section logo-section">
+        <img src="./Images/logo_foot.png" alt="Global Assets Logo" class="footer-logo">
+      </div>
+      <!-- Company -->
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./team.html">About the Team</a></li>
+          <li><a href="./faq.html">Help Center</a></li>
+          <li><a href="#">Email support</a></li>
+          <li><a href="mailto:service@global-assets.com">service@global‑assets.io</a></li>
+        </ul>
+      </div>
+      <!-- Product -->
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="./market.html">Market List</a></li>
+          <li><a href="./loan.html">Investment loans</a></li>
+          <li><a href="./ai-finance.html">AI Finance</a></li>
+        </ul>
+      </div>
+      <!-- Policy -->
+      <div class="footer-section">
+        <h4>Policy</h4>
+        <ul>
+          <li><a href="./agrt.html">User Services Agreement</a></li>
+          <li><a href="./loan-agrt.html">Loan agreement</a></li>
+          <li><a href="./loan-explain.html">Loan rules explanation</a></li>
+          <li><a href="./legal-liability.html">Legal liability</a></li>
+        </ul>
+      </div>
+      <!-- Statement -->
+      <div class="footer-section">
+        <h4>Statement</h4>
+        <ul>
+          <li><a href="./risk.html">Risk Warning</a></li>
+          <li><a href="./privacy-statement.html">Privacy Statement</a></li>
+          <li><a href="./anti-laundaring.html">Anti‑Money Laundering Policy</a></li>
+          <li><a href="./rglt-licence.html">Regulatory license</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; Copyright 2016 – 2025 Global Assets. All rights reserved.
+    </div>
+  </footer>
+
+      <script src="./javascript/common-script.js"></script>
+
+<script>
+(async () => {
+  // Config
+  const endpoint = '/api/v1/transaction/history';
+  const itemsPerPage = 5; // keep design's small page size
+  const timeZone = 'Asia/Dhaka';
+
+  // Category icons mapping (FontAwesome)
+  const categoryIcons = {
+    'Income': 'fa-money-bill-wave',
+    'Food': 'fa-utensils',
+    'Utilities': 'fa-bolt',
+    'Entertainment': 'fa-film',
+    'Investment': 'fa-chart-line',
+    'Transport': 'fa-car',
+    'Transfer': 'fa-exchange-alt',
+    'Shopping': 'fa-shopping-bag',
+    'trading': 'fa-chart-line',
+    'ai-robot-purchase': 'fa-robot'
+  };
+
+  const tbody = document.querySelector('.transaction-table tbody');
+  const paginationContainer = document.querySelector('.pagination');
+
+  // Utility: clear table and show a single message row
+  function showTableMessage(message) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="4" style="text-align:center; padding: 24px; color:#64748b;">${message}</td>
+      </tr>
+    `;
+  }
+
+  // Render transactions (only DESCRIPTION, AMOUNT, TYPE, DATE)
+  function renderTransactions(transactions) {
+    if (!transactions || transactions.length === 0) {
+      showTableMessage('No transactions found.');
+      return;
+    }
+
+    tbody.innerHTML = ''; // clear
+
+    transactions.forEach(tx => {
+      const description = tx.description || '';
+      const category = tx.category || '';
+      const amount = (typeof tx.amount === 'number') ? tx.amount : Number(tx.amount || 0);
+      const type = (tx.type || '').toLowerCase();
+      const sign = type === 'credit' ? '+' : '-';
+      const amountStr = `${sign}$${amount.toFixed(2)}`;
+
+      // Format date using timezone
+      let formattedDate = '';
+      try {
+        const d = new Date(tx.createdAt || tx.date || tx.updatedAt || null);
+        formattedDate = isNaN(d) ? '' : new Intl.DateTimeFormat(undefined, {
+          year: 'numeric', month: 'short', day: 'numeric', timeZone
+        }).format(d);
+      } catch (e) {
+        formattedDate = tx.createdAt ? tx.createdAt.split('T')[0] : '';
+      }
+
+      const iconClass = categoryIcons[category] || 'fa-receipt';
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>
+          <div class="transaction-desc" style="display:flex; align-items:center; gap:12px;">
+            <div class="transaction-icon" style="width:36px; text-align:center;">
+              <i class="fas ${iconClass}" aria-hidden="true" style="font-size:16px;"></i>
+            </div>
+            <div>
+              <div style="font-weight:600;">${escapeHtml(description)}</div>
+              <div style="font-size:12px; color:#64748b;">${escapeHtml(String(category))}</div>
+            </div>
+          </div>
+        </td>
+        <td class="transaction-amount ${type === 'credit' ? 'credit-amount' : 'debit-amount'}" style="font-weight:600;">
+          ${amountStr}
+        </td>
+        <td>
+          <span class="type-badge ${type === 'credit' ? 'credit-badge' : 'debit-badge'}" style="padding:4px 8px; border-radius:12px;">
+            ${type === 'credit' ? 'Credit' : 'Debit'}
+          </span>
+        </td>
+        <td>${escapeHtml(formattedDate)}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  // Simple HTML-escape to avoid injecting raw data into DOM
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  // Build pagination controls based on lastPage & currentPage
+  function renderPagination(lastPage, currentPage) {
+    // Safety
+    lastPage = Math.max(1, Number(lastPage) || 1);
+    currentPage = Math.min(Math.max(1, Number(currentPage) || 1), lastPage);
+
+    // Create prev button
+    const prevBtn = document.createElement('button');
+    prevBtn.id = 'prev-btn';
+    prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+    prevBtn.disabled = currentPage === 1;
+    prevBtn.addEventListener('click', () => fetchAndRender(currentPage - 1));
+    
+    // Create next button
+    const nextBtn = document.createElement('button');
+    nextBtn.id = 'next-btn';
+    nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+    nextBtn.disabled = currentPage === lastPage;
+    nextBtn.addEventListener('click', () => fetchAndRender(currentPage + 1));
+
+    // Build numbered page buttons. If there are many pages, show a compact window.
+    const pagesFragment = document.createDocumentFragment();
+
+    const maxButtons = 7;
+    let start = 1;
+    let end = lastPage;
+
+    if (lastPage > maxButtons) {
+      const side = Math.floor((maxButtons - 1) / 2);
+      start = Math.max(1, currentPage - side);
+      end = Math.min(lastPage, start + maxButtons - 1);
+      if (end - start + 1 < maxButtons) {
+        start = Math.max(1, end - maxButtons + 1);
+      }
+    }
+
+    for (let p = start; p <= end; p++) {
+      const btn = document.createElement('button');
+      btn.textContent = String(p);
+      if (p === currentPage) btn.classList.add('active');
+      btn.addEventListener('click', () => fetchAndRender(p));
+      pagesFragment.appendChild(btn);
+    }
+
+    // Clear and append new pagination
+    paginationContainer.innerHTML = '';
+    paginationContainer.appendChild(prevBtn);
+    paginationContainer.appendChild(pagesFragment);
+    paginationContainer.appendChild(nextBtn);
+  }
+
+  // Fetch data and render table + pagination
+  async function fetchAndRender(page = 1) {
+    showTableMessage('Loading transactions...');
+    try {
+      const resp = await fetch(`${endpoint}?page=${page}&limit=${itemsPerPage}`, {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' },
+        credentials: 'same-origin' // include cookies if using session auth
+      });
+
+      if (!resp.ok) {
+        const text = await resp.text().catch(() => '');
+        console.error('API error:', resp.status, text);
+        showTableMessage('Unable to fetch transactions. Please try again later.');
+        renderPagination(1, 1);
+        return;
+      }
+
+      const json = await resp.json().catch(() => null);
+      if (!json || !json.data) {
+        showTableMessage('No transaction data returned from server.');
+        renderPagination(1, 1);
+        return;
+      }
+
+      const { transactions = [], total = 0, page: respPage = 1, lastPage = 1 } = json.data;
+
+      renderTransactions(transactions);
+      renderPagination(lastPage, respPage);
+    } catch (err) {
+      console.error('Fetch failed:', err);
+      showTableMessage('Network error while fetching transactions.');
+      renderPagination(1, 1);
+    }
+  }
+
+  // Initial load
+  fetchAndRender(1);
+})();
+</script>
+
+</body>
+</html>

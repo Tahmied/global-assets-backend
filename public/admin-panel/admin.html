@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Asset admin panel</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <link rel="stylesheet" href="./styles/admin-dashboard.css">
+</head>
+<body>
+    <button class="menu-btn" id="menuToggle">
+        <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <ion-icon name="rocket"></ion-icon>
+           <a href="./admin.html">Global Assets</a> 
+        </div>
+        <div id="dashboard" class="nav-item active">
+            <ion-icon name="speedometer"></ion-icon>
+           <a href="./admin.html">Dashboard</a> 
+        </div>
+        <div id="users" class="nav-item">
+            <ion-icon name="people"></ion-icon>
+          <a href="./user-management.html">Users</a>  
+        </div>
+        <div id="transaction" class="nav-item">
+            <ion-icon name="cash"></ion-icon>
+           <a href="./transactions.html">Transactions</a> 
+        </div>
+        <div id="kyc-review" class="nav-item">
+            <ion-icon name="document"></ion-icon>
+           <a href="./kyc-review.html">KYC Review</a> 
+        </div>
+        <div id="loan-review" class="nav-item">
+            <ion-icon name="card"></ion-icon>
+            <a href="./loan-review.html">Loan Requests</a>
+        </div>
+        <div id="settings" class="nav-item">
+            <ion-icon name="settings"></ion-icon>
+           <a href="./settings.html">Settings</a> 
+        </div>
+         <div id="announcement" class="nav-item">
+            <ion-icon name="megaphone"></ion-icon>
+            <a href="./announcement.html">Publish Announcement</a>
+        </div>
+         <div id="announcement" class="nav-item">
+            <ion-icon name="trending-up-outline"></ion-icon>
+            <a href="./trades.html">Trades</a>
+        </div>
+          <div id="chats" class="nav-item">
+             <ion-icon name="chatbubble"></ion-icon>
+            <a href="./chat.html">Chats</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Admin Dashboard</h1>
+        </div>
+
+        <!-- Quick Stats Row -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <ion-icon name="people"></ion-icon>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-title">Total Users</div>
+                    <div class="stat-value">Loading...</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <ion-icon name="cash"></ion-icon>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-title">Transactions</div>
+                    <div class="stat-value">Loading...</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <ion-icon name="document-text"></ion-icon>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-title">Pending KYC</div>
+                    <div class="stat-value">Loading...</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <ion-icon name="card"></ion-icon>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-title">Loan Requests</div>
+                    <div class="stat-value">Loading...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Access Cards -->
+        <div class="section-title">
+            <h2>Quick Access</h2>
+            <p>Navigate to different admin sections</p>
+        </div>
+
+        <div class="cards-grid">
+            <a href="./user-management.html" class="feature-card">
+                <div class="card-icon" style="background: #e0e7ff; color: #6366f1;">
+                    <ion-icon name="people"></ion-icon>
+                </div>
+                <h3>User Management</h3>
+                <p>View, edit, and manage all user accounts</p>
+                <div class="card-badge">View All</div>
+            </a>
+
+            <a href="./transactions.html" class="feature-card">
+                <div class="card-icon" style="background: #dcfce7; color: #22c55e;">
+                    <ion-icon name="cash"></ion-icon>
+                </div>
+                <h3>Transactions</h3>
+                <p>Monitor and verify all transactions</p>
+                <div class="card-badge">View All</div>
+            </a>
+
+            <a href="./kyc-review.html" class="feature-card">
+                <div class="card-icon" style="background: #fef3c7; color: #f59e0b;">
+                    <ion-icon name="document-text"></ion-icon>
+                </div>
+                <h3>KYC Review</h3>
+                <p>Approve pending KYC submissions</p>
+                <div class="card-badge">Review Now</div>
+            </a>
+
+            <a href="./loan-review.html" class="feature-card">
+                <div class="card-icon" style="background: #fee2e2; color: #ef4444;">
+                    <ion-icon name="card"></ion-icon>
+                </div>
+                <h3>Loan Requests</h3>
+                <p>Process pending loan applications</p>
+                <div class="card-badge">Review Now</div>
+            </a>
+
+            <a href="./settings.html" class="feature-card">
+                <div class="card-icon" style="background: #ecfdf5; color: #10b981;">
+                    <ion-icon name="settings"></ion-icon>
+                </div>
+                <h3>System Settings</h3>
+                <p>Configure platform settings</p>
+                <div class="card-badge">Configure</div>
+            </a>
+
+            <div class="feature-card">
+                <div class="card-icon" style="background: #f3e8ff; color: #a855f7;">
+                    <ion-icon name="help-circle"></ion-icon>
+                </div>
+                <h3>Help & Support</h3>
+                <p>Get help with admin features</p>
+                <div class="card-badge">Contact</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-common.js"></script>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+        // Navigation Active State
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Chart Initialization
+        const ctx = document.getElementById('mainChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Monthly Growth',
+                    data: [65, 59, 80, 81, 56, 55],
+                    borderColor: '#6366f1',
+                    tension: 0.4,
+                    fill: false,
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#f1f5f9'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: '#f1f5f9'
+                        }
+                    }
+                }
+            }
+        });
+
+        document.querySelector('#users').addEventListener('click' , (e)=>{
+            e.preventDefault()
+            window.location.href = './user-management.html'
+        })
+        document.querySelector('#transaction').addEventListener('click' , (e)=>{
+            e.preventDefault()
+            window.location.href = './transactions.html'
+        })
+        document.querySelector('#dashboard').addEventListener('click' , (e)=>{
+            e.preventDefault()
+            window.location.href = '/admin-panel/admin.html'
+        })
+
+        document.querySelector('#settings').addEventListener('click' , (e)=>{
+            e.preventDefault()
+            window.location.href = '/admin-panel/settings.html'
+        })
+        
+    </script>
+    <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("/api/v1/admin/site-state")
+      .then((response) => response.json())
+      .then((data) => {
+        if (
+          data &&
+          data.success &&
+          data.data
+        ) {
+          // Format numbers with commas
+          const formatNumber = (num) =>
+            num.toLocaleString("en-US");
+
+          // Get all stat-value elements in order
+          const statValues = document.querySelectorAll(
+            ".stats-grid .stat-card .stat-value"
+          );
+          if (statValues.length >= 4) {
+            statValues[0].textContent = formatNumber(data.data.totalUsers);
+            statValues[1].textContent = formatNumber(data.data.totalTransactions);
+            statValues[2].textContent = formatNumber(data.data.totalPendingKyc);
+            statValues[3].textContent = formatNumber(data.data.totalLoanRequests);
+          }
+        }
+      })
+      .catch((err) => {
+        // Optionally handle errors here
+        console.error("Failed to fetch admin site state:", err);
+      });
+  });
+</script>
+
+</body>
+</html>

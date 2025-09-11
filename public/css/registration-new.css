@@ -1,0 +1,374 @@
+
+    /* === Global Styles === */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+        line-height: 1.6;
+        color: #212529;
+        background-color: #f5f7ff;
+        background-image: radial-gradient(circle at 10% 20%, rgba(76, 201, 240, 0.1) 0%, rgba(255, 255, 255, 1) 90%);
+    }
+
+    /* === Registration Styles === */
+    .registration {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    .registration-container {
+        background-color: white;
+        padding: 2.5rem 3rem;
+        border-radius: 20px;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 520px;
+        position: relative;
+        overflow: hidden;
+        border-top: 5px solid #000000;
+    }
+
+    .registration-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .registration h2 {
+        margin-bottom: 0.5rem;
+        color: #212529;
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+    }
+
+    .registration .subtitle {
+        color: #6c757d;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .form-step {
+        transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .form-step-hidden {
+        opacity: 0;
+        transform: translateX(20px);
+        pointer-events: none;
+        height: 0;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+        position: relative;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #212529;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .form-group label i {
+        margin-right: 8px;
+        font-size: 14px;
+    }
+
+    .input-with-icon {
+        position: relative;
+    }
+
+    .input-icon {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6c757d;
+        z-index: 1;
+    }
+
+    .registration input[type="text"],
+    .registration input[type="email"],
+    .registration input[type="password"],
+    .registration select {
+        width: 100%;
+        padding: 0.9rem 1rem 0.9rem 40px;
+        border: 1.5px solid #e9ecef;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        background-color: #f8f9fa;
+        color: #212529;
+    }
+
+    .registration input:focus,
+    .registration select:focus {
+        outline: none;
+        border-color: #000000;
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+
+    .form-row {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .form-row .form-group {
+        flex: 1;
+    }
+
+    .terms-container {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+    }
+
+    .terms-container input {
+        margin-top: 3px;
+        margin-right: 10px;
+        accent-color: #000000;
+    }
+
+    .terms-container label {
+        font-size: 0.9rem;
+        color: #6c757d;
+        font-weight: 400;
+        line-height: 1.5;
+    }
+
+    .terms-container a {
+        color: #000000;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .terms-container a:hover {
+        text-decoration: underline;
+    }
+
+    .registration button {
+        width: 100%;
+        padding: 1rem 1.5rem;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background-color: #000000;
+        color: white;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .registration button i {
+        margin-left: 8px;
+    }
+
+    .registration button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .registration button:active {
+        transform: translateY(0);
+    }
+
+    .form-footer {
+        text-align: center;
+        margin-top: 1.5rem;
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+
+    .link-button {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #000000;
+        box-shadow: none;
+        margin-left: 4px;
+    }
+
+    .link-button:hover {
+        text-decoration: underline;
+    }
+
+    /* Password strength indicator */
+    .password-strength {
+        height: 5px;
+        margin-top: 8px;
+        border-radius: 3px;
+        background: #e9ecef;
+        overflow: hidden;
+    }
+
+    .password-strength-bar {
+        height: 100%;
+        width: 0;
+        transition: width 0.3s ease, background 0.3s ease;
+        border-radius: 3px;
+    }
+
+    /* OTP Input Specific Styling */
+    .otp-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+    }
+
+    .otp-input {
+        width: 50px;
+        height: 60px;
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 600;
+        border: 1.5px solid #e9ecef;
+        border-radius: 10px;
+        background-color: #f8f9fa;
+        transition: all 0.3s ease;
+    }
+
+    .otp-input:focus {
+        outline: none;
+        border-color: #000000;
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+
+    /* Autocomplete suggestions */
+    .suggestions-container {
+        position: relative;
+    }
+
+    .suggestions-list {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 10;
+        display: none;
+    }
+
+    .suggestion-item {
+        padding: 10px 15px;
+        cursor: pointer;
+        border-bottom: 1px solid #f1f3f5;
+        font-size: 0.9rem;
+    }
+
+    .suggestion-item:hover {
+        background-color: #f8f9fa;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 576px) {
+        .registration-container {
+            padding: 2rem 1.5rem;
+            border-radius: 15px;
+        }
+
+        .registration h2 {
+            font-size: 1.6rem;
+        }
+
+        .form-row {
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .otp-input {
+            width: 40px;
+            height: 50px;
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (max-width: 380px) {
+        .registration-container {
+            padding: 1.5rem 1.2rem;
+        }
+
+        .registration h2 {
+            font-size: 1.5rem;
+        }
+
+        .registration input[type="text"],
+        .registration input[type="email"],
+        .registration input[type="password"],
+        .registration select {
+            padding: 0.8rem 0.8rem 0.8rem 35px;
+        }
+
+        .input-icon {
+            left: 12px;
+        }
+
+        .otp-input {
+            width: 35px;
+            height: 45px;
+        }
+    }
+
+    /* Animation for step transitions */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-step {
+        animation: fadeIn 0.5s ease forwards;
+    }
+
+    /* Loading animation for button */
+    .button-loading {
+        position: relative;
+        color: transparent !important;
+    }
+
+    .button-loading::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        border: 3px solid transparent;
+        border-top-color: #ffffff;
+        border-radius: 50%;
+        animation: button-loading-spinner 1s ease infinite;
+    }
+
+    @keyframes button-loading-spinner {
+        from { transform: rotate(0turn); }
+        to { transform: rotate(1turn); }
+    }

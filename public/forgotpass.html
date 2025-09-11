@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Forgot Password</title>
+  <link rel="stylesheet" href="./css/homepage.css">
+  <link rel="icon" type="image/x-icon" href="./Images/favicon.ico">
+  <style>
+    .forgot-pass {
+      font-family: Arial, sans-serif;
+      display: flex; justify-content: center; align-items: center;
+      padding: 2rem; background-color: #f0f2f5;
+    }
+    .container {
+      background-color: white; padding: 2rem; border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 350px;
+    }
+    .form-group { margin-bottom: 1rem; }
+    input[type="email"],
+    input[type="password"],
+    .otp-input {
+      width: 100%; padding: 0.5rem; margin-top: 0.25rem;
+      border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;
+    }
+    .otp-group { display: flex; gap: 0.5rem; }
+    button {
+      padding: 0.5rem 1rem; border: none; border-radius: 4px; cursor: pointer;
+    }
+    #sendOtpBtn { background-color: #007bff; color: white; }
+    #verifyOtpBtn { background-color: #28a745; color: white; display: none; }
+    #submitBtn {
+      width: 100%; background-color: #6c757d; color: white;
+      padding: 0.75rem; margin-top: 1rem;
+    }
+    #submitBtn.enabled { background-color: #28a745; }
+    #submitBtn:disabled { cursor: not-allowed; }
+    .error { color: red; font-size: 0.875rem; margin-top: 0.25rem; }
+    .success { color: green; font-size: 0.875rem; margin-top: 0.25rem; }
+    .loading-spinner {
+      display: none; width: 20px; height: 20px;
+      border: 3px solid #f3f3f3; border-radius: 50%;
+      border-top-color: #3498db; animation: spin 1s linear infinite;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+  <header id="header">
+    <div class="header-container">
+        <div class="nav-menu">
+            <div class="logo-container">
+               <a href="./"> <img src="./Images/home_logo.png" alt="Company Logo"> </a>
+            </div>
+            <nav class="desktop-nav">
+                <a href="./" class="nav-item">Home</a>
+                <a href="./market.html" class="nav-item">Market</a>
+                <a href="./ai-finance.html" class="nav-item">AI Finance</a>
+                <a href="./loan.html" class="nav-item">Loans</a>
+                <a href="./profile.html" class="nav-item">Account</a>
+            </nav>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+
+        <button class="mobile-menu-toggle">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+         <a href="./" class="nav-item">Home</a>
+         <a href="./market.html" class="nav-item">Market</a>
+         <a href="./ai-finance.html" class="nav-item">AI Finance</a>
+         <a href="./loan.html" class="nav-item">Loans</a>
+         <a href="./profile.html" class="nav-item">Account</a>
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">  Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+    </nav>
+  </header>
+
+  <section class="forgot-pass">
+    <div class="container">
+    <h2>Reset Password</h2>
+    <form id="forgotForm">
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" id="email" required />
+      </div>
+      <div class="form-group">
+        <label>OTP:</label>
+        <div class="otp-group">
+          <input type="text" id="otp" class="otp-input" required />
+          <button type="button" id="sendOtpBtn">Send OTP</button>
+          <button type="button" id="verifyOtpBtn">Verify OTP</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>New Password:</label>
+        <input type="password" id="newPassword" required />
+      </div>
+      <div class="form-group">
+        <label>Confirm Password:</label>
+        <input type="password" id="confirmPassword" required />
+      </div>
+      <button type="submit" id="submitBtn" disabled>Reset Password</button>
+      <div class="loading-spinner"></div>
+    </form>
+    <div id="message" class="error"></div>
+  </div>
+  </section>
+  
+   <footer class="footer">
+    <div class="footer-content">
+      <!-- Logo / Brand -->
+      <div class="footer-section logo-section">
+        <img src="./Images/logo_foot.png" alt="Global Assets Logo" class="footer-logo">
+      </div>
+      <!-- Company -->
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./team.html">About the Team</a></li>
+          <li><a href="./faq.html">Help Center</a></li>
+          <li><a href="#">Email support</a></li>
+          <li><a href="mailto:service@global-assets.com">service@global‑assets.io</a></li>
+        </ul>
+      </div>
+      <!-- Product -->
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="./market.html">Market List</a></li>
+          <li><a href="./loan.html">Investment loans</a></li>
+          <li><a href="./ai-finance.html">AI Finance</a></li>
+        </ul>
+      </div>
+      <!-- Policy -->
+      <div class="footer-section">
+        <h4>Policy</h4>
+        <ul>
+          <li><a href="./agrt.html">User Services Agreement</a></li>
+          <li><a href="./loan-agrt.html">Loan agreement</a></li>
+          <li><a href="./loan-explain.html">Loan rules explanation</a></li>
+          <li><a href="./legal-liability.html">Legal liability</a></li>
+        </ul>
+      </div>
+      <!-- Statement -->
+      <div class="footer-section">
+        <h4>Statement</h4>
+        <ul>
+          <li><a href="./risk.html">Risk Warning</a></li>
+          <li><a href="./privacy-statement.html">Privacy Statement</a></li>
+          <li><a href="./anti-laundaring.html">Anti‑Money Laundering Policy</a></li>
+          <li><a href="./rglt-licence.html">Regulatory license</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; Copyright 2016 – 2025 Global Assets. All rights reserved.
+    </div>
+  </footer>
+
+
+    <script src="./javascript/common-script.js"></script>
+  <script>
+    const form = document.getElementById('forgotForm');
+    const emailInput = document.getElementById('email');
+    const otpInput = document.getElementById('otp');
+    const newPassInput = document.getElementById('newPassword');
+    const confirmPassInput = document.getElementById('confirmPassword');
+    const sendOtpBtn = document.getElementById('sendOtpBtn');
+    const verifyOtpBtn = document.getElementById('verifyOtpBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const messageDiv = document.getElementById('message');
+    const spinner = document.querySelector('.loading-spinner');
+
+    let otpVerified = false;
+
+    function showMessage(msg, isError = true) {
+      messageDiv.textContent = msg;
+      messageDiv.className = isError ? 'error' : 'success';
+    }
+    function showLoading() { spinner.style.display = 'inline-block'; }
+    function hideLoading() { spinner.style.display = 'none'; }
+    function validateEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+    function maybeEnableSubmit() {
+      submitBtn.disabled = !(otpVerified && newPassInput.value && newPassInput.value === confirmPassInput.value);
+      if (!submitBtn.disabled) submitBtn.classList.add('enabled');
+      else submitBtn.classList.remove('enabled');
+    }
+
+    // Send OTP
+    sendOtpBtn.addEventListener('click', async () => {
+      const email = emailInput.value.trim();
+      if (!validateEmail(email)) return showMessage('Enter valid email');
+
+      sendOtpBtn.disabled = true; showLoading(); showMessage('');
+      try {
+        const res = await fetch('/api/v1/users/send-otp', {
+          method: 'POST', headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ email })
+        });
+        if (res.ok) {
+          sendOtpBtn.textContent = 'Resend OTP';
+          verifyOtpBtn.style.display = 'inline-block';
+          showMessage('OTP sent', false);
+        } else {
+          const err = await res.json();
+          showMessage(err.message || 'Failed to send OTP');
+        }
+      } catch { showMessage('Error sending OTP'); }
+      finally { sendOtpBtn.disabled = false; hideLoading(); }
+    });
+
+    // Verify OTP
+    verifyOtpBtn.addEventListener('click', async () => {
+      const email = emailInput.value.trim();
+      const otp = otpInput.value.trim();
+      if (!otp) return showMessage('Enter OTP');
+
+      verifyOtpBtn.disabled = true; showLoading(); showMessage('');
+      try {
+        const res = await fetch('/api/v1/users/verify-otp', {
+          method: 'POST', headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ email, otp })
+        });
+        if (res.ok) {
+          otpVerified = true;
+          verifyOtpBtn.textContent = '✓ Verified';
+          verifyOtpBtn.style.backgroundColor = '#28a745';
+          sendOtpBtn.style.display = 'none';
+          showMessage('OTP verified', false);
+          maybeEnableSubmit();
+        } else {
+          const err = await res.json(); showMessage(err.message || 'Invalid OTP');
+        }
+      } catch { showMessage('Error verifying OTP'); }
+      finally { verifyOtpBtn.disabled = false; hideLoading(); }
+    });
+
+    // Validate passwords on input
+    newPassInput.addEventListener('input', maybeEnableSubmit);
+    confirmPassInput.addEventListener('input', maybeEnableSubmit);
+
+    // Form submit
+    form.addEventListener('submit', async e => {
+      e.preventDefault(); showMessage(''); showLoading(); submitBtn.disabled = true;
+
+      if (!newPassInput.value || newPassInput.value !== confirmPassInput.value) {
+        showMessage('Passwords must match'); submitBtn.disabled = false; hideLoading(); return;
+      }
+
+      const payload = {
+        email: emailInput.value.trim(),
+        password: newPassInput.value,
+        otp: otpInput.value.trim()
+      };
+
+      try {
+        const res = await fetch('/api/v1/users/forgot-password', {
+          method: 'POST', headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (res.ok) showMessage('Password updated', false);
+        else showMessage(data.message || 'Reset failed');
+      } catch {
+        showMessage('Error during reset');
+      }
+
+      hideLoading(); submitBtn.disabled = false;
+    });
+  </script>
+</body>
+</html>

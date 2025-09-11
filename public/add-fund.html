@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Funds | Crypto Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/add-fund.css">
+    <link rel="icon" type="image/x-icon" href="./Images/favicon.ico">
+    <link rel="stylesheet" href="./css/homepage.css">
+  
+</head>
+<body>
+     <header id="header">
+    <div class="header-container">
+        <div class="nav-menu">
+            <div class="logo-container">
+               <a href="./"> <img src="./Images/home_logo.png" alt="Company Logo"> </a>
+            </div>
+            <nav class="desktop-nav">
+                <a href="./" class="nav-item">Home</a>
+                <a href="./market.html" class="nav-item">Market</a>
+                <a href="./ai-finance.html" class="nav-item">AI Finance</a>
+                <a href="./loan.html" class="nav-item">Loans</a>
+                <a href="./profile.html" class="nav-item">Account</a>
+            </nav>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+
+        <button class="mobile-menu-toggle">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+         <a href="./" class="nav-item">Home</a>
+         <a href="./market.html" class="nav-item">Market</a>
+         <a href="./ai-finance.html" class="nav-item">AI Finance</a>
+         <a href="./loan.html" class="nav-item">Loans</a>
+         <a href="./profile.html" class="nav-item">Account</a>
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">  Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+    </nav>
+  </header>
+
+    <main class="container">
+        <div class="page-header">
+            <h1 class="page-title">Add Funds</h1>
+            <p class="page-description">Select your payment method and deposit funds</p>
+        </div>
+
+        <div class="payment-grid">
+            <div class="payment-card" data-currency="btc" data-address="nkiiC2a2aaawgR1Z7AhvE3xCE89cB6LY7hsZP">
+                <div class="currency-name">Loading...</div>
+                <div class="currency-network">Loading...</div>
+            </div>
+
+            <div class="payment-card" data-currency="eth" data-address="0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7">
+                <div class="currency-name">Loading...</div>
+                <div class="currency-network">Loading...</div>
+            </div>
+
+            <div class="payment-card" data-currency="bank" data-address="BANKUS33XXX123456789">
+                <div class="currency-name">Loading...</div>
+                <div class="currency-network">Loading...</div>
+            </div>
+        </div>
+
+        <div class="address-section">
+            <div class="address-header">
+                <div class="qr-container">
+                    <i class="fas fa-qrcode"></i>
+                </div>
+                <div class="currency-details">
+                    <h2 class="currency-title">Bitcoin (BTC)</h2>
+                    <div class="network-tag">Bitcoin Network</div>
+                </div>
+            </div>
+            
+            <div class="address-wrapper">
+                <span class="address-text">nkiiC2a2aaawgR1Z7AhvE3xCE89cB6LY7hsZP</span>
+                <button type="button" class="copy-btn">
+                    <i class="fas fa-copy"></i>
+                    Copy Address
+                </button>
+            </div>
+<!-- Add this after the address-wrapper div -->
+<div class="form-group">
+    <label class="input-label">Network Chain</label>
+    <select class="chain-select">
+        <option value="">Select Network Chain</option>
+        <!-- Options will be populated dynamically via JS -->
+    </select>
+</div>
+            <form class="deposit-form">
+                <div class="form-group">
+                    <label class="input-label">Deposit Amount (USD)</label>
+                   <input type="number" class="amount-input" placeholder="Enter amount" step="0.00000001" min="0">
+                    <span class="conversion-text">≈ 0.000000 BTC</span>
+                </div>
+                <!-- Inside the deposit-form div, after the amount input -->
+<div class="form-group">
+    <label class="input-label">Transaction ID</label>
+    <input type="text" class="transaction-input" placeholder="Enter transaction ID">
+    <span class="conversion-text">Found in your transaction history</span>
+</div>
+<!-- Inside the deposit-form div, after the transaction ID input -->
+<div class="form-group">
+    <label class="input-label">Payment Proof</label>
+    <div class="upload-container">
+        <input type="file" class="upload-input" id="paymentProof" accept="image/*,.pdf,.doc,.docx">
+        <label for="paymentProof" class="upload-label">
+            <div class="upload-content">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <h3 class="upload-title">Click to upload</h3>
+                <p class="upload-subtitle">or drag and drop</p>
+                <p class="upload-types">(PDF, DOC, JPG, PNG up to 5MB)</p>
+            </div>
+        </label>
+        <div class="file-list"></div>
+    </div>
+</div>
+<button type="submit" class="submit-btn">
+    Confirm Deposit
+    <i class="fas fa-arrow-right"></i>
+</button>
+            </form>
+        </div>
+    </main>
+
+     <footer class="footer">
+    <div class="footer-content">
+      <!-- Logo / Brand -->
+      <div class="footer-section logo-section">
+        <img src="./Images/logo_foot.png" alt="Global Assets Logo" class="footer-logo">
+      </div>
+      <!-- Company -->
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./team.html">About the Team</a></li>
+          <li><a href="./faq.html">Help Center</a></li>
+          <li><a href="#">Email support</a></li>
+          <li><a href="mailto:service@global-assets.com">service@global‑assets.io</a></li>
+        </ul>
+      </div>
+      <!-- Product -->
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="./market.html">Market List</a></li>
+          <li><a href="./loan.html">Investment loans</a></li>
+          <li><a href="./ai-finance.html">AI Finance</a></li>
+        </ul>
+      </div>
+      <!-- Policy -->
+      <div class="footer-section">
+        <h4>Policy</h4>
+        <ul>
+          <li><a href="./agrt.html">User Services Agreement</a></li>
+          <li><a href="./loan-agrt.html">Loan agreement</a></li>
+          <li><a href="./loan-explain.html">Loan rules explanation</a></li>
+          <li><a href="./legal-liability.html">Legal liability</a></li>
+        </ul>
+      </div>
+      <!-- Statement -->
+      <div class="footer-section">
+        <h4>Statement</h4>
+        <ul>
+          <li><a href="./risk.html">Risk Warning</a></li>
+          <li><a href="./privacy-statement.html">Privacy Statement</a></li>
+          <li><a href="./anti-laundaring.html">Anti‑Money Laundering Policy</a></li>
+          <li><a href="./rglt-licence.html">Regulatory license</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; Copyright 2016 – 2025 Global Assets. All rights reserved.
+    </div>
+  </footer>
+    
+    <script src="./javascript/common-script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+// Complete Add Funds functionality with live conversion
+document.addEventListener('DOMContentLoaded', () => {
+  const API_URL = 'api/v1/users/get-wallet-address';
+  const TWELVE_DATA_API_KEY = 'e83643f2821847128602cdb2b61731d4';
+  const CACHE_TTL = 20000; // 20 seconds
+  
+  // DOM elements
+  const paymentGrid = document.querySelector('.payment-grid');
+  const addressSection = document.querySelector('.address-section');
+  const currencyTitle = document.querySelector('.currency-title');
+  const networkTag = document.querySelector('.network-tag');
+  const addressText = document.querySelector('.address-text');
+  const amountInput = document.querySelector('.amount-input');
+  const conversionText = document.querySelector('.conversion-text');
+  const chainSelect = document.querySelector('.chain-select');
+  const depositForm = document.querySelector('.deposit-form');
+  const copyBtn = document.querySelector('.copy-btn');
+  
+  let walletData = [];
+  let priceCache = new Map();
+
+  // Remove transaction ID field
+  const transactionField = document.querySelector('.transaction-input')?.closest('.form-group');
+  if (transactionField) {
+    transactionField.remove();
+  }
+
+  // Fetch live price from Twelve Data API
+  async function fetchPrice(symbol) {
+    const cached = priceCache.get(symbol);
+    const now = Date.now();
+    if (cached && (now - cached.ts) < CACHE_TTL) return cached.price;
+
+    const url = `https://api.twelvedata.com/price?symbol=${encodeURIComponent(symbol)}&apikey=${TWELVE_DATA_API_KEY}`;
+    try {
+      const res = await fetch(url);
+      const json = await res.json();
+      if (json && (json.price || json.value)) {
+        const price = parseFloat(json.price ?? json.value);
+        priceCache.set(symbol, { price, ts: now });
+        return price;
+      } else {
+        console.error('TwelveData API error:', json);
+        return cached ? cached.price : null;
+      }
+    } catch (err) {
+      console.error('Failed fetching price:', err);
+      return cached ? cached.price : null;
+    }
+  }
+
+  // Update conversion display
+  async function updateConversion() {
+    const selectedCard = paymentGrid.querySelector('.payment-card.selected');
+    if (!selectedCard) return;
+
+    const currency = selectedCard.dataset.currency.toLowerCase();
+    const inputAmount = parseFloat(amountInput.value) || 0;
+
+    // Update input label to show selected currency
+    const inputLabel = amountInput.closest('.form-group').querySelector('.input-label');
+    inputLabel.textContent = `Deposit Amount (${currency.toUpperCase()})`;
+    amountInput.placeholder = `Enter amount in ${currency.toUpperCase()}`;
+
+    if (currency === 'bank' || currency === 'usd') {
+      conversionText.textContent = inputAmount === 0 ? 'USD Amount: $0.00' : `USD Amount: $${inputAmount.toFixed(2)}`;
+      return;
+    }
+
+    // Show loading state
+    conversionText.textContent = inputAmount === 0 ? 'Loading rate...' : 'Calculating...';
+
+    const symbol = currency === 'eth' ? 'ETH/USD' : 'BTC/USD';
+    const price = await fetchPrice(symbol);
+
+    if (!price) {
+      conversionText.textContent = 'Live rate unavailable';
+      return;
+    }
+
+    const usdAmount = inputAmount * price;
+    const priceFormatted = price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+    if (inputAmount === 0) {
+      conversionText.textContent = `Live rate: 1 ${currency.toUpperCase()} = $${priceFormatted}`;
+    } else {
+      conversionText.textContent = `≈ $${usdAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD (1 ${currency.toUpperCase()} = $${priceFormatted})`;
+    }
+  }
+
+  // Bind payment card events
+  function bindCards() {
+    const cards = paymentGrid.querySelectorAll('.payment-card');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        cards.forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        addressSection.classList.add('active');
+
+        const currency = card.dataset.currency;
+        const address = card.dataset.address;
+        const name = card.querySelector('.currency-name').textContent;
+        const network = card.querySelector('.currency-network').textContent;
+
+        currencyTitle.textContent = name;
+        networkTag.textContent = network;
+        addressText.textContent = address;
+        
+        // Update chain select
+        chainSelect.innerHTML = '<option value="">Select Network Chain</option>';
+        const method = walletData.find(m => m.name.toLowerCase() === currency.toLowerCase());
+        if (method && Array.isArray(method.chainName)) {
+          method.chainName.forEach(chain => {
+            const option = document.createElement('option');
+            option.value = chain;
+            option.textContent = chain;
+            chainSelect.appendChild(option);
+          });
+        }
+
+        // Generate QR code
+        const qrContainer = document.querySelector('.qr-container');
+        qrContainer.innerHTML = '';
+        if (window.QRCode) {
+          new QRCode(qrContainer, {
+            text: address,
+            width: 160,
+            height: 160
+          });
+        }
+
+        updateConversion();
+      });
+    });
+  }
+
+  // Copy address functionality
+  if (copyBtn) {
+    copyBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      navigator.clipboard.writeText(addressText.textContent);
+      const originalHTML = copyBtn.innerHTML;
+      copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+      setTimeout(() => {
+        copyBtn.innerHTML = originalHTML;
+      }, 2000);
+    });
+  }
+
+  // Amount input event listener
+  if (amountInput) {
+    amountInput.addEventListener('input', debounce(updateConversion, 300));
+  }
+
+  // Load wallet data and initialize
+  fetch(API_URL)
+    .then(r => r.json())
+    .then(({ data }) => {
+      walletData = data;
+      paymentGrid.innerHTML = '';
+      
+      data.forEach(method => {
+        const card = document.createElement('div');
+        card.className = 'payment-card';
+        card.dataset.currency = method.name.toLowerCase();
+        card.dataset.address = method.address;
+        card.innerHTML = `
+          <div class="currency-name">${method.name}</div>
+          <div class="currency-network">${method.name} Network</div>
+        `;
+        paymentGrid.appendChild(card);
+      });
+      
+      bindCards();
+      
+      // Auto-select first card
+      const firstCard = paymentGrid.querySelector('.payment-card');
+      if (firstCard) {
+        firstCard.click();
+      }
+    })
+    .catch(err => {
+      console.error('Failed loading wallet data:', err);
+    });
+
+  // Form submission
+  if (depositForm) {
+    depositForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = depositForm.querySelector('.submit-btn');
+      const originalBtnText = submitBtn.innerHTML;
+
+      try {
+        const selectedCard = paymentGrid.querySelector('.payment-card.selected');
+        if (!selectedCard) {
+          alert('Please select a payment method');
+          return;
+        }
+
+        const inputAmount = parseFloat(amountInput.value);
+        const currency = selectedCard.dataset.currency.toUpperCase();
+        const chainName = chainSelect.value.trim();
+        const paymentProofFile = document.querySelector('#paymentProof').files[0];
+
+        // Validation
+        if (!inputAmount || inputAmount <= 0) {
+          alert('Please enter a valid amount');
+          return;
+        }
+        if (!paymentProofFile) {
+          alert('Please upload payment proof');
+          return;
+        }
+
+        // Calculate USD amount
+        let usdAmount = inputAmount;
+        if (currency !== 'BANK' && currency !== 'USD') {
+          const symbol = currency === 'ETH' ? 'ETH/USD' : 'BTC/USD';
+          const price = await fetchPrice(symbol);
+          if (!price) {
+            alert('Unable to get current exchange rate. Please try again.');
+            return;
+          }
+          usdAmount = inputAmount * price;
+        }
+
+        // Prepare form data
+        const formData = new FormData();
+        formData.append('amount', usdAmount.toString()); // Send USD amount to backend
+        formData.append('currency', currency);
+        formData.append('inputAmount', inputAmount.toString()); // Original input amount for reference
+        formData.append('chainName', chainName);
+        formData.append('paymentProves', paymentProofFile);
+
+        // Show loading state
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+        submitBtn.disabled = true;
+
+        // Submit request
+        const response = await fetch('/api/v1/users/add-fund', {
+          method: 'POST',
+          body: formData,
+          credentials: 'include'
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          showSuccessPopup();
+          depositForm.reset();
+          document.querySelector('.file-list').innerHTML = '';
+          // Reset conversion display
+          setTimeout(updateConversion, 100);
+        } else {
+          alert(data.message || 'Deposit request failed');
+        }
+
+      } catch (err) {
+        console.error('Submission error:', err);
+        alert('An error occurred. Please try again.');
+      } finally {
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+      }
+    });
+  }
+
+  // Success popup
+  function showSuccessPopup() {
+    const popup = document.createElement('div');
+    popup.className = 'success-popup';
+    popup.innerHTML = `
+      <div class="popup-overlay"></div>
+      <div class="popup-content">
+        <div class="popup-icon"><i class="fas fa-check-circle"></i></div>
+        <h3>Deposit Request Received!</h3>
+        <p>Your transaction is being processed. Admin will verify and approve it shortly.</p>
+        <button class="popup-close-btn">OK</button>
+      </div>
+    `;
+    
+    document.body.appendChild(popup);
+    
+    popup.querySelector('.popup-close-btn').addEventListener('click', () => {
+      document.body.removeChild(popup);
+    });
+  }
+
+  // File upload handling
+  const uploadContainer = document.querySelector('.upload-container');
+  const uploadInput = document.querySelector('#paymentProof');
+  const fileList = document.querySelector('.file-list');
+
+  if (uploadContainer && uploadInput && fileList) {
+    // Drag and drop
+    uploadContainer.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadContainer.classList.add('dragover');
+    });
+
+    uploadContainer.addEventListener('dragleave', () => {
+      uploadContainer.classList.remove('dragover');
+    });
+
+    uploadContainer.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadContainer.classList.remove('dragover');
+      const files = e.dataTransfer.files;
+      if (files.length) {
+        uploadInput.files = files;
+        handleFiles(files);
+      }
+    });
+
+    uploadInput.addEventListener('change', (e) => {
+      handleFiles(e.target.files);
+    });
+
+    function handleFiles(files) {
+      fileList.innerHTML = '';
+      
+      const file = files[0];
+      if (!file) return;
+
+      // Validate file type and size
+      const validTypes = ['image/jpeg', 'image/png', 'application/pdf', 
+                         'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      if (!validTypes.includes(file.type)) {
+        alert('Invalid file type. Please upload PDF, DOC, or image files.');
+        return;
+      }
+
+      const maxSize = 5 * 1024 * 1024; // 5MB
+      if (file.size > maxSize) {
+        alert('File size exceeds 5MB limit.');
+        return;
+      }
+
+      // Display file
+      let iconClass = 'fa-file-alt';
+      if (file.type.startsWith('image/')) iconClass = 'fa-file-image';
+      else if (file.type === 'application/pdf') iconClass = 'fa-file-pdf';
+      else if (file.type.includes('document')) iconClass = 'fa-file-word';
+
+      const fileItem = document.createElement('div');
+      fileItem.className = 'file-item';
+      fileItem.innerHTML = `
+        <i class="fas ${iconClass}"></i>
+        <div class="file-info">
+          <div class="file-name">${file.name}</div>
+          <div class="file-size">${formatFileSize(file.size)}</div>
+        </div>
+      `;
+      
+      fileList.appendChild(fileItem);
+    }
+
+    function formatFileSize(bytes) {
+      if (bytes === 0) return '0 Bytes';
+      const k = 1024;
+      const sizes = ['Bytes', 'KB', 'MB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+  }
+
+  // Periodic price refresh
+  setInterval(() => {
+    priceCache.clear();
+    if (document.visibilityState === 'visible') {
+      updateConversion();
+    }
+  }, 30000);
+
+  // Refresh on page visibility change
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      updateConversion();
+    }
+  });
+
+  // Utility function
+  function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+
+  // Add required CSS for popup and file items
+  if (!document.querySelector('#add-funds-styles')) {
+    const style = document.createElement('style');
+    style.id = 'add-funds-styles';
+    style.textContent = `
+      .success-popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+      }
+      .popup-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+      }
+      .popup-content {
+        position: relative;
+        background: var(--surface, #fff);
+        padding: 2rem;
+        border-radius: var(--radius-lg, 12px);
+        text-align: center;
+        max-width: 400px;
+        box-shadow: var(--shadow-lg, 0 10px 25px rgba(0,0,0,0.15));
+        z-index: 1;
+      }
+      .popup-icon {
+        font-size: 3rem;
+        color: var(--success, #22c55e);
+        margin-bottom: 1rem;
+      }
+      .popup-content h3 {
+        margin-bottom: 0.5rem;
+        color: var(--text-primary, #000);
+      }
+      .popup-content p {
+        color: var(--text-secondary, #666);
+        margin-bottom: 1.5rem;
+      }
+      .popup-close-btn {
+        background: var(--primary, #3b82f6);
+        color: white;
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: var(--radius-md, 8px);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .popup-close-btn:hover {
+        background: var(--primary-dark, #2563eb);
+        transform: translateY(-1px);
+      }
+      .file-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem;
+        background: var(--background, #f8f9fa);
+        border-radius: var(--radius-md, 8px);
+        margin-top: 0.75rem;
+        border: 1px solid var(--border, #e5e7eb);
+      }
+      .file-item i {
+        font-size: 1.25rem;
+        color: var(--text-secondary, #666);
+      }
+      .file-info {
+        flex-grow: 1;
+      }
+      .file-name {
+        font-weight: 500;
+        color: var(--text-primary, #000);
+        margin-bottom: 0.25rem;
+      }
+      .file-size {
+        font-size: 0.8rem;
+        color: var(--text-secondary, #666);
+      }
+      .upload-container.dragover {
+        background: var(--primary-light, rgba(59, 130, 246, 0.1));
+        border-color: var(--primary, #3b82f6);
+      }
+    `;
+    document.head.appendChild(style);
+  }
+});
+</script>
+
+</body>
+</html>

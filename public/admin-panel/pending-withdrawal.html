@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    
+    <link rel="stylesheet" href="./styles/user-management.css">
+    <link rel="stylesheet" href="./styles/pending-withdrawal.css">
+    <style>
+      a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+    
+   
+</head>
+<body>
+    <button class="menu-btn" id="menuToggle">
+        <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <ion-icon name="rocket"></ion-icon>
+           <a href="./admin.html">Global Assets</a> 
+        </div>
+        <div id="dashboard" class="nav-item ">
+            <ion-icon name="speedometer"></ion-icon>
+           <a href="./admin.html">Dashboard</a> 
+        </div>
+        <div id="users" class="nav-item">
+            <ion-icon name="people"></ion-icon>
+          <a href="./user-management.html">Users</a>  
+        </div>
+        <div id="transaction" class="nav-item active">
+            <ion-icon name="cash"></ion-icon>
+           <a href="./transactions.html">Transactions</a> 
+        </div>
+        <div id="kyc-review" class="nav-item">
+            <ion-icon name="document"></ion-icon>
+           <a href="./kyc-review.html">KYC Review</a> 
+        </div>
+        <div id="loan-review" class="nav-item">
+            <ion-icon name="card"></ion-icon>
+            <a href="./loan-review.html">Loan Requests</a>
+        </div>
+        <div id="settings" class="nav-item">
+            <ion-icon name="settings"></ion-icon>
+           <a href="./settings.html">Settings</a> 
+        </div>
+        <div id="announcement" class="nav-item">
+            <ion-icon name="megaphone"></ion-icon>
+            <a href="./announcement.html">Publish Announcement</a>
+        </div>
+         <div id="announcement" class="nav-item">
+            <ion-icon name="trending-up-outline"></ion-icon>
+            <a href="./trades.html">Trades</a>
+        </div>
+         <div id="announcement" class="nav-item">
+            <ion-icon name="trending-up-outline"></ion-icon>
+            <a href="./trades.html">Trades</a>
+        </div>
+        <div id="chats" class="nav-item">
+             <ion-icon name="chatbubble"></ion-icon>
+            <a href="./chat.html">Chats</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="content-header">
+            <h1>Pending Withdrawal Requests</h1>
+            <div class="search-box">
+                <input type="text" placeholder="Search withdrawals...">
+                <ion-icon name="search-outline"></ion-icon>
+            </div>
+            
+            <div class="filters">
+                <button class="filter-btn active" data-status="pending">⏳ Pending</button>
+                <button class="filter-btn" data-status="completed">✅ Approved</button>
+                <button class="filter-btn" data-status="rejected">❌ Rejected</button>
+            </div>
+        </div>
+
+        <div class="admin-alert">
+            <ion-icon name="alert-circle" class="alert-icon"></ion-icon>
+            <div class="alert-content">
+                <strong>Important Notice for Admins:</strong> 
+                Withdrawal approvals are final. Once approved, you cannot re-approve the same request 
+                as this may deduct funds again. Always verify transaction details and payment proofs 
+                before approval. Reject or mark as pending if requires re-evaluation.
+            </div>
+        </div>
+    
+        <div class="transactions-container">
+       
+        </div>
+    
+        <div class="pagination">
+            <button class="pagination-btn">
+                <ion-icon name="chevron-back"></ion-icon>
+            </button>
+            <span class="active">1</span>
+            <span>2</span>
+            <span>3</span>
+            <button class="pagination-btn">
+                <ion-icon name="chevron-forward"></ion-icon>
+            </button>
+        </div>
+    </div>
+
+    <script src="admin-common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const container = document.querySelector('.transactions-container');
+          const pagination = document.querySelector('.pagination');
+          const filters = document.querySelectorAll('.filter-btn');
+          const baseUrl = '/api/v1/admin/get-withdrawal-requests';
+          const pageSize = 10;
+        
+          let allRequests = [];      
+          let currentFilter = 'pending';
+          let currentPage = 1;
+        
+          // 1) Fetch everything up front
+          async function loadAll() {
+            // 1a) Get totalDocs
+            const first = await fetch(`${baseUrl}?page=1&limit=${pageSize}`);
+            const firstJson = await first.json();
+            const totalDocs = firstJson.data.totalDocs || 0;
+        
+            // 1b) Now fetch all
+            const allRes = await fetch(`${baseUrl}?page=1&limit=${totalDocs}`);
+            const allJson = await allRes.json();
+            allRequests = allJson.data.docs;
+            
+            renderPage(1);
+          }
+        
+          // 2) Render a given page of the current filter
+          function renderPage(page) {
+            currentPage = page;
+            // 2a) Filter
+            const filtered = allRequests.filter(r => r.status === currentFilter);
+        
+            // 2b) Slice out this page
+            const start = (page - 1) * pageSize;
+            const pageItems = filtered.slice(start, start + pageSize);
+        
+            // 2c) Render cards
+            container.innerHTML = pageItems.map(createCard).join('');
+        
+            // 2d) Rebuild pagination UI
+            const totalPages = Math.ceil(filtered.length / pageSize) || 1;
+            let html = `<button class="pagination-btn"${page<=1?' disabled':''}>
+                          <ion-icon name="chevron-back"></ion-icon>
+                        </button>`;
+            for (let i = 1; i <= totalPages; i++) {
+              html += `<span class="${i===page?'active':''}">${i}</span>`;
+            }
+            html += `<button class="pagination-btn"${page>=totalPages?' disabled':''}>
+                       <ion-icon name="chevron-forward"></ion-icon>
+                     </button>`;
+            pagination.innerHTML = html;
+          }
+        
+          // 3) Build card HTML (same as yours)
+          function createCard(r) {
+            const { fullName, chainName, toAddress, amount, currency, _id, profilePic, status } = r;
+            const dotColors = ['#8B5CF6','#3B82F6','#EF4444'];
+            const color = dotColors[Math.floor(Math.random()*dotColors.length)];
+            const path = profilePic.replace(/\\/g,'/').replace(/^public\//,'');
+            const avatar = `/${path}`;
+            return `
+              <div class="transaction-card ${status}" data-request-id="${_id}">
+                <div class="user-info">
+                  <img src="${avatar}" class="user-avatar" alt="${fullName}"
+                       onerror="this.src='https://i.pravatar.cc/48?u=${_id}'">
+                  <div class="user-details">
+                    <div class="user-name-row">
+                      <a href="#" class="user-name">${fullName}</a>
+                      <span class="chain-pill ${chainName.toLowerCase()}">
+                        <span class="chain-dot" style="background:${color}"></span>
+                        ${chainName}
+                      </span>
+                    </div>
+                    <div class="txid-group">
+                      <span class="txid-label">Destination:</span>
+                      <span class="txid-value">${toAddress}</span>
+                      <button class="copy-btn" title="Copy Address">
+                        <ion-icon name="copy-outline"></ion-icon>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="amount-section">
+                  <div class="crypto-amount withdrawal">-${amount} ${currency}</div>
+                  <div class="fiat-amount">≈ $${(amount*1.5).toLocaleString()}.00</div>
+                </div>
+                <div class="status-control">
+                  <select class="status-select ${status}" data-request-id="${_id}">
+                    <option value="pending" ${status==='pending'?'selected':''}>⏳ Pending Review</option>
+                    <option value="completed" ${status==='completed'?'selected':''}>✅ Approve</option>
+                    <option value="rejected" ${status==='rejected'?'selected':''}>❌ Reject</option>
+                  </select>
+                </div>
+              </div>
+            `;
+          }
+        
+          // 4) Wire up filter buttons
+          filters.forEach(btn => {
+            btn.addEventListener('click', () => {
+              filters.forEach(b => b.classList.remove('active'));
+              btn.classList.add('active');
+              currentFilter = btn.dataset.status;
+              renderPage(1);
+            });
+          });
+        
+          // 5) Pagination clicks
+          pagination.addEventListener('click', e => {
+            const btn = e.target.closest('.pagination-btn');
+            if (btn) {
+              if (!btn.disabled) {
+                renderPage(currentPage + (btn.querySelector('ion-icon').name==='chevron-back' ? -1 : 1));
+              }
+            } else if (e.target.tagName === 'SPAN' && !e.target.classList.contains('active')) {
+              renderPage(Number(e.target.textContent));
+            }
+          });
+        
+          // 6) Copy and status‐change (same as before)
+          document.addEventListener('click', async e => {
+            if (e.target.closest('.copy-btn')) {
+              const txt = e.target.closest('.txid-group').querySelector('.txid-value').textContent;
+              navigator.clipboard.writeText(txt).catch(console.error);
+            }
+          });
+          container.addEventListener('change', async e => {
+            const sel = e.target.closest('.status-select');
+            if (!sel) return;
+            const id = sel.dataset.requestId, st = sel.value;
+            try {
+              const r = await fetch('/api/v1/admin/set-withdrawal-status', {
+                method:'POST',
+                headers:{'Content-Type':'application/json'},
+                body: JSON.stringify({ withdrawaReqId:id, status:st })
+              });
+              const j = await r.json();
+              if (!j.success) throw new Error(j.message);
+              // update local copy & re-render current page
+              const rec = allRequests.find(x=>x._id===id);
+              if (rec) rec.status = st;
+              renderPage(currentPage);
+            } catch(err) {
+              console.error(err);
+              // optionally revert select value here
+            }
+          });
+        
+          // kick off
+          loadAll();
+        });
+    </script>
+        
+    
+</body>
+</html>

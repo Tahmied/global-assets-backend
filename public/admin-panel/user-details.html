@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <link rel="stylesheet" href="/admin-panel/styles/user-details.css">
+    <style>
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+        
+</head>
+<body>
+    <button class="menu-btn" id="menuToggle">
+        <ion-icon name="menu"></ion-icon>
+    </button>
+
+  <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <ion-icon name="rocket"></ion-icon>
+           <a href="./admin.html">Global Assets</a> 
+        </div>
+        <div id="dashboard" class="nav-item ">
+            <ion-icon name="speedometer"></ion-icon>
+           <a href="./admin.html">Dashboard</a> 
+        </div>
+        <div id="users" class="nav-item active">
+            <ion-icon name="people"></ion-icon>
+          <a href="./user-management.html">Users</a>  
+        </div>
+        <div id="transaction" class="nav-item">
+            <ion-icon name="cash"></ion-icon>
+           <a href="./transactions.html">Transactions</a> 
+        </div>
+        <div id="kyc-review" class="nav-item">
+            <ion-icon name="document"></ion-icon>
+           <a href="./kyc-review.html">KYC Review</a> 
+        </div>
+        <div id="loan-review" class="nav-item">
+            <ion-icon name="card"></ion-icon>
+            <a href="./loan-review.html">Loan Requests</a>
+        </div>
+        <div id="settings" class="nav-item">
+            <ion-icon name="settings"></ion-icon>
+           <a href="./settings.html">Settings</a> 
+        </div>
+        <div id="announcement" class="nav-item">
+            <ion-icon name="megaphone"></ion-icon>
+            <a href="./announcement.html">Publish Announcement</a>
+        </div>
+         <div id="announcement" class="nav-item">
+            <ion-icon name="trending-up-outline"></ion-icon>
+            <a href="./trades.html">Trades</a>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="user-profile-header">
+            <div class="avatar-upload">
+                <img src="public\contents\profile-pic\profilePic-1745371061784-618112470.png" 
+                     class="user-avatar-lg" id="userAvatar">
+                <label for="avatarUpload" class="upload-btn">
+                    <ion-icon name="camera"></ion-icon>
+                    Update Photo
+                </label>
+                <input type="file" 
+                       id="avatarUpload" 
+                       accept="image/*" 
+                       style="display: none;">
+            </div>
+
+            <div class="user-meta">
+                <div class="user-name-lg">Loading...</div>
+                <div class="user-id-badge">ID: Loading...</div>
+                <div class="action-buttons" style="margin-top: 1rem;">
+                    <button class="primary-btn">
+                        <ion-icon name="save"></ion-icon>
+                        Save Changes
+                    </button>
+                    <button class="secondary-btn">
+                        <ion-icon name="lock-closed"></ion-icon>
+                        Reset Password
+                    </button>
+                    <button class="secondary-btn danger">
+                        <ion-icon name="lock-open"></ion-icon>
+                        Lock Account
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="user-detail-container">
+            <!-- Account Details Card -->
+            <div class="detail-card">
+                <h2>Account Details</h2>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <label class="detail-label">First Name</label>
+                        <input name="firstName"  type="text" 
+                               class="detail-value editable-field" 
+                               value="Loading..">
+                    </div>
+                    <div class="detail-item">
+                        <label class="detail-label">Last Name</label>
+                        <input name="lastName" type="text" 
+                               class="detail-value editable-field" 
+                               value="Loading..">
+                    </div>
+                    <div class="detail-item">
+                        <label class="detail-label">Email</label>
+                        <input name="email" type="email" 
+                               class="detail-value editable-field" 
+                               value="Loading..">
+                    </div>
+                    <div class="detail-item">
+                        <label class="detail-label editable-field">Account Balance</label>
+                       
+                       <input name="accountBalance" type="number" step="0.01" class="detail-value editable-field" value="Loading..">
+                      </div>
+                      <div class="detail-item">
+                        <label class="detail-label editable-field">Loan Balance</label>
+                        
+                        <input name="loanBalance" type="number" step="0.01" class="detail-value editable-field" value="Loading...">
+                      </div>
+                      <div class="detail-item">
+                          <label class="detail-label">Admin Status</label>
+                          <div class="detail-value">
+                                <select name="isAdmin" class="editable-field">
+                                  <option value="false">User</option>
+                                  <option value="true">Administrator</option>
+                                </select>
+                              </div>
+                      </div>
+                      <div class="detail-item">
+                        <label class="detail-label editable-field">AI Robot Purchase Limit</label>
+                        
+                        <input name="aiRobotLimit" type="number" class="detail-value editable-field">
+                      </div>
+                      <div class="detail-item">
+                          <label class="detail-label">Loan Limit</label>
+                          <input name="loanLimit" type="number" class="detail-value editable-field" value="Loading...">
+                      </div>
+                       
+                      <div class="detail-item">
+                        <label class="detail-label">New Password</label>
+                        <input
+                          name="password"
+                          type="password"
+                          class="detail-value editable-field"
+                          placeholder="********">
+                      </div>
+                      <div class="detail-item">
+                        <label class="detail-label">Transaction Password</label>
+                        <input
+                          name="trxPassword"
+                          type="password"
+                          class="detail-value editable-field"
+                          placeholder="********">
+                      </div>
+
+                      <div class="detail-item">
+                        <label for="vipStatus" class="detail-label">VIP Status</label>
+                        <div class="detail-value">
+                          <select name="vipStatus" id="vipStatus" class="editable-field">
+                            <option value="vip 0">vip 0</option>
+                            <option value="vip 1">vip 1</option>
+                            <option value="vip 2">vip 2</option>
+                            <option value="vip 3">vip 3</option>
+                            <option value="vip 4">vip 4</option>
+                            <option value="vip 5">vip 5</option>
+                            <option value="vip 6">vip 6</option>
+                            <option value="vip 7">vip 7</option>
+                            <option value="vip 8">vip 8</option>
+                            <option value="vip 9">vip 9</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="detail-item">
+                        <label class="detail-label">Credit Score</label>
+                        <input
+                          name="creditScore"
+                          type="number"
+                          min="0"
+                          step="1"
+                          class="detail-value editable-field"
+                          placeholder="Enter credit score"
+                          value="">
+                      </div>
+
+                </div>
+            </div>
+
+            <!-- KYC & Security Card -->
+            <div class="detail-card">
+                <h2>Verification & Security</h2>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <label class="detail-label">KYC Status</label>
+                        <div class="detail-value">
+                            <span id="kyc-status-user" class="status-chip kyc-status unsubmitted">
+                                Unsubmitted
+                            </span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <label class="detail-label">Email Verified</label>
+                        <div class="detail-value">
+                            <span class="status-chip">
+                                ${user.isEmailVerified ? 'Verified' : 'Pending'}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <label class="detail-label">Account Created</label>
+                        <div class="detail-value">Loading..</div>
+                    </div>
+                    <div class="detail-item">
+                        <label class="detail-label">Last Updated</label>
+                        <div class="detail-value">Loading..</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internal Notes Card -->
+            <div class="detail-card">
+                <h2>Internal Notes</h2>
+                <div class="notes-list">
+                    <!-- Update the note-item HTML structure -->
+                <div class="note-item">
+                    <div class="note-meta">
+                        <span>Admin Name</span>
+                        <div class="note-actions">
+                            <span>April 25, 2025</span>
+                            <button class="delete-note-btn">
+                                <ion-icon name="trash"></ion-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="note-content">
+                        Loading..
+                    </div>
+                </div>
+                    <!-- Add more notes -->
+                </div>
+                <div class="add-note" style="margin-top: 1rem;">
+                    <textarea class="detail-value editable-field" 
+                              placeholder="Add new note..." 
+                              rows="3"></textarea>
+                    <button class="primary-btn" style="margin-top: 0.5rem;">
+                        <ion-icon name="add"></ion-icon>
+                        Add Note
+                    </button>
+                </div>
+            </div>
+
+            <!-- loan history -->
+             <div class="detail-card">
+              <div class="loan-hist__wrapper">
+                <h2 class="loan-hist__title">Loan History</h2>
+
+                <div class="loan-hist__list">
+                    <!-- Loan Item 1 -->
+                    <div class="loan-hist__item loan-hist__item--repaid">
+                        <div class="loan-hist__main-info">
+                            <span class="loan-hist__amount">$1,500.00</span>
+                            <span class="loan-hist__term">3 Days</span>
+                            <span class="loan-hist__rate">4% Rate</span>
+                        </div>
+                        <div class="loan-hist__status">
+                            <span class="loan-hist__status-badge">Repaid</span>
+                            <span class="loan-hist__total-interest">+ $230.00</span>
+                        </div>
+                        <div class="loan-hist__details">
+                            <span class="loan-hist__date">Issued: 2023-03-15</span>
+                            <span class="loan-hist__due-date">Due: 2023-03-18</span>
+                        </div>
+                    </div>
+                  
+                    <!-- Loan Item 2 (Pending) -->
+                    <div class="loan-hist__item loan-hist__item--pending">
+                        <div class="loan-hist__main-info">
+                            <span class="loan-hist__amount">$2,000.00</span>
+                            <span class="loan-hist__term">7 Days</span>
+                            <span class="loan-hist__rate">5% Rate</span>
+                        </div>
+                        <div class="loan-hist__status">
+                            <span class="loan-hist__status-badge">Pending</span>
+                            <span class="loan-hist__total-interest">+ $350.00</span>
+                        </div>
+                        <div class="loan-hist__details">
+                            <span class="loan-hist__date">Issued: 2023-03-20</span>
+                            <span class="loan-hist__due-date">Due: 2023-03-27</span>
+                        </div>
+                    </div>
+                  
+                    <!-- Add more loan items as needed -->
+                </div>
+              </div>
+
+             </div>
+
+             <!-- send notification -->
+            <div class="detail-card">
+                <h2>Send Notification</h2>
+                <div class="notification-form">
+                    <textarea id="notificationMessage" placeholder="Type your message to this user..." rows="4"></textarea>
+                    <div class="notification-actions">
+                        <button class="primary-btn" id="sendNotificationBtn">
+                            <ion-icon name="send"></ion-icon>
+                            Send Notification
+                        </button>
+                        <div class="char-count" id="charCount">0/500</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add this inside .user-detail-container after the Send Notification card -->
+           <div class="detail-card" id="user-notifications-card">
+              <div class="notifications-header">
+                <h2>User Notifications</h2>
+                <div class="notifications-filter">
+                  <select id="notificationFilter">
+                    <option value="all">All Notifications</option>
+                    <option value="unread">Unread Only</option>
+                  </select>
+                </div>
+              </div>
+              <div class="notifications-list" id="user-notifications-list"></div>
+              <div class="notifications-footer">
+                <button class="secondary-btn" id="loadMoreBtn">
+                  <ion-icon name="reload"></ion-icon>
+                  Load More
+                </button>
+                <span class="notifications-count" id="user-notifications-count">Showing 0 of 0 notifications</span>
+              </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <script src="admin-common.js"></script>
+    <!-- main function -->
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar    = document.getElementById('sidebar');
+        if (menuToggle) {
+          menuToggle.addEventListener('click', () => sidebar.classList.toggle('active'));
+        }
+      
+        // Navigation Active State
+        document.querySelectorAll('.nav-item').forEach(item => {
+          item.addEventListener('click', function() {
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            this.classList.add('active');
+          });
+        });
+      
+        document.addEventListener('DOMContentLoaded', () => {
+          // 1) extract userId from URL
+          const parts  = window.location.pathname.split('/');
+          const userId = parts.pop() || parts.pop(); // handles trailing slash
+      
+          // grab buttons & areas
+          const saveBtn    = document.querySelector('.action-buttons .primary-btn');
+          const lockBtn    = document.querySelector('.secondary-btn.danger');
+          const notesList  = document.querySelector('.notes-list');
+          const noteTextarea = document.querySelector('.add-note textarea');
+          const addNoteBtn   = document.querySelector('.add-note .primary-btn');
+      
+          // helper to find detail-item by its label
+          const findItem = labelText =>
+            Array.from(document.querySelectorAll('.detail-item'))
+                 .find(item => item.querySelector('.detail-label').textContent.trim() === labelText);
+      
+          const setInput = (label, value) => {
+            const item = findItem(label);
+            if (!item) return;
+            const inp = item.querySelector('input, select');
+            if (inp) inp.value = value ?? '';
+          };
+          const setDiv = (label, txt) => {
+            const item = findItem(label);
+            if (!item) return;
+            const div = item.querySelector('.detail-value:not(input):not(select)');
+            if (div) div.textContent = txt;
+          };
+
+          // DELETE an existing note
+            notesList.addEventListener('click', async e => {
+              const btn = e.target.closest('.delete-note-btn');
+              if (!btn) return;
+              const noteId = btn.dataset.noteId;
+              if (!noteId) return;
+            
+              if (!confirm('Are you sure you want to delete this note?')) return;
+            
+              btn.disabled = true;
+              try {
+                const res = await fetch(
+                  `/api/v1/admin/user/${userId}/notes/${noteId}`,
+                  { method: 'DELETE' }
+                );
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                // remove from DOM
+                const noteItem = btn.closest('.note-item');
+                noteItem?.remove();
+              } catch (err) {
+                console.error('Delete note failed', err);
+                alert('Could not delete note');
+                btn.disabled = false;
+              }
+            });
+
+      
+          // 2) fetch user
+          fetch(`/api/v1/admin/user/${userId}`)
+            .then(res => {
+              if (!res.ok) throw new Error(`HTTP ${res.status}`);
+              return res.json();
+            })
+            .then(({ data: user }) => {
+              // Header
+              const avatar = document.querySelector('.user-avatar-lg');
+              if (avatar && user.dpLocalPath) {
+                avatar.src = user.dpLocalPath.replace(/\\\\/g, '/').replace(/^public/, '');
+              }
+              document.querySelector('.user-name-lg').textContent = `${user.firstName} ${user.lastName}`;
+              document.querySelector('.user-id-badge').textContent = `ID: ${user._id}`;
+      
+              // 3) populate Account Details
+              setInput('First Name',     user.firstName);
+              setInput('Last Name',      user.lastName);
+              setInput('Email',          user.email);
+              setInput('Account Balance', user.accountBalance);
+              setInput('Loan Balance',    user.loanBalance);
+              setInput('Admin Status',    user.isAdmin.toString());
+              setInput('AI Robot Purchase Limit', user.robotLimit);
+              setInput('Loan Limit', user.loanLimit);
+              setInput('VIP Status', user.vipStatus);
+              setInput('Credit Score', user.creditScore ?? '');
+
+              // Also update the display divs if any
+              setDiv('Account Balance', `$${user.accountBalance.toLocaleString()}.00`);
+              setDiv('Loan Balance',    `$${user.loanBalance.toLocaleString()}.00`);
+      
+              // 4) KYC & security
+              setDiv('Account Created', new Date(user.createdAt).toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'}));
+              setDiv('Last Updated',   new Date(user.updatedAt).toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'}));
+              setDiv('Email Verified', user.isEmailVerified ? 'Verified' : 'Pending');
+      
+              // 5) Internal Notes
+              notesList.innerHTML = '';
+              (user.internalNotes || []).forEach(n => {
+                  const noteItem = document.createElement('div');
+                  noteItem.className = 'note-item';
+                  noteItem.innerHTML = `
+                    <div class="note-meta">
+                      <span>${n.authorName || 'Admin'}</span>
+                      <div class="note-actions">
+                        <span>${new Date(n.createdAt).toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'})}</span>
+                        <button class="delete-note-btn" data-note-id="${n._id}" title="Delete note">
+                          <ion-icon name="trash"></ion-icon>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="note-content">${n.note}</div>`;
+                  notesList.appendChild(noteItem);
+                });
+            
+              // initialize lock button state
+              if (lockBtn) {
+                lockBtn.dataset.locked = user.isLocked;
+                lockBtn.innerHTML = user.isLocked
+                  ? '<ion-icon name="lock-closed"></ion-icon> Unlock Account'
+                  : '<ion-icon name="lock-open"></ion-icon> Lock Account';
+              }
+              // Add this in DOMContentLoaded after fetching user
+                const avatarUpload = document.getElementById('avatarUpload');
+                const userAvatar = document.getElementById('userAvatar');
+
+                if (avatarUpload) {
+                    avatarUpload.addEventListener('change', async (e) => {
+                        const file = e.target.files[0];
+                        if (!file) return;
+
+                        const formData = new FormData();
+                        formData.append('profilePic', file);
+                    
+                        try {
+                            const res = await fetch(`/api/v1/admin/user/${userId}/avatar`, {
+                                method: 'PUT',
+                                body: formData
+                            });
+                          
+                            if (!res.ok) throw new Error('Upload failed');
+
+                            const { data } = await res.json();
+                            // Update avatar preview
+                            userAvatar.src = data.dpLocalPath.replace(/\\\\/g, '/').replace(/^public/, '');
+
+                            // Clear file input
+                            avatarUpload.value = '';
+
+                            alert('Profile picture updated successfully');
+                        } catch (err) {
+                            console.error('Upload error:', err);
+                            alert('Failed to upload profile picture');
+                        }
+                    });
+                }
+            })
+            .catch(err => {
+              console.error('Fetch user error:', err);
+              alert('Could not load user details.');
+            });
+            window.showToast = function(message, type = "info") {
+  let toast = document.createElement("div");
+  toast.className = `custom-toast custom-toast--${type}`;
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  setTimeout(() => {
+    toast.classList.add("show");
+  }, 10);
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300);
+  }, 2200);
+};
+          // --- SAVE CHANGES ---
+if (saveBtn) {
+  saveBtn.addEventListener('click', async () => {
+    saveBtn.disabled = true;
+    saveBtn.textContent = 'Saving…';
+
+    try {
+      // read raw values
+      const firstNameRaw      = document.querySelector('input[name="firstName"]').value.trim();
+      const lastNameRaw       = document.querySelector('input[name="lastName"]').value.trim();
+      const emailRaw          = document.querySelector('input[name="email"]').value.trim();
+      const accountBalanceRaw = document.querySelector('input[name="accountBalance"]').value.trim();
+      const loanBalanceRaw    = document.querySelector('input[name="loanBalance"]').value.trim();
+      const isAdmin           = document.querySelector('select[name="isAdmin"]').value === 'true';
+      const robotLimitRaw     = document.querySelector('input[name="aiRobotLimit"]').value.trim();
+      const loanLimitRaw      = document.querySelector('input[name="loanLimit"]').value.trim();
+      const password          = document.querySelector('input[name="password"]').value.trim();
+      const trxPassword       = document.querySelector('input[name="trxPassword"]').value.trim();
+      const vipStatus         = document.querySelector('select[name="vipStatus"]').value;
+      const creditScoreRaw    = document.querySelector('input[name="creditScore"]').value.trim();
+
+      // validate credit score (before sending)
+      if (creditScoreRaw !== '') {
+        const creditScoreNum = Number(creditScoreRaw);
+        if (!Number.isFinite(creditScoreNum) || !Number.isInteger(creditScoreNum) || creditScoreNum < 0) {
+          window.showToast?.('Credit score must be a non-negative whole number', 'error');
+          saveBtn.disabled = false;
+          saveBtn.textContent = 'Save Changes';
+          return;
+        }
+      }
+
+      // helper to convert numbers only when valid
+      const toNumberOrSkip = v => {
+        if (v === '' || v == null) return undefined;
+        const n = Number(v);
+        return Number.isFinite(n) ? n : undefined;
+      };
+
+      const accountBalance = toNumberOrSkip(accountBalanceRaw);
+      const loanBalance = toNumberOrSkip(loanBalanceRaw);
+      const robotLimit = toNumberOrSkip(robotLimitRaw);
+      const loanLimit = toNumberOrSkip(loanLimitRaw);
+
+      // build payload including only fields we want to change
+      const bodyPayload = {
+        ...(firstNameRaw !== '' && { firstName: firstNameRaw }),
+        ...(lastNameRaw !== '' && { lastName: lastNameRaw }),
+        ...(emailRaw !== '' && { email: emailRaw }),
+        ...(accountBalance !== undefined && { accountBalance }),
+        ...(loanBalance !== undefined && { loanBalance }),
+        isAdmin,
+        ...(robotLimit !== undefined && { robotLimit }),
+        ...(loanLimit !== undefined && { loanLimit }),
+        ...(password && { password }),
+        ...(trxPassword && { trxPassword }),
+        ...(vipStatus && { vipStatus }),
+        ...(creditScoreRaw !== '' && { creditScore: String(creditScoreRaw) })
+      };
+
+      // send update
+      const res = await fetch(`/api/v1/admin/user/${userId}`, {
+        method:  'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(bodyPayload)
+      });
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const { data, message } = await res.json();
+
+      window.showToast?.(message || 'User updated', 'success');
+
+      // update UI safely (guard against missing values)
+      if (data.firstName || data.lastName) {
+        document.querySelector('.user-name-lg').textContent = `${data.firstName || ''} ${data.lastName || ''}`.trim();
+      }
+      if (data.accountBalance !== undefined && !Number.isNaN(Number(data.accountBalance))) {
+        document.querySelector('input[name="accountBalance"]').value = Number(data.accountBalance).toFixed(2);
+        // optionally update display div
+        try { setDiv('Account Balance', `$${Number(data.accountBalance).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})}`); } catch(e){}
+      }
+      if (data.loanBalance !== undefined && !Number.isNaN(Number(data.loanBalance))) {
+        document.querySelector('input[name="loanBalance"]').value = Number(data.loanBalance).toFixed(2);
+        try { setDiv('Loan Balance', `$${Number(data.loanBalance).toLocaleString(undefined,{minimumFractionDigits:2, maximumFractionDigits:2})}`); } catch(e){}
+      }
+      if (data.robotLimit !== undefined) document.querySelector('input[name="aiRobotLimit"]').value = data.robotLimit;
+      if (data.creditScore !== undefined) document.querySelector('input[name="creditScore"]').value = data.creditScore;
+      document.querySelector('input[name="password"]').value    = '';
+      document.querySelector('input[name="trxPassword"]').value = '';
+
+    } catch (err) {
+      console.error('Update error:', err);
+      alert('Error saving changes');
+    } finally {
+      saveBtn.disabled = false;
+      saveBtn.textContent = 'Save Changes';
+    }
+  });
+}
+
+      
+          // --- LOCK/UNLOCK ACCOUNT ---
+          if (lockBtn) {
+            lockBtn.addEventListener('click', async () => {
+              const newLockState = lockBtn.dataset.locked === 'true' ? false : true;
+              lockBtn.disabled = true;
+              try {
+                const res = await fetch(`/api/v1/admin/user/${userId}`, {
+                  method:  'PUT',
+                  headers: { 'Content-Type': 'application/json' },
+                  body:    JSON.stringify({ isLocked: newLockState })
+                });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const { data } = await res.json();
+                lockBtn.dataset.locked = data.isLocked;
+                lockBtn.innerHTML = data.isLocked
+                  ? '<ion-icon name="lock-closed"></ion-icon> Unlock Account'
+                  : '<ion-icon name="lock-open"></ion-icon> Lock Account';
+                alert(data.isLocked ? 'Account locked' : 'Account unlocked');
+              } catch (err) {
+                console.error('Lock toggle error:', err);
+                alert('Error toggling lock');
+              } finally {
+                lockBtn.disabled = false;
+              }
+            });
+          }
+      
+          // --- ADD NOTE ---
+          if (addNoteBtn) {
+            addNoteBtn.addEventListener('click', async () => {
+              const content = noteTextarea.value.trim();
+              if (!content) return alert('Please enter a note');
+              addNoteBtn.disabled = true;
+              addNoteBtn.textContent = 'Adding…';
+              try {
+                const res = await fetch(`/api/v1/admin/user/${userId}`, {
+                  method:  'PUT',
+                  headers: { 'Content-Type': 'application/json' },
+                  body:    JSON.stringify({ internalNotes: { note: content } })
+                });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                // append new note to UI immediately
+                const now = new Date();
+                const noteItem = document.createElement('div');
+                noteItem.className = 'note-item';
+                noteItem.innerHTML = `
+                  <div class="note-meta">
+                    <span>Admin</span>
+                    <span>${now.toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'})}</span>
+                  </div>
+                  <div class="note-content">${content}</div>`;
+                notesList.appendChild(noteItem);
+                noteTextarea.value = '';
+              } catch (err) {
+                console.error('Add note error:', err);
+                alert('Error adding note');
+              } finally {
+                addNoteBtn.disabled = false;
+                addNoteBtn.innerHTML = '<ion-icon name="add"></ion-icon> Add Note';
+              }
+            });
+          }
+      
+        });
+
+        document.querySelector('#users').addEventListener('click' , (e)=>{
+            e.preventDefault()
+            window.location.href = '/admin-panel/user-management.html'
+        })
+
+        document.querySelector('#dashboard').addEventListener('click' , (e)=>{
+            e.preventDefault()
+            window.location.href = '/admin-panel/admin.html'
+        })
+    </script>
+    <!-- kyc -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        console.log('[KYC] Starting KYC status updater (id‑based)');
+      
+        // 1) pull userId from URL
+        const parts  = window.location.pathname.split('/');
+        const userId = parts.pop() || parts.pop();
+        console.log('[KYC] userId:', userId);
+      
+        // 2) POST to your KYC endpoint
+        fetch('/api/v1/admin/kyc-status-user', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId })
+        })
+        .then(res => {
+          console.log('[KYC] HTTP status:', res.status);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return res.json();
+        })
+        .then(json => {
+          console.log('[KYC] Response JSON:', json);
+          const status = json.data;  // e.g. "approved", "rejected"
+          const pretty = status.charAt(0).toUpperCase() + status.slice(1);
+          console.log('[KYC] Parsed status:', status, '→', pretty);
+        
+          // 3) select the <span> by its new ID
+          const chip = document.getElementById('kyc-status-user');
+          console.log('[KYC] Found chip element:', chip);
+          if (!chip) {
+            console.warn('[KYC] No element with id="kyc-status-user" found');
+            return;
+          }
+        
+          // 4) update its text and CSS classes
+          chip.textContent = pretty;
+          chip.className = `status-chip kyc-status ${status}`;
+          console.log('[KYC] Updated chip markup:', chip.outerHTML);
+        })
+        .catch(err => {
+          console.error('[KYC] Error fetching/updating status:', err);
+        });
+      });
+    </script>
+
+  <!-- loan -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1) pull userId from URL
+    const parts = window.location.pathname.split('/');
+    const userId = parts.pop() || parts.pop();
+
+    // 2) select the container for loan history items
+    const listEl = document.querySelector('.loan-hist__list');
+    if (!listEl) return;
+
+    // 3) fetch the loan history
+    fetch('/api/v1/admin/user-loan-history', {
+      method: 'POST',                    // POST since GET w/ body is disallowed
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId })
+    })
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
+      .then(json => {
+        const loans = json.data.loans;
+        listEl.innerHTML = ''; // clear any placeholders
+
+        loans.forEach(loan => {
+          // determine item class and badge text
+          let statusClass, badgeText;
+          switch (loan.status) {
+            case 'Approved':
+              statusClass = 'loan-hist__item--approved';
+              badgeText = 'Approved';
+              break;
+            case 'Rejected':
+              statusClass = 'loan-hist__item--rejected';
+              badgeText = 'Rejected';
+              break;
+            case 'Repaid':
+              statusClass = 'loan-hist__item--repaid';
+              badgeText = 'Repaid';
+              break;
+            default:
+              statusClass = 'loan-hist__item--pending';
+              badgeText = 'Pending';
+          }
+
+          // format dates safely
+          const issuedDate = loan.loanDate ? new Date(loan.loanDate).toISOString().slice(0, 10) : 'N/A';
+          const dueDate = loan.dueDate ? new Date(loan.dueDate).toISOString().slice(0, 10) : 'N/A';
+
+          // safely convert amounts and interests
+          const loanAmountNum = Number(loan.loanAmount);
+          const accruedInterestNum = Number(loan.accruedInterest);
+
+          const amountStr = `$${(isNaN(loanAmountNum) ? 0 : loanAmountNum).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+          const interestStr = `+ $${(isNaN(accruedInterestNum) ? 0 : accruedInterestNum).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+          const termStr = loan.loanTermDays !== undefined ? `${loan.loanTermDays} Days` : 'N/A';
+          const rateStr = loan.dailyInterestRate !== undefined ? `${loan.dailyInterestRate}% Rate` : 'N/A';
+
+          // build item element
+          const item = document.createElement('div');
+          item.className = `loan-hist__item ${statusClass}`;
+          item.innerHTML = `
+            <div class="loan-hist__main-info">
+              <span class="loan-hist__amount">${amountStr}</span>
+              <span class="loan-hist__term">${termStr}</span>
+              <span class="loan-hist__rate">${rateStr}</span>
+            </div>
+            <div class="loan-hist__status">
+              <span class="loan-hist__status-badge">${badgeText}</span>
+              <span class="loan-hist__total-interest">${interestStr}</span>
+            </div>
+            <div class="loan-hist__details">
+              <span class="loan-hist__date">Issued: ${issuedDate}</span>
+              <span class="loan-hist__due-date">Due: ${dueDate}</span>
+            </div>
+          `;
+          listEl.appendChild(item);
+        });
+      })
+      .catch(err => {
+        console.error('[Loan History] Error fetching history:', err);
+        listEl.innerHTML = '<p class="error">Unable to load loan history.</p>';
+      });
+  });
+</script>
+<!-- notification -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Get the Send Notification button and textarea
+        const sendNotificationBtn = document.getElementById('sendNotificationBtn');
+        const notificationTextarea = document.getElementById('notificationMessage');
+      
+        // Extract the user ID dynamically from the URL
+        const parts = window.location.pathname.split('/');
+        const userId = parts.pop() || parts.pop(); // Handles trailing slash
+      
+        // Add click event listener to the Send Notification button
+        sendNotificationBtn.addEventListener('click', async () => {
+          // Get the notification message from the textarea
+          const notificationMessage = notificationTextarea.value.trim();
+        
+          // Validate that the message is not empty
+          if (!notificationMessage) {
+            // Show an error toast or popup
+            showToast('Please enter a notification message.', 'error');
+            return;
+          }
+        
+          // Disable the button to prevent multiple submissions
+          sendNotificationBtn.disabled = true;
+          sendNotificationBtn.textContent = 'Sending...';
+        
+          try {
+            // Send the notification via the API
+            const response = await fetch('/api/v1/admin/sendNotificationToUser', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                notificationMessage,
+                userId,
+              }),
+            });
+          
+            // Check if the response is successful
+            if (!response.ok) {
+              throw new Error(`HTTP ${response.status}`);
+            }
+          
+            // Parse the response JSON
+            const result = await response.json();
+          
+            // Show a success toast or popup
+            showToast(result.message || 'Notification sent successfully.', 'success');
+          
+            // Clear the textarea
+            notificationTextarea.value = '';
+          } catch (error) {
+            console.error('Error sending notification:', error);
+          
+            // Show an error toast or popup
+            showToast('Failed to send notification. Please try again.', 'error');
+          } finally {
+            // Re-enable the button
+            sendNotificationBtn.disabled = false;
+            sendNotificationBtn.textContent = 'Send Notification';
+          }
+        });
+      
+        // Function to show toast messages
+        function showToast(message, type) {
+          // Replace this with your preferred toast library or custom popup logic
+          // Example: Using a hypothetical `toast` function
+          // toast(message, { type: type }); // type can be 'success' or 'error'
+        
+          // Placeholder implementation for demonstration
+          const toast = document.createElement('div');
+          toast.className = `toast toast-${type}`;
+          toast.textContent = message;
+          document.body.appendChild(toast);
+        
+          // Automatically remove the toast after 3 seconds
+          setTimeout(() => {
+            toast.remove();
+          }, 3000);
+        }
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+      // --- Toast Helper ---
+      function showToast(message, type = "info") {
+        let toast = document.createElement("div");
+        toast.className = `custom-toast custom-toast--${type}`;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+          toast.classList.add("show");
+        }, 10);
+        setTimeout(() => {
+          toast.classList.remove("show");
+          setTimeout(() => toast.remove(), 300);
+        }, 2200);
+      }
+    
+      // --- DOM Elements (scoped by ID) ---
+      const notificationsCard = document.getElementById("user-notifications-card");
+      if (!notificationsCard) return; // Only run if this card exists
+    
+      const notificationsList = document.getElementById("user-notifications-list");
+      const loadMoreBtn = document.getElementById("loadMoreBtn");
+      const notificationFilter = document.getElementById("notificationFilter");
+      const notificationsCount = document.getElementById("user-notifications-count");
+    
+      // --- User ID Extraction ---
+      const parts = window.location.pathname.split("/");
+      const userId = parts.pop() || parts.pop();
+    
+      // --- State ---
+      let notifications = [];
+      let filteredNotifications = [];
+      let currentPage = 0;
+      const pageSize = 2;
+    
+      // --- Fetch Notifications ---
+      async function fetchNotifications() {
+        try {
+          const response = await fetch(`/api/v1/admin/user/${userId}`);
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const { data } = await response.json();
+          notifications = (data.notification || []).sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+          );
+          applyFilter();
+        } catch (error) {
+          showToast("Failed to load notifications.", "error");
+          notificationsList.innerHTML = "";
+          notificationsCount.textContent = "No notifications";
+        }
+      }
+    
+      // --- Render Notifications ---
+      function renderNotifications() {
+        notificationsList.innerHTML = "";
+        const startIndex = currentPage * pageSize;
+        const endIndex = Math.min(startIndex + pageSize, filteredNotifications.length);
+        const current = filteredNotifications.slice(startIndex, endIndex);
+      
+        current.forEach((notification) => {
+          const item = document.createElement("div");
+          item.className = `notification-item${notification.isRead ? "" : " unread"}`;
+          item.innerHTML = `
+            <div class="notification-icon">
+              <ion-icon name="notifications"></ion-icon>
+            </div>
+            <div class="notification-content">
+              <div class="notification-meta">
+                <span class="notification-date">${new Date(notification.createdAt).toLocaleString()}</span>
+                <span class="notification-status" style="font-weight:600;color:${notification.isRead ? "#388e3c" : "#d32f2f"};">
+                  ${notification.isRead ? "Read" : "Unread"}
+                </span>
+              </div>
+              <div class="notification-text" contenteditable="false">${notification.message}</div>
+            </div>
+            <div class="notification-actions">
+              <button class="edit-btn" data-id="${notification._id}">
+                <ion-icon name="create"></ion-icon>
+              </button>
+              <button class="delete-btn" data-id="${notification._id}">
+                <ion-icon name="trash"></ion-icon>
+              </button>
+            </div>
+          `;
+          notificationsList.appendChild(item);
+        });
+      
+        // Update count text
+        if (filteredNotifications.length === 0) {
+          notificationsCount.textContent = "No notifications";
+        } else if (current.length === 0) {
+          notificationsCount.textContent = "No more notifications";
+        } else {
+          notificationsCount.textContent = `Showing ${startIndex + 1} to ${endIndex} of ${filteredNotifications.length} notifications`;
+        }
+      }
+    
+      // --- Apply Filter ---
+      function applyFilter() {
+        const filterValue = notificationFilter.value;
+        filteredNotifications =
+          filterValue === "all"
+            ? notifications
+            : notifications.filter((n) => !n.isRead);
+        currentPage = 0;
+        renderNotifications();
+      }
+    
+      // --- Delete Notification ---
+      notificationsList.addEventListener("click", async (e) => {
+        const deleteBtn = e.target.closest(".delete-btn");
+        if (!deleteBtn) return;
+        const notificationId = deleteBtn.dataset.id;
+        if (!notificationId) return;
+      
+        try {
+          const response = await fetch("/api/v1/admin/findAndDeleteNotification", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ userId, notificationId }),
+          });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          // Remove from both notifications and filteredNotifications
+          notifications = notifications.filter((n) => n._id !== notificationId);
+          filteredNotifications = filteredNotifications.filter((n) => n._id !== notificationId);
+          // If current page is now empty, go back a page if possible
+          const maxPage = Math.ceil(filteredNotifications.length / pageSize) - 1;
+          if (currentPage > maxPage) currentPage = Math.max(0, maxPage);
+          renderNotifications();
+          showToast("Notification deleted.", "success");
+        } catch (error) {
+          showToast("Failed to delete notification.", "error");
+        }
+      });
+    
+      // --- Edit Notification ---
+      notificationsList.addEventListener("click", async (e) => {
+        const editBtn = e.target.closest(".edit-btn");
+        if (!editBtn) return;
+        const notificationItem = editBtn.closest(".notification-item");
+        const textElement = notificationItem.querySelector(".notification-text");
+        const notificationId = editBtn.dataset.id;
+      
+        const isEditable = textElement.getAttribute("contenteditable") === "true";
+        if (!isEditable) {
+          // Enable editing
+          textElement.setAttribute("contenteditable", "true");
+          textElement.focus();
+          editBtn.innerHTML = '<ion-icon name="checkmark"></ion-icon>';
+          editBtn.classList.add("editing");
+          // Move cursor to end
+          if (window.getSelection && document.createRange) {
+            const range = document.createRange();
+            range.selectNodeContents(textElement);
+            range.collapse(false);
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+          }
+        } else {
+          // Save changes
+          const updatedMessage = textElement.textContent.trim();
+          try {
+            const response = await fetch("/api/v1/admin/editNotification", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ userId, notificationId, updatedMessage }),
+            });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            // Update in notifications array
+            notifications = notifications.map((n) =>
+              n._id === notificationId ? { ...n, message: updatedMessage } : n
+            );
+            filteredNotifications = filteredNotifications.map((n) =>
+              n._id === notificationId ? { ...n, message: updatedMessage } : n
+            );
+            textElement.setAttribute("contenteditable", "false");
+            editBtn.innerHTML = '<ion-icon name="create"></ion-icon>';
+            editBtn.classList.remove("editing");
+            showToast("Notification updated.", "success");
+          } catch (error) {
+            showToast("Failed to update notification.", "error");
+          }
+        }
+      });
+    
+      // --- Load More ---
+      loadMoreBtn.addEventListener("click", () => {
+        const maxPage = Math.ceil(filteredNotifications.length / pageSize) - 1;
+        if (currentPage < maxPage) {
+          currentPage++;
+          renderNotifications();
+        } else {
+          showToast("No more notifications to load.", "info");
+        }
+      });
+    
+      // --- Filter Change ---
+      notificationFilter.addEventListener("change", () => {
+        applyFilter();
+      });
+    
+      // --- Initial Fetch ---
+      fetchNotifications();
+    });
+    </script>
+</body>
+</html>

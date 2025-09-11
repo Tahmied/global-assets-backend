@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Dashboard</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    
+    <link rel="stylesheet" href="./styles/user-management.css">
+    <link rel="stylesheet" href="./styles/loan-review.css">
+    <link rel="stylesheet" href="./styles/admin-dashboard.css">
+  
+</head>
+<body>
+
+    <div id="toast-container" class="toast-container"></div>
+<div id="loader-overlay" class="loader-overlay" style="display: none;">
+    <div class="loader"></div>
+</div>
+    <button class="menu-btn" id="menuToggle">
+        <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <ion-icon name="rocket"></ion-icon>
+           <a href="./admin.html">Global Assets</a> 
+        </div>
+        <div id="dashboard" class="nav-item ">
+            <ion-icon name="speedometer"></ion-icon>
+           <a href="./admin.html">Dashboard</a> 
+        </div>
+        <div id="users" class="nav-item">
+            <ion-icon name="people"></ion-icon>
+          <a href="./user-management.html">Users</a>  
+        </div>
+        <div id="transaction" class="nav-item">
+            <ion-icon name="cash"></ion-icon>
+           <a href="./transactions.html">Transactions</a> 
+        </div>
+        <div id="kyc-review" class="nav-item">
+            <ion-icon name="document"></ion-icon>
+           <a href="./kyc-review.html">KYC Review</a> 
+        </div>
+        <div id="loan-review" class="nav-item active">
+            <ion-icon name="card"></ion-icon>
+            <a href="./loan-review.html">Loan Requests</a>
+        </div>
+        <div id="settings" class="nav-item">
+            <ion-icon name="settings"></ion-icon>
+           <a href="./settings.html">Settings</a> 
+        </div>
+        <div id="announcement" class="nav-item">
+            <ion-icon name="megaphone"></ion-icon>
+            <a href="./announcement.html">Publish Announcement</a>
+        </div>
+         <div id="announcement" class="nav-item">
+            <ion-icon name="trending-up-outline"></ion-icon>
+            <a href="./trades.html">Trades</a>
+        </div>
+        <div id="chats" class="nav-item">
+             <ion-icon name="chatbubble"></ion-icon>
+            <a href="./chat.html">Chats</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="content-header">
+            <h1>Loan Requests Management</h1>
+            <div class="header-actions">
+                <button class="repayment-requests-btn">
+                    <i class="fas fa-file-invoice-dollar"></i> Repayment Requests
+                    <span class="badge">Loading..</span>
+                </button>
+            </div>
+            <div class="filters">
+                <button class="filter-btn active" data-status="pendingapproval">
+                    <i class="fas fa-hourglass-half"></i> Pending
+                </button>
+                <button class="filter-btn" data-status="approved">
+                    <i class="fas fa-check-circle"></i> Approved
+                </button>
+                <button class="filter-btn" data-status="rejected">
+                    <i class="fas fa-times-circle"></i> Rejected
+                </button>
+                <button class="filter-btn" data-status="repaid">
+                    <i class="fas fa-check-double"></i> Repaid
+                </button>
+                <button class="filter-btn" data-status="defaulted">
+                    <i class="fas fa-exclamation-triangle"></i> Defaulted
+                </button>
+            </div>
+        </div>
+
+        <div class="admin-alert">
+            <i class="fas fa-exclamation-circle alert-icon"></i>
+            <div class="alert-content">
+                <strong>Important Notice for Admins:</strong> 
+                Loan approvals are final. Once approved, you cannot re-approve the same request 
+                as this may add the loan amount to the users account again. All adjustments must be carefully reviewed.
+            </div>
+        </div>
+
+        <div class="loans-container">
+            <!-- Loan Card 1 -->
+            <!-- <div class="loan-card approved">
+                <div class="loan-details">
+                    <div class="user-info">
+                        <div class="user-avatar">MJ</div>
+                        <div class="user-details">
+                            <div class="user-name-row">
+                                <span class="user-name">Michael Johnson</span>
+                                <span class="status-badge approved">Approved</span>
+                            </div>
+                            <div class="user-id">ID: USR-4892</div>
+                        </div>
+                    </div>
+                    
+                    <div class="loan-info-grid">
+                        <div class="info-group">
+                            <div class="info-label">Loan ID</div>
+                            <div class="info-value">LN-2023-04892</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Currency</div>
+                            <div class="info-value">USD ($)</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Original Amount</div>
+                            <div class="info-value">$12,500.00</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Daily Interest</div>
+                            <div class="info-value">1.75%</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Accrued Interest</div>
+                            <div class="info-value">$437.50</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Penalty Fees</div>
+                            <div class="info-value">$0.00</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Total to Repay</div>
+                            <div class="info-value">$12,937.50</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Amount Repaid</div>
+                            <div class="info-value">$4,200.00</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Loan Duration</div>
+                            <div class="info-value">30 days</div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Repayment Progress</span>
+                            <span>32%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 32%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="controls-section">
+                    <div class="control-group">
+                        <label class="control-label">
+                            <i class="fas fa-percentage"></i> Interest Switch
+                        </label>
+                        <div class="toggle-container">
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <span class="toggle-status active">Active</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">
+                            <i class="fas fa-clock"></i> Late Fee Switch
+                        </label>
+                        <div class="toggle-container">
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                            <span class="toggle-status inactive">Inactive</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">
+                            <i class="fas fa-calendar-alt"></i> Change Duration
+                        </label>
+                        <div class="cycle-control">
+                            <select class="cycle-select">
+                                <option>7 days</option>
+                                <option>14 days</option>
+                                <option selected>30 days</option>
+                                <option>45 days</option>
+                                <option>60 days</option>
+                                <option>90 days</option>
+                                <option>Custom...</option>
+                            </select>
+                            <button class="update-btn">Update</button>
+                        </div>
+                    </div>
+                    
+                    <button class="history-btn">
+                        <i class="fas fa-history"></i> View Repayment History
+                    </button>
+                </div>
+            </div> -->
+            
+            <!-- Loan Card 2 -->
+            <!-- <div class="loan-card pending">
+                <div class="loan-details">
+                    <div class="user-info">
+                        <div class="user-avatar">SD</div>
+                        <div class="user-details">
+                            <div class="user-name-row">
+                                <span class="user-name">Sarah Davis</span>
+                                <span class="status-badge pending">Pending</span>
+                            </div>
+                            <div class="user-id">ID: USR-5671</div>
+                        </div>
+                    </div>
+                    
+                    <div class="loan-info-grid">
+                        <div class="info-group">
+                            <div class="info-label">Loan ID</div>
+                            <div class="info-value">LN-2023-05671</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Currency</div>
+                            <div class="info-value">EUR (€)</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Original Amount</div>
+                            <div class="info-value">€8,200.00</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Daily Interest</div>
+                            <div class="info-value">2.25%</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Accrued Interest</div>
+                            <div class="info-value">€0.00</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Penalty Fees</div>
+                            <div class="info-value">€0.00</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Total to Repay</div>
+                            <div class="info-value">€8,389.00</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Amount Repaid</div>
+                            <div class="info-value">€0.00</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Loan Duration</div>
+                            <div class="info-value">14 days</div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Repayment Progress</span>
+                            <span>0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="controls-section">
+                    <div class="control-group">
+                        <label class="control-label">
+                            <i class="fas fa-percentage"></i> Interest Switch
+                        </label>
+                        <div class="toggle-container">
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <span class="toggle-status active">Active</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">
+                            <i class="fas fa-clock"></i> Late Fee Switch
+                        </label>
+                        <div class="toggle-container">
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                            <span class="toggle-status inactive">Inactive</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">
+                            <i class="fas fa-calendar-alt"></i> Change Duration
+                        </label>
+                        <div class="cycle-control">
+                            <select class="cycle-select">
+                                <option>7 days</option>
+                                <option selected>14 days</option>
+                                <option>30 days</option>
+                                <option>45 days</option>
+                                <option>60 days</option>
+                                <option>90 days</option>
+                                <option>Custom...</option>
+                            </select>
+                            <button class="update-btn">Update</button>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="approve-btn">
+                            <i class="fas fa-check-circle"></i> Approve
+                        </button>
+                        <button class="reject-btn">
+                            <i class="fas fa-times-circle"></i> Reject
+                        </button>
+                    </div>
+                    
+                    <button class="history-btn">
+                        <i class="fas fa-history"></i> View Repayment History
+                    </button>
+                </div>
+            </div>
+             -->
+            <!-- Loan Card 3 -->
+            <!-- <div class="loan-card defaulted">
+                <div class="loan-details">
+                    <div class="user-info">
+                        <div class="user-avatar">TR</div>
+                        <div class="user-details">
+                            <div class="user-name-row">
+                                <span class="user-name">Thomas Rivera</span>
+                                <span class="status-badge defaulted">Defaulted</span>
+                            </div>
+                            <div class="user-id">ID: USR-3924</div>
+                        </div>
+                    </div>
+                    
+                    <div class="loan-info-grid">
+                        <div class="info-group">
+                            <div class="info-label">Loan ID</div>
+                            <div class="info-value">LN-2023-03924</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Currency</div>
+                            <div class="info-value">USD ($)</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Original Amount</div>
+                            <div class="info-value">$5,000.00</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Daily Interest</div>
+                            <div class="info-value">2.5%</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Accrued Interest</div>
+                            <div class="info-value">$375.00</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Penalty Fees</div>
+                            <div class="info-value">$250.00</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Total to Repay</div>
+                            <div class="info-value">$5,625.00</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Amount Repaid</div>
+                            <div class="info-value">$1,200.00</div>
+                        </div>
+                        <div class="info-group">
+                            <div class="info-label">Loan Duration</div>
+                            <div class="info-value">15 days</div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Repayment Progress</span>
+                            <span>21%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 21%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="controls-section">
+                    <div class="control-group">
+                        <label class="control-label">
+                            <i class="fas fa-percentage"></i> Interest Switch
+                        </label>
+                        <div class="toggle-container">
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                            <span class="toggle-status inactive">Inactive</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">
+                            <i class="fas fa-clock"></i> Late Fee Switch
+                        </label>
+                        <div class="toggle-container">
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <span class="toggle-status active">Active</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">
+                            <i class="fas fa-calendar-alt"></i> Change Duration
+                        </label>
+                        <div class="cycle-control">
+                            <select class="cycle-select">
+                                <option>7 days</option>
+                                <option>14 days</option>
+                                <option selected>15 days</option>
+                                <option>30 days</option>
+                                <option>45 days</option>
+                                <option>60 days</option>
+                                <option>Custom...</option>
+                            </select>
+                            <button class="update-btn">Update</button>
+                        </div>
+                    </div>
+                    
+                    <button class="history-btn">
+                        <i class="fas fa-history"></i> View Repayment History
+                    </button>
+                </div>
+            </div> -->
+        </div>
+
+        <div class="pagination">
+            <button class="pagination-btn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <span class="active">1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <button class="pagination-btn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- modal for repayment history -->
+         <!-- Repayment History Modal -->
+      <div id="historyModal" class="modal">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h2>Repayment History</h2>
+                  <button class="close-modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                  <div class="loan-summary">
+                      <h3>Loan: <span id="modalLoanId">LN-2023-04892</span></h3>
+                      <p>User: <span id="modalUserName">Michael Johnson</span> (ID: <span id="modalUserId">USR-4892</span>)</p>
+                  </div>
+
+                  <div class="history-table-container">
+                      <table class="history-table">
+                          <thead>
+                              <tr>
+                                  <th>Date</th>
+                                  <th>Amount</th>
+                                  <th>Type</th>
+                              </tr>
+                          </thead>
+                          <tbody id="historyTableBody">
+                              <!-- History rows will be populated here -->
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <script src="admin-common.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    // --- STATE MANAGEMENT ---
+    let allLoans = [];
+    let filteredLoans = [];
+    let currentPage = 1;
+    const ITEMS_PER_PAGE = 5; // Adjust as needed
+
+    // --- DOM ELEMENT SELECTORS ---
+    const loansContainer = document.querySelector('.loans-container');
+    const paginationContainer = document.querySelector('.pagination');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const loaderOverlay = document.getElementById('loader-overlay');
+
+    // --- MODAL SELECTORS ---
+    const historyModal = document.getElementById('historyModal');
+    const closeModalBtn = document.querySelector('.close-modal');
+    const modalLoanId = document.getElementById('modalLoanId');
+    const modalUserName = document.getElementById('modalUserName');
+    const modalUserId = document.getElementById('modalUserId');
+    const historyTableBody = document.getElementById('historyTableBody');
+
+    // --- API ENDPOINTS ---
+    const API_BASE_URL = '/api/v1/admin';
+    const LOAN_LIST_API = `${API_BASE_URL}/loan-list`;
+    const LOAN_STATUS_API = `${API_BASE_URL}/loans/status`;
+    const LOAN_SETTINGS_API = (loanId) => `${API_BASE_URL}/${loanId}/settings`;
+
+    // --- UTILITY FUNCTIONS ---
+    const showLoader = (show) => {
+        loaderOverlay.style.display = show ? 'flex' : 'none';
+    };
+
+    const showToast = (message, type = 'info', duration = 3000) => {
+        const toastContainer = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.textContent = message;
+        toastContainer.appendChild(toast);
+
+        // Animate in
+        setTimeout(() => toast.classList.add('show'), 10);
+
+        // Animate out and remove
+        setTimeout(() => {
+            toast.classList.remove('show');
+            toast.addEventListener('transitionend', () => toast.remove());
+        }, duration);
+    };
+
+    // --- DATE & CURRENCY FORMATTING ---
+    const formatCurrency = (amount, currency = 'USD') => {
+         // This is a simple formatter. For production, consider a robust library.
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: currency }).format(amount);
+    };
+    
+    const formatDate = (dateString) => {
+        if (!dateString) return 'N/A';
+        return new Date(dateString).toLocaleDateString('en-CA'); // YYYY-MM-DD format
+    };
+
+    // --- DYNAMIC HTML GENERATION ---
+    const createLoanCardHTML = (loan) => {
+        // Normalize status for CSS class and badge text
+        const displayStatus = loan.status.toLowerCase(); // 'repaid', 'pendingapproval', 'approved', etc.
+        const badgeStatusClass = displayStatus === 'pendingapproval' ? 'pending' : displayStatus; // 'pending' for CSS class
+        const badgeStatusText = displayStatus === 'pendingapproval' ? 'Pending' : loan.status; // 'Pending' for display text
+
+        // Calculate total to repay
+        // outstandingPrincipal might be 0 for repaid loans, so ensure total calculation is correct for all statuses
+        const totalToRepay = loan.loanAmount + loan.accruedInterest + loan.overdueInterestAccrued + loan.latePaymentFeesAccrued;
+        const repaymentProgress = loan.loanAmount > 0 ? Math.round((loan.amountRepaid / loan.loanAmount) * 100) : 0;
+        const userInitials = loan.userFullName ? loan.userFullName.split(' ').map(n => n[0]).join('').toUpperCase() : 'N/A';
+
+        const isInterestActive = !loan.disableInterestAccrual;
+        const isLateFeeActive = !loan.disableLateFeesAccrual;
+
+        // Determine if action buttons should be shown
+        const showActionButtons = loan.status === 'PendingApproval';
+
+        // Note: The API returns dailyInterestRate as a raw value (e.g., 0.082).
+        const dailyInterestPercent = (loan.dailyInterestRate * 100).toFixed(2) + '%';
+        
+        return `
+            <div class="loan-card ${badgeStatusClass}" data-loan-id="${loan._id}">
+                <div class="loan-details">
+                    <div class="user-info">
+                        <div class="user-avatar">${userInitials}</div>
+                        <div class="user-details">
+                            <div class="user-name-row">
+                                <span class="user-name">${loan.userFullName}</span>
+                                <span class="status-badge ${badgeStatusClass}">${badgeStatusText}</span>
+                            </div>
+                            <div class="user-id">ID: ${loan.userId}</div>
+                        </div>
+                    </div>
+                    <div class="loan-info-grid">
+                        <div class="info-group"><div class="info-label">Loan ID</div><div class="info-value">${loan._id}</div></div>
+                        <div class="info-group"><div class="info-label">Currency</div><div class="info-value">USD ($)</div></div>
+                        <div class="info-group"><div class="info-label">Original Amount</div><div class="info-value">${formatCurrency(loan.loanAmount)}</div></div>
+                        <div class="info-group"><div class="info-label">Daily Interest</div><div class="info-value">${dailyInterestPercent}</div></div>
+                        <div class="info-group"><div class="info-label">Accrued Interest</div><div class="info-value">${formatCurrency(loan.accruedInterest + loan.overdueInterestAccrued)}</div></div>
+                        <div class="info-group"><div class="info-label">Penalty Fees</div><div class="info-value">${formatCurrency(loan.latePaymentFeesAccrued)}</div></div>
+                        <div class="info-group"><div class="info-label">Total to Repay</div><div class="info-value">${formatCurrency(totalToRepay)}</div></div>
+                        <div class="info-group"><div class="info-label">Amount Repaid</div><div class="info-value">${formatCurrency(loan.amountRepaid)}</div></div>
+                        <div class="info-group"><div class="info-label">Loan Duration</div><div class="info-value">${loan.loanTermDays} days</div></div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-label"><span>Repayment Progress</span><span>${repaymentProgress}%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: ${repaymentProgress}%"></div></div>
+                    </div>
+                </div>
+                <div class="controls-section">
+                    <div class="control-group">
+                        <label class="control-label"><i class="fas fa-percentage"></i> Interest Switch</label>
+                        <div class="toggle-container">
+                            <label class="toggle-switch">
+                                <input type="checkbox" data-action="toggle-interest" ${isInterestActive ? 'checked' : ''}>
+                                <span class="slider"></span>
+                            </label>
+                            <span class="toggle-status ${isInterestActive ? 'active' : 'inactive'}">${isInterestActive ? 'Active' : 'Inactive'}</span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label"><i class="fas fa-clock"></i> Late Fee Switch</label>
+                        <div class="toggle-container">
+                            <label class="toggle-switch">
+                                <input type="checkbox" data-action="toggle-late-fee" ${isLateFeeActive ? 'checked' : ''}>
+                                <span class="slider"></span>
+                            </label>
+                            <span class="toggle-status ${isLateFeeActive ? 'active' : 'inactive'}">${isLateFeeActive ? 'Active' : 'Inactive'}</span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label"><i class="fas fa-calendar-alt"></i> Change Duration</label>
+                        <div class="cycle-control">
+                            <select class="cycle-select">
+                                ${[3, 7, 15, 30, 60, 90].map(d => `<option value="${d}" ${loan.loanTermDays === d ? 'selected' : ''}>${d} days</option>`).join('')}
+                                <option value="custom">Custom...</option>
+                            </select>
+                            <button class="update-btn" data-action="update-duration">Update</button>
+                        </div>
+                    </div>
+                    ${showActionButtons ? `
+                        <div class="action-buttons">
+                            <button class="approve-btn" data-action="approve">
+                                <i class="fas fa-check-circle"></i> Approve
+                            </button>
+                            <button class="reject-btn" data-action="reject">
+                                <i class="fas fa-times-circle"></i> Reject
+                            </button>
+                        </div>
+                    ` : ''}
+                    <button class="history-btn" data-action="view-history">
+                        <i class="fas fa-history"></i> View Repayment History
+                    </button>
+                </div>
+            </div>`;
+    };
+    
+    // --- RENDERING & PAGINATION ---
+    const renderPagination = () => {
+        paginationContainer.innerHTML = '';
+        const totalPages = Math.ceil(filteredLoans.length / ITEMS_PER_PAGE);
+        if (totalPages <= 1) return;
+
+        const createButton = (content, page, disabled = false, active = false) => {
+            const button = document.createElement('button');
+            button.className = 'pagination-btn';
+            if (active) button.classList.add('active');
+            button.innerHTML = content;
+            button.dataset.page = page;
+            if (disabled) button.disabled = true;
+            return button;
+        };
+        
+        paginationContainer.appendChild(createButton('<i class="fas fa-chevron-left"></i>', currentPage - 1, currentPage === 1));
+
+        for (let i = 1; i <= totalPages; i++) {
+            const pageSpan = document.createElement('span');
+            pageSpan.textContent = i;
+            pageSpan.dataset.page = i;
+            if (i === currentPage) pageSpan.classList.add('active');
+            paginationContainer.appendChild(pageSpan);
+        }
+        
+        paginationContainer.appendChild(createButton('<i class="fas fa-chevron-right"></i>', currentPage + 1, currentPage === totalPages));
+    };
+
+    const displayLoans = () => {
+        const activeFilter = document.querySelector('.filter-btn.active').dataset.status;
+        
+        if (activeFilter === 'all') { // Let's add an 'all' case
+            filteredLoans = [...allLoans];
+        } else {
+            filteredLoans = allLoans.filter(loan => {
+    const loanStatus = loan.status.toLowerCase();
+    if (activeFilter === 'pending') {
+        return loanStatus === 'pendingapproval';
+    }
+    return loanStatus === activeFilter;
+});
+        }
+
+        // Sort by creation date descending
+        filteredLoans.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        
+        renderPagination();
+
+        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+        const endIndex = startIndex + ITEMS_PER_PAGE;
+        const paginatedLoans = filteredLoans.slice(startIndex, endIndex);
+
+        loansContainer.innerHTML = paginatedLoans.map(createLoanCardHTML).join('');
+        
+        if (paginatedLoans.length === 0) {
+            loansContainer.innerHTML = `<p class="no-results">No loans found for the selected filter.</p>`;
+        }
+    };
+    
+    // --- API CALLS ---
+    const fetchAndRenderLoans = async () => {
+        showLoader(true);
+        try {
+            const response = await fetch(LOAN_LIST_API);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            const result = await response.json();
+            
+            if (result.success && Array.isArray(result.data)) {
+                allLoans = result.data;
+                currentPage = 1; // Reset to first page
+                displayLoans();
+            } else {
+                throw new Error(result.message || 'Failed to fetch loan data.');
+            }
+        } catch (error) {
+            console.error('Fetch Error:', error);
+            showToast(error.message, 'error');
+            loansContainer.innerHTML = `<p class="no-results error">Could not load loan data. Please try again later.</p>`;
+        } finally {
+            showLoader(false);
+        }
+    };
+
+    const updateLoanStatus = async (loanId, status) => {
+        showToast(`Updating status to ${status}...`, 'info');
+        try {
+            const response = await fetch(LOAN_STATUS_API, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ loanId, status })
+            });
+            const result = await response.json();
+            if (!response.ok || !result.success) throw new Error(result.message || 'Status update failed.');
+            
+            showToast('Loan status updated successfully!', 'success');
+            fetchAndRenderLoans(); // Refresh the entire list
+        } catch (error) {
+            console.error('Update Status Error:', error);
+            showToast(error.message, 'error');
+        }
+    };
+    
+    const updateLoanSettings = async (loanId, payload) => {
+        showToast('Updating settings...', 'info');
+        try {
+            // --- CRITICAL CHANGE HERE: Convert boolean values to strings if required by backend ---
+            const payloadToSend = {};
+            for (const key in payload) {
+                if (typeof payload[key] === 'boolean') {
+                    payloadToSend[key] = payload[key].toString(); // Convert true/false to "true"/"false"
+                } else {
+                    payloadToSend[key] = payload[key]; // Keep as is for numbers, strings, etc.
+                }
+            }
+            // --- END CRITICAL CHANGE ---
+
+            const response = await fetch(LOAN_SETTINGS_API(loanId), {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                // Use the modified payloadToSend
+                body: JSON.stringify(payloadToSend)
+            });
+            const result = await response.json();
+
+            // Check for !response.ok first, as result.success might not be present on HTTP errors
+            if (!response.ok) {
+                let errorMessage = `HTTP error! status: ${response.status}`;
+                if (result && result.message) {
+                    errorMessage += `: ${result.message}`;
+                }
+                throw new Error(errorMessage);
+            }
+            if (!result.success) {
+                throw new Error(result.message || 'Settings update failed.');
+            }
+
+            showToast('Loan settings updated successfully!', 'success');
+
+            // Update local data to reflect changes immediately without a full refetch
+            const loanIndex = allLoans.findIndex(l => l._id === loanId);
+            if(loanIndex !== -1) {
+                // Ensure to update only the fields returned by the settings API
+                Object.assign(allLoans[loanIndex], result.data);
+            }
+            displayLoans(); // Re-render with updated data
+
+        } catch (error) {
+            console.error('Update Settings Error:', error);
+            showToast(error.message, 'error');
+            // Re-render to revert optimistic UI changes if any
+            displayLoans();
+        }
+    };
+    
+    // --- MODAL FUNCTIONALITY ---
+    const openHistoryModal = (loanId) => {
+        const loan = allLoans.find(l => l._id === loanId);
+        if (!loan) return;
+
+        modalLoanId.textContent = loan._id;
+        modalUserName.textContent = loan.userFullName;
+        modalUserId.textContent = loan.userId;
+        
+        historyTableBody.innerHTML = ''; // Clear previous entries
+        
+        if (loan.repaymentHistory && loan.repaymentHistory.length > 0) {
+            loan.repaymentHistory.forEach(entry => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${formatDate(entry.date)}</td>
+                    <td><strong>${formatCurrency(entry.amount)}</strong></td>
+                    <td>${entry.type}</td>
+                `;
+                historyTableBody.appendChild(row);
+            });
+        } else {
+            historyTableBody.innerHTML = '<tr><td colspan="3">No repayment history available.</td></tr>';
+        }
+        
+        historyModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeHistoryModal = () => {
+        historyModal.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    // --- EVENT LISTENERS ---
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            if (button.classList.contains('active')) return;
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            currentPage = 1;
+            displayLoans();
+        });
+    });
+
+    paginationContainer.addEventListener('click', (e) => {
+        const target = e.target.closest('[data-page]');
+        if (target) {
+            const page = parseInt(target.dataset.page, 10);
+            if (page !== currentPage) {
+                currentPage = page;
+                displayLoans();
+            }
+        }
+    });
+
+    loansContainer.addEventListener('click', (e) => {
+        const target = e.target;
+        const card = target.closest('.loan-card');
+        if (!card) return;
+        
+        const loanId = card.dataset.loanId;
+        const action = target.dataset.action;
+
+        switch (action) {
+            case 'approve':
+                updateLoanStatus(loanId, 'Approved');
+                break;
+            case 'reject':
+                updateLoanStatus(loanId, 'Rejected');
+                break;
+            case 'toggle-interest':
+                // The API wants `disableInterestAccrual`. The checkbox `checked` state is the "active" state.
+                // So, if checked (active), we want to set `disableInterestAccrual` to `false`.
+                updateLoanSettings(loanId, { disableInterestAccrual: !target.checked });
+                break;
+            case 'toggle-late-fee':
+                 updateLoanSettings(loanId, { disableLateFeesAccrual: !target.checked });
+                break;
+            case 'update-duration':
+                const select = card.querySelector('.cycle-select');
+                const newDuration = parseInt(select.value, 10);
+                if (!isNaN(newDuration) && newDuration > 0) {
+                     updateLoanSettings(loanId, { loanTermDays: newDuration });
+                } else {
+                    showToast('Please select a valid duration.', 'error');
+                }
+                break;
+            case 'view-history':
+                openHistoryModal(loanId);
+                break;
+        }
+    });
+
+    // Modal close events
+    closeModalBtn.addEventListener('click', closeHistoryModal);
+    historyModal.addEventListener('click', (e) => {
+        if (e.target === historyModal) closeHistoryModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && historyModal.classList.contains('active')) {
+            closeHistoryModal();
+        }
+    });
+
+    // --- INITIALIZATION ---
+    fetchAndRenderLoans();
+});
+
+document.querySelectorAll(".repayment-requests-btn").forEach(button => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.href = './repayment-requests.html';
+    });
+});
+window.addEventListener('load', async () => {
+  const badgeEl = document.querySelector('.repayment-requests-btn .badge');
+  if (!badgeEl) return;
+
+  try {
+    const res = await fetch('/api/v1/admin/repaymentRequests?status=Pending');
+    const data = await res.json();
+
+    if (res.ok && data.success && data.data && typeof data.data.total === 'number') {
+      const pendingCount = data.data.total;
+      badgeEl.textContent = pendingCount;
+    } else {
+      badgeEl.textContent = '0';
+    }
+  } catch (err) {
+    console.error('Error fetching pending repayment requests:', err);
+    badgeEl.textContent = '0';
+  }
+});
+
+
+    </script>
+
+
+
+</body>
+</html>

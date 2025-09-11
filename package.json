@@ -1,0 +1,40 @@
+{
+  "dependencies": {
+    "axios": "^1.9.0",
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "ioredis": "^5.6.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.2",
+    "multer": "^1.4.5-lts.2",
+    "node-fetch": "^3.3.2",
+    "node-schedule": "^2.1.1",
+    "nodemailer": "^6.10.1",
+    "radis": "^2.0.0",
+    "ws": "^8.18.2"
+  },
+  "name": "global-asset",
+  "version": "1.0.0",
+  "description": "global asset project by tahmied hossain",
+  "type": "module",
+  "main": "server.js",
+  "devDependencies": {
+    "nodemon": "^3.1.9",
+    "prettier": "^3.5.3"
+  },
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "chat-start": "nodemon src/chatWebSocketService.js"
+  },
+  "keywords": [
+    "global",
+    "asset",
+    "trading",
+    "platform"
+  ],
+  "author": "Tahmied Hossain",
+  "license": "SEE LICENSE IN LICENSE.TXT"
+}

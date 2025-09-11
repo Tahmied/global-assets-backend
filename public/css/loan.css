@@ -1,0 +1,206 @@
+/* Loan Page Styles */
+.loan-container {
+    max-width: 560px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+/* Balance Card */
+.balance-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+
+.balance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.history-link {
+    color: #94a3b8;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.history-link:hover {
+    color: #000000;
+    background: #f1f5f9;
+}
+
+.balance-amount {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #1e293b;
+    letter-spacing: -0.5px;
+}
+
+/* Loan Form */
+.loan-form {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+
+.form-group {
+    margin-bottom: 1.75rem;
+}
+
+.input-label {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+    color: #475569;
+    font-size: 0.95rem;
+}
+
+/* Amount Input */
+.amount-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.amount-input input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding-right: 70px;
+    transition: border-color 0.2s ease;
+}
+
+.amount-input input:focus {
+    border-color: #94a3b8;
+    outline: none;
+}
+
+.currency {
+    position: absolute;
+    right: 15px;
+    font-weight: 600;
+    color: #475569;
+    background: #f8fafc;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+/* Term Buttons */
+.term-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+}
+
+.term-btn {
+    padding: 0.8rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #475569;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.term-btn:hover {
+    border-color: #94a3b8;
+}
+
+.term-btn.active {
+    border-color: #000000;
+    background: #000000;
+    color: #ffffff;
+}
+
+/* Interest Details */
+.interest-details {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin: 2rem 0;
+}
+
+.interest-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    color: #475569;
+}
+
+.interest-rate {
+    color: #16a34a;
+    font-weight: 600;
+}
+
+.total-interest {
+    color: #dc2626;
+    font-weight: 600;
+}
+
+/* Terms Checkbox */
+.terms-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 2rem 0;
+    color: #475569;
+    font-size: 0.9rem;
+}
+
+.terms-link {
+    color: #000000;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+/* Loan Now Button */
+.loan-now-btn {
+    width: 100%;
+    background: #000000;
+    color: #ffffff;
+    padding: 1.1rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    transition: opacity 0.2s ease;
+}
+
+.loan-now-btn:hover {
+    opacity: 0.95;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .loan-container {
+        padding: 0 1rem;
+    }
+    
+    .term-buttons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .balance-amount {
+        font-size: 2rem;
+    }
+    
+    .loan-form {
+        padding: 1.5rem;
+    }
+}

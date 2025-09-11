@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions - Global Assets</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <link rel="stylesheet" href="./styles/admin-dashboard.css">
+    <link rel="stylesheet" href="./styles/transection.css">
+    <style>
+      a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-btn" id="menuToggle">
+        <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <ion-icon name="rocket"></ion-icon>
+           <a href="./admin.html">Global Assets</a> 
+        </div>
+        <div id="dashboard" class="nav-item ">
+            <ion-icon name="speedometer"></ion-icon>
+           <a href="./admin.html">Dashboard</a> 
+        </div>
+        <div id="users" class="nav-item">
+            <ion-icon name="people"></ion-icon>
+          <a href="./user-management.html">Users</a>  
+        </div>
+        <div id="transaction" class="nav-item active">
+            <ion-icon name="cash"></ion-icon>
+           <a href="./transactions.html">Transactions</a> 
+        </div>
+        <div id="kyc-review" class="nav-item">
+            <ion-icon name="document"></ion-icon>
+           <a href="./kyc-review.html">KYC Review</a> 
+        </div>
+        <div id="loan-review" class="nav-item">
+            <ion-icon name="card"></ion-icon>
+            <a href="./loan-review.html">Loan Requests</a>
+        </div>
+        <div id="settings" class="nav-item">
+            <ion-icon name="settings"></ion-icon>
+           <a href="./settings.html">Settings</a> 
+        </div>
+        <div id="announcement" class="nav-item">
+            <ion-icon name="megaphone"></ion-icon>
+            <a href="./announcement.html">Publish Announcement</a>
+        </div>
+         <div id="announcement" class="nav-item">
+            <ion-icon name="trending-up-outline"></ion-icon>
+            <a href="./trades.html">Trades</a>
+        </div>
+         <div id="chats" class="nav-item">
+             <ion-icon name="chatbubble"></ion-icon>
+            <a href="./chat.html">Chats</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="admin-main">
+            <div class="transaction-header">
+                <div class="header-title">
+                    <div class="title-icon">
+                        <ion-icon name="swap-horizontal"></ion-icon>
+                    </div>
+                    <div class="header-title-content">
+                        <h2 class="header-main-text">Transaction Overview</h2>
+                        <p class="header-sub-text">Real-time monitoring of all financial activities</p>
+                    </div>
+                </div>
+                
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <div class="stat-label">
+                            <ion-icon name="cash-outline"></ion-icon>
+                            Total Diposits
+                        </div>
+                        <div id="total-diposite-value" class="stat-value">Loading..</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">
+                            <ion-icon name="cash-outline"></ion-icon>
+                            Total Withdrawal
+                        </div>
+                        <div id="total-withdrawal-value" class="stat-value">Loading...</div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Add this below the transaction-header -->
+            <div class="quick-actions-section">
+                <div class="actions-grid">
+                    <a href="./pending-transactions.html" class="action-card">
+                        <span id="diposite-pending-badge" class="pending-badge">
+                            <ion-icon name="alert-circle"></ion-icon>
+                            Loading...
+                        </span>
+                        <div class="card-content">
+                            <div class="action-icon">
+                                <ion-icon name="wallet-outline"></ion-icon>
+                            </div>
+                            <h3 class="action-title">Pending Deposits</h3>
+                            <p class="action-description">
+                                Review and approve incoming fund requests from users
+                            </p>
+                            <span class="view-link">
+                                Manage Requests
+                                <ion-icon name="arrow-forward"></ion-icon>
+                            </span>
+                        </div>
+                    </a>
+            
+                    <a href="./pending-withdrawal.html" class="action-card">
+                        <span id="withdraw-pending-badge" class="pending-badge">
+                            <ion-icon name="alert-circle"></ion-icon>
+                            Loading...
+                        </span>
+                        <div class="card-content">
+                            <div class="action-icon">
+                                <ion-icon name="cash-outline"></ion-icon>
+                            </div>
+                            <h3 class="action-title">Pending Withdrawals</h3>
+                            <p class="action-description">
+                                Process outstanding withdrawal transactions
+                            </p>
+                            <span class="view-link">
+                                Review Now
+                                <ion-icon name="arrow-forward"></ion-icon>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <div class="filter-group">
+                    <select class="filter-select">
+                        <option>All Status</option>
+                        <option>Completed</option>
+                        <option>Pending</option>
+                        <option>Rejected</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>All Types</option>
+                        <option>Deposit</option>
+                        <option>Withdrawal</option>
+                    </select>
+                    <div class="date-filter">
+                        <input type="date" class="date-input">
+                        <ion-icon name="calendar-outline"></ion-icon>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Transaction Grid -->
+            <div class="transaction-grid">
+             
+            </div>
+
+            <!-- pagniation -->
+            <div class="pagination-container">
+                <div class="pagination">
+                    <button class="pagination-btn prev-next" disabled>
+                        <ion-icon name="chevron-back-outline"></ion-icon>
+                    </button>
+                    
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">3</button>
+                    <span class="pagination-ellipsis">...</span>
+                    <button class="pagination-btn">8</button>
+                    
+                    <button class="pagination-btn prev-next">
+                        <ion-icon name="chevron-forward-outline"></ion-icon>
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="admin-common.js"></script>
+    <script>
+            document.querySelector('#users').addEventListener('click' , (e)=>{
+            e.preventDefault()
+            window.location.href = './user-management.html'
+        })
+
+        document.querySelector('#dashboard').addEventListener('click' , (e)=>{
+            e.preventDefault()
+            window.location.href = '/admin-panel/admin.html'
+        })
+    </script>
+    <!-- for getting all the tarnsactions -->
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', () => {
+          const transactionGrid     = document.querySelector('.transaction-grid');
+          const paginationContainer = document.querySelector('.pagination-container');
+          let currentPage = 1;
+          const limit = 10;
+        
+          loadTransactions(currentPage);
+        
+          async function loadTransactions(page) {
+            try {
+              // fetch both APIs in parallel
+              const [ fundRes, withdrawRes ] = await Promise.all([
+                fetch(`/api/v1/admin/fund-verification?page=${page}&limit=${limit}`),
+                fetch(`/api/v1/admin/get-withdrawal-requests?page=${page}&limit=${limit}`)
+              ]).then(resps => Promise.all(resps.map(r => r.json())));
+        
+              // map to a common shape
+              const funds = fundRes.data.requests.map(req => ({
+                type:   'Deposit',
+                currency:req.currency,
+                amount: req.amount,
+                status: req.status,
+                createdAt: req.createdAt
+              }));
+              const withdrawals = withdrawRes.data.docs.map(doc => ({
+                type:   'Withdrawal',
+                currency:doc.currency,
+                amount: doc.amount,
+                status: doc.status,
+                createdAt: doc.createdAt
+              }));
+        
+              // merge and sort
+              const allTx = [...funds, ...withdrawals]
+                .sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt));
+        
+              renderTransactions(allTx);
+        
+              // compute total pages for merged set
+              const totalCount = (fundRes.data.total || 0) + (withdrawRes.data.totalDocs || 0);
+              const totalPages = Math.ceil(totalCount / limit) || 1;
+              updatePagination(totalPages);
+            } catch (err) {
+              console.error('Error loading transactions', err);
+            }
+          }
+        
+          function renderTransactions(transactions) {
+            transactionGrid.innerHTML = transactions.map(tx => `
+              <div class="transaction-card ${tx.status}">
+                <div class="tx-header">
+                  <div class="tx-icon">
+                    <ion-icon 
+                      name="${tx.type==='Deposit' ? 'arrow-down-circle' : 'arrow-up-circle'}"
+                      class="${tx.status==='completed' ? 'success' : 'warning'}">
+                    </ion-icon>
+                  </div>
+                  <div class="tx-meta">
+                    <span class="tx-type">${tx.currency} ${tx.type}</span>
+                  </div>
+                  <ion-icon name="ellipsis-vertical" class="menu-icon"></ion-icon>
+                </div>
+                <div class="tx-details">
+                  <div class="detail-item">
+                    <span>Amount</span>
+                    <span class="tx-amount ${tx.type==='Deposit'?'positive':'negative'}">
+                      ${tx.type==='Deposit'?'+':'-'}${tx.amount} ${tx.currency}
+                    </span>
+                  </div>
+                  <div class="detail-item">
+                    <span>Date</span>
+                    <span class="tx-date">${new Date(tx.createdAt).toLocaleString()}</span>
+                  </div>
+                  <div class="detail-item">
+                    <span>Status</span>
+                    <span class="tx-status ${tx.status}">${tx.status[0].toUpperCase()+tx.status.slice(1)}</span>
+                  </div>
+                </div>
+              </div>
+            `).join('');
+          }
+        
+          function updatePagination(totalPages) {
+            // rebuild only the inner .pagination, keep the wrapper intact
+            paginationContainer.innerHTML = `
+              <div class="pagination">
+                <button class="pagination-btn prev-next" ${currentPage===1?'disabled':''}>
+                  <ion-icon name="chevron-back-outline"></ion-icon>
+                </button>
+                ${Array.from({length: totalPages}, (_, i) => i+1)
+                  .map(p=>`<button class="pagination-btn ${p===currentPage?'active':''}">${p}</button>`)
+                  .join('')}
+                <button class="pagination-btn prev-next" ${currentPage===totalPages?'disabled':''}>
+                  <ion-icon name="chevron-forward-outline"></ion-icon>
+                </button>
+              </div>
+            `;
+            wireUpPaginationBtns();
+          }
+        
+          function wireUpPaginationBtns() {
+            const btns = paginationContainer.querySelectorAll('.pagination-btn');
+            btns.forEach(btn => {
+              btn.addEventListener('click', () => {
+                if (btn.disabled || btn.classList.contains('active')) return;
+                if (btn.classList.contains('prev-next')) {
+                  const iconName = btn.querySelector('ion-icon').getAttribute('name');
+                  currentPage += iconName.includes('back') ? -1 : 1;
+                } else {
+                  currentPage = Number(btn.textContent);
+                }
+                loadTransactions(currentPage);
+              });
+            });
+          }
+        });
+    </script>
+
+    <!-- Pending‐counts updater -->
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', () => {
+          const depositBadgeEl  = document.getElementById('diposite-pending-badge');
+          const withdrawBadgeEl = document.getElementById('withdraw-pending-badge');
+        
+          async function fetchAndCountPending() {
+            try {
+              // 1) Fetch all fund requests (use a high limit to catch all)
+              const fundRes = await fetch('/api/v1/admin/fund-verification?page=1&limit=1000');
+              const fundJson = await fundRes.json();
+              // Count only those with status 'pending'
+              const pendingDeposits = Array.isArray(fundJson.data.requests)
+                ? fundJson.data.requests.filter(r => r.status === 'pending').length
+                : 0;
+            
+              // 2) Fetch all withdrawal requests
+              const withRes = await fetch('/api/v1/admin/get-withdrawal-requests?page=1&limit=1000');
+              const withJson = await withRes.json();
+              const pendingWithdrawals = Array.isArray(withJson.data.docs)
+                ? withJson.data.docs.filter(r => r.status === 'pending').length
+                : 0;
+            
+              // 3) Update badges (preserve the icon)
+              depositBadgeEl.innerHTML  = `<ion-icon name="alert-circle"></ion-icon> ${pendingDeposits}`;
+              withdrawBadgeEl.innerHTML = `<ion-icon name="alert-circle"></ion-icon> ${pendingWithdrawals}`;
+            } catch (err) {
+              console.error('Error fetching pending counts:', err);
+            }
+          }
+      
+          fetchAndCountPending();
+        });
+    </script>
+
+    <!-- Filtering + Pagination -->
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', () => {
+          const transactionGrid     = document.querySelector('.transaction-grid');
+          const paginationContainer = document.querySelector('.pagination-container');
+          const filterSelects       = document.querySelectorAll('.filter-select');
+          const statusSelect        = filterSelects[0];
+          const typeSelect          = filterSelects[1];
+          const dateInput           = document.querySelector('.date-input');
+        
+          const limitPerPage = 10;
+          let currentPage    = 1;
+          let allTransactions = [];
+        
+          // 1) load all transactions once
+          async function loadTransactions() {
+            try {
+              const [ fundRes, withRes ] = await Promise.all([
+                fetch('/api/v1/admin/fund-verification?page=1&limit=1000'),
+                fetch('/api/v1/admin/get-withdrawal-requests?page=1&limit=1000')
+              ]);
+              const fundJson = await fundRes.json();
+              const withJson = await withRes.json();
+            
+              const funds = (fundJson.data.requests || []).map(r => ({
+                type:      'Deposit',
+                currency:  r.currency,
+                amount:    r.amount,
+                status:    r.status,
+                createdAt: r.createdAt
+              }));
+              const withdrawals = (withJson.data.docs || []).map(r => ({
+                type:      'Withdrawal',
+                currency:  r.currency,
+                amount:    r.amount,
+                status:    r.status,
+                createdAt: r.createdAt
+              }));
+          
+              allTransactions = [...funds, ...withdrawals]
+                .sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+          
+              render();
+            } catch (err) {
+              console.error('Error loading transactions:', err);
+            }
+          }
+      
+          // 2) apply filters, paginate, render both grid + pager
+          function render() {
+            // reset to at least page 1
+            currentPage = Math.max(1, currentPage);
+        
+            // gather filter values
+            const statusVal = statusSelect.value;
+            const typeVal   = typeSelect.value;
+            const dateVal   = dateInput.value; // yyyy-mm-dd
+        
+            // filter
+            const filtered = allTransactions.filter(tx => {
+              if (statusVal !== 'All Status' && tx.status.toLowerCase() !== statusVal.toLowerCase()) {
+                return false;
+              }
+              if (typeVal   !== 'All Types'  && tx.type.toLowerCase()   !== typeVal.toLowerCase()) {
+                return false;
+              }
+              if (dateVal) {
+                const txDate = new Date(tx.createdAt).toISOString().split('T')[0];
+                if (txDate !== dateVal) return false;
+              }
+              return true;
+            });
+        
+            // pagination math
+            const totalPages = Math.max(1, Math.ceil(filtered.length / limitPerPage));
+            if (currentPage > totalPages) currentPage = totalPages;
+            const start = (currentPage - 1) * limitPerPage;
+            const pageItems = filtered.slice(start, start + limitPerPage);
+        
+            // render grid
+            transactionGrid.innerHTML = pageItems.map(tx => `
+              <div class="transaction-card ${tx.status}">
+                <div class="tx-header">
+                  <div class="tx-icon">
+                    <ion-icon
+                      name="${tx.type === 'Deposit' ? 'arrow-down-circle' : 'arrow-up-circle'}"
+                      class="${tx.status === 'completed' ? 'success' : 'warning'}">
+                    </ion-icon>
+                  </div>
+                  <div class="tx-meta">
+                    <span class="tx-type">${tx.currency} ${tx.type}</span>
+                  </div>
+                  <ion-icon name="ellipsis-vertical" class="menu-icon"></ion-icon>
+                </div>
+                <div class="tx-details">
+                  <div class="detail-item">
+                    <span>Amount</span>
+                    <span class="tx-amount ${tx.type === 'Deposit' ? 'positive' : 'negative'}">
+                      ${tx.type === 'Deposit' ? '+' : '-'}${tx.amount} ${tx.currency}
+                    </span>
+                  </div>
+                  <div class="detail-item">
+                    <span>Date</span>
+                    <span class="tx-date">${new Date(tx.createdAt).toLocaleString()}</span>
+                  </div>
+                  <div class="detail-item">
+                    <span>Status</span>
+                    <span class="tx-status ${tx.status}">${tx.status.charAt(0).toUpperCase() + tx.status.slice(1)}</span>
+                  </div>
+                </div>
+              </div>
+            `).join('');
+          
+            // render pagination controls
+            paginationContainer.innerHTML = `
+              <div class="pagination">
+                <button class="pagination-btn prev-next" ${currentPage === 1 ? 'disabled' : ''}>
+                  <ion-icon name="chevron-back-outline"></ion-icon>
+                </button>
+                ${Array.from({ length: totalPages }, (_, i) => i + 1)
+                  .map(p => `<button class="pagination-btn ${p === currentPage ? 'active' : ''}">${p}</button>`)
+                  .join('')}
+                <button class="pagination-btn prev-next" ${currentPage === totalPages ? 'disabled' : ''}>
+                  <ion-icon name="chevron-forward-outline"></ion-icon>
+                </button>
+              </div>
+            `;
+          
+            // wire up pagination events
+            paginationContainer.querySelectorAll('.pagination-btn').forEach(btn => {
+              btn.addEventListener('click', () => {
+                if (btn.disabled || btn.classList.contains('active')) return;
+                if (btn.classList.contains('prev-next')) {
+                  const back = btn.querySelector('ion-icon').getAttribute('name').includes('back');
+                  currentPage += back ? -1 : 1;
+                } else {
+                  currentPage = Number(btn.textContent);
+                }
+                render();
+              });
+            });
+          }
+      
+          // 3) listen for filter changes
+          [statusSelect, typeSelect, dateInput].forEach(el => {
+            el.addEventListener('change', () => {
+              currentPage = 1;
+              render();
+            });
+          });
+      
+          loadTransactions();
+        });
+    </script>
+
+ <!-- Totals Updater (fixed withdrawal filter) -->
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', () => {
+          const totalDepositEl    = document.getElementById('total-diposite-value');
+          const totalWithdrawalEl = document.getElementById('total-withdrawal-value');
+        
+          async function fetchAndSetTotals() {
+            try {
+              // 1) Fetch all fund requests and sum only completed ones
+              const fundRes  = await fetch('/api/v1/admin/fund-verification?page=1&limit=1000');
+              const fundJson = await fundRes.json();
+              const depositTotal = Array.isArray(fundJson.data.requests)
+                ? fundJson.data.requests
+                    .filter(r => (r.status || '').toLowerCase() === 'completed')
+                    .reduce((sum, r) => sum + Number(r.amount), 0)
+                : 0;
+            
+              // 2) Fetch all withdrawal requests and sum only approved/completed ones
+              const withRes   = await fetch('/api/v1/admin/get-withdrawal-requests?page=1&limit=1000');
+              const withJson  = await withRes.json();
+              const withdrawalTotal = Array.isArray(withJson.data.docs)
+                ? withJson.data.docs
+                    .filter(r => {
+                      const st = (r.status || '').toLowerCase();
+                      // some APIs use "approved", others use "completed"
+                      return st === 'approved' || st === 'completed';
+                    })
+                    .reduce((sum, r) => sum + Number(r.amount), 0)
+                : 0;
+                
+              // 3) Format numbers with commas
+              const fmt = n => n.toLocaleString('en-US', { maximumFractionDigits: 2 });
+                
+              // 4) Update the DOM
+              totalDepositEl.textContent    = `$${fmt(depositTotal)}`;
+              totalWithdrawalEl.textContent = `$${fmt(withdrawalTotal)}`;
+            } catch (err) {
+              console.error('Error fetching totals:', err);
+            }
+          }
+      
+          fetchAndSetTotals();
+        });
+    </script>
+    
+    
+    
+    
+        
+</body>
+</html>

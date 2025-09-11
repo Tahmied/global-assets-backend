@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification | Global Assets</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/homepage.css">
+    <link rel="stylesheet" href="./css/notifications.css">
+    <link rel="icon" type="image/x-icon" href="./Images/favicon.ico">
+</head>
+<body>
+
+<header id="header">
+    <div class="header-container">
+        <div class="nav-menu">
+            <div class="logo-container">
+               <a href="./"> <img src="./Images/home_logo.png" alt="Company Logo"> </a>
+            </div>
+            <nav class="desktop-nav">
+                <a href="./" class="nav-item">Home</a>
+                <a href="./market.html" class="nav-item">Market</a>
+                <a href="./ai-finance.html" class="nav-item">AI Finance</a>
+                <a href="./loan.html" class="nav-item">Loans</a>
+                <a href="./profile.html" class="nav-item">Account</a>
+            </nav>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+
+        <button class="mobile-menu-toggle">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+         <a href="./" class="nav-item">Home</a>
+         <a href="./market.html" class="nav-item">Market</a>
+         <a href="./ai-finance.html" class="nav-item">AI Finance</a>
+         <a href="./loan.html" class="nav-item">Loans</a>
+         <a href="./profile.html" class="nav-item">Account</a>
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">  Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+    </nav>
+  </header>
+    <div class="container">
+        <div class="notification-header">
+            <h1>Notifications</h1>
+            <button class="mark-all-read">
+                <i class="fas fa-check-double"></i>
+                Mark All as Read
+            </button>
+        </div>
+
+       
+
+        <!-- Empty State -->
+        <div class="empty-state">
+            <i class="fas fa-bell-slash"></i>
+            <p>No notifications to display</p>
+        </div>
+    </div>
+    <!-- Pagination -->
+    <div class="pagination-container">
+      <nav class="pagination">
+        <button class="page-item prev-next" disabled>
+          <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <div class="page-numbers">
+          <button class="page-item active">1</button>
+          <button class="page-item">2</button>
+          <button class="page-item">3</button>
+          <span class="page-dots">...</span>
+          <button class="page-item">8</button>
+        </div>
+
+        <button class="page-item prev-next">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </nav>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-content">
+      <!-- Logo / Brand -->
+      <div class="footer-section logo-section">
+        <img src="./Images/logo_foot.png" alt="Global Assets Logo" class="footer-logo">
+      </div>
+      <!-- Company -->
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./team.html">About the Team</a></li>
+          <li><a href="./faq.html">Help Center</a></li>
+          <li><a href="#">Email support</a></li>
+          <li><a href="mailto:service@global-assets.com">service@global‑assets.io</a></li>
+        </ul>
+      </div>
+      <!-- Product -->
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="./market.html">Market List</a></li>
+          <li><a href="./loan.html">Investment loans</a></li>
+          <li><a href="./ai-finance.html">AI Finance</a></li>
+        </ul>
+      </div>
+      <!-- Policy -->
+      <div class="footer-section">
+        <h4>Policy</h4>
+        <ul>
+          <li><a href="./agrt.html">User Services Agreement</a></li>
+          <li><a href="./loan-agrt.html">Loan agreement</a></li>
+          <li><a href="./loan-explain.html">Loan rules explanation</a></li>
+          <li><a href="./legal-liability.html">Legal liability</a></li>
+        </ul>
+      </div>
+      <!-- Statement -->
+      <div class="footer-section">
+        <h4>Statement</h4>
+        <ul>
+          <li><a href="./risk.html">Risk Warning</a></li>
+          <li><a href="./privacy-statement.html">Privacy Statement</a></li>
+          <li><a href="./anti-laundaring.html">Anti‑Money Laundering Policy</a></li>
+          <li><a href="./rglt-licence.html">Regulatory license</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; Copyright 2016 – 2025 Global Assets. All rights reserved.
+    </div>
+  </footer>
+
+      <script src="./javascript/common-script.js"></script>
+      <script src="./javascript/loing-check.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const container = document.querySelector('.container');
+  const emptyState = container?.querySelector('.empty-state');
+  const paginationWrap = document.querySelector(
+    '.pagination-container'
+  );
+  const paginationNav = paginationWrap?.querySelector('.pagination');
+  const prevBtn = paginationNav?.querySelector(
+    '.prev-next:first-of-type'
+  );
+  const nextBtn = paginationNav?.querySelector(
+    '.prev-next:last-of-type'
+  );
+  const pageNumbersWrap = paginationNav?.querySelector(
+    '.page-numbers'
+  );
+  const markAllReadBtn = document.querySelector('.mark-all-read');
+
+  if (
+    !container ||
+    !emptyState ||
+    !paginationWrap ||
+    !paginationNav ||
+    !prevBtn ||
+    !nextBtn ||
+    !pageNumbersWrap ||
+    !markAllReadBtn
+  ) {
+    console.error('❌ One or more required DOM elements are missing.');
+    return;
+  }
+
+  const API_URL = '/api/v1/users/notificaitons';
+  const PER_PAGE = 10;
+  let currentPage = 1;
+  let totalPages = 1;
+
+  function getGroupKey(dateStr) {
+    const d = new Date(dateStr);
+    const today = new Date();
+    const diff = Math.floor(
+      (today - d) / (1000 * 60 * 60 * 24)
+    );
+    if (diff === 0) return 'Today';
+    if (diff === 1) return 'Yesterday';
+    return d.toLocaleDateString(undefined, {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+  }
+
+  function formatTime(dateStr) {
+    return new Date(dateStr).toLocaleTimeString(
+      undefined,
+      {
+        hour: 'numeric',
+        minute: '2-digit'
+      }
+    );
+  }
+
+  function clearNotificationGroups() {
+    container
+      .querySelectorAll('.notification-group')
+      .forEach(g => g.remove());
+  }
+
+  function renderNotifications(list) {
+    clearNotificationGroups();
+
+    if (!list.length) {
+      emptyState.style.display = '';
+      paginationWrap.style.display = 'none';
+      return;
+    }
+
+    emptyState.style.display = 'none';
+    paginationWrap.style.display = '';
+
+    const groups = list.reduce((acc, n) => {
+      const key = getGroupKey(n.createdAt);
+      (acc[key] = acc[key] || []).push(n);
+      return acc;
+    }, {});
+
+    Object.entries(groups).forEach(([label, items]) => {
+      const group = document.createElement('div');
+      group.className = 'notification-group';
+      group.innerHTML = `<span class="group-date">${label}</span>`;
+
+      items.forEach(n => {
+        const card = document.createElement('div');
+        card.className =
+          'notification-card' + (n.isRead ? '' : ' unread');
+        card.innerHTML = `
+          <div class="notification-content">
+            <div>
+              <div class="notification-meta">
+                <span class="notification-time">
+                  ${formatTime(n.createdAt)}
+                </span>
+              </div>
+              <p class="notification-message">
+                ${n.message}
+              </p>
+            </div>
+            <div class="notification-actions">
+              <button
+                class="notification-action"
+                data-id="${n._id}"
+              >
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>`;
+        group.appendChild(card);
+      });
+
+      container.insertBefore(group, emptyState);
+    });
+  }
+
+  function renderPagination(meta) {
+    const {
+      currentPage: cp,
+      totalPages: tp,
+      hasPrevPage,
+      hasNextPage
+    } = meta;
+
+    currentPage = cp;
+    totalPages = tp;
+    prevBtn.disabled = !hasPrevPage;
+    nextBtn.disabled = !hasNextPage;
+
+    pageNumbersWrap.innerHTML = '';
+    for (let i = 1; i <= tp; i++) {
+      if (
+        i === 1 ||
+        i === tp ||
+        (i >= cp - 1 && i <= cp + 1)
+      ) {
+        const btn = document.createElement('button');
+        btn.className = 'page-item' + (i === cp ? ' active' : '');
+        btn.textContent = i;
+        btn.addEventListener('click', () => loadPage(i));
+        pageNumbersWrap.appendChild(btn);
+      } else if (
+        (i === 2 && cp > 3) ||
+        (i === tp - 1 && cp < tp - 2)
+      ) {
+        const dots = document.createElement('span');
+        dots.className = 'page-dots';
+        dots.textContent = '…';
+        pageNumbersWrap.appendChild(dots);
+      }
+    }
+  }
+
+  // 1) Fetch page 1 just to read totalPages…
+  function initPagination() {
+    fetch(`${API_URL}?page=1&limit=${PER_PAGE}`)
+      .then(r => r.json())
+      .then(json => {
+        totalPages = json.data.pagination.totalPages || 1;
+        // 2) …then load the "last" server‐page as our UI page 1
+        loadPage(1);
+      })
+      .catch(err => {
+        console.error('❌ Fetch error (init):', err);
+        renderNotifications([]);
+      });
+  }
+
+  // Load UI‐page N by actually requesting server‐page = totalPages - N + 1
+  function loadPage(page) {
+    const serverPage = totalPages - page + 1;
+    fetch(
+      `${API_URL}?page=${serverPage}&limit=${PER_PAGE}`
+    )
+      .then(r => r.json())
+      .then(json => {
+        const data = json.data.notifications;
+        // Sort within the page: newest first
+        data.sort(
+          (a, b) =>
+            new Date(b.createdAt) -
+            new Date(a.createdAt)
+        );
+        renderNotifications(data);
+        renderPagination({
+          currentPage: page,
+          totalPages,
+          hasPrevPage: page > 1,
+          hasNextPage: page < totalPages
+        });
+      })
+      .catch(err => {
+        console.error(`❌ Fetch error (page ${page}):`, err);
+        renderNotifications([]);
+      });
+  }
+
+  prevBtn.addEventListener('click', () => {
+    if (currentPage > 1) loadPage(currentPage - 1);
+  });
+  nextBtn.addEventListener('click', () => {
+    if (currentPage < totalPages)
+      loadPage(currentPage + 1);
+  });
+
+  // Front-end only: mark all as read
+  markAllReadBtn.addEventListener('click', () => {
+    container
+      .querySelectorAll('.notification-card.unread')
+      .forEach(c => c.classList.remove('unread'));
+  });
+
+  // Front-end only: archive individual
+  container.addEventListener('click', e => {
+    const btn = e.target.closest(
+      '.notification-action'
+    );
+    if (!btn) return;
+    btn
+      .closest('.notification-card')
+      ?.classList.remove('unread');
+  });
+
+  initPagination();
+});
+</script>
+<!-- mark all as read -->
+ <script>
+window.addEventListener('DOMContentLoaded', () => {
+  const markAllReadBtn = document.querySelector('.mark-all-read');
+
+  if (!markAllReadBtn) {
+    console.error('❌ "Mark All as Read" button not found.');
+    return;
+  }
+
+  markAllReadBtn.addEventListener('click', () => {
+    fetch('/api/v1/users/notifications/mark-all-read', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(json => {
+      if (json.success) {
+        // Update the UI: remove "unread" from all notification cards
+        document.querySelectorAll('.notification-card.unread')
+                .forEach(card => card.classList.remove('unread'));
+
+        showToast('All notifications marked as read.');
+      } else {
+        showToast('Failed to mark notifications as read.', 'error');
+        console.error('API error:', json.message || json);
+      }
+    })
+    .catch(err => {
+      showToast('Error marking notifications as read.', 'error');
+      console.error('Fetch error:', err);
+    });
+  });
+
+  // Simple toast implementation
+  function showToast(message, type = 'success') {
+    const toast = document.createElement('div');
+    toast.className = `toast toast--${type}`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    // trigger fade-in
+    setTimeout(() => toast.classList.add('toast--visible'), 10);
+    // remove after 3s
+    setTimeout(() => {
+      toast.classList.remove('toast--visible');
+      setTimeout(() => toast.remove(), 300);
+    }, 3000);
+  }
+
+  // Inject toast styles
+  const style = document.createElement('style');
+  style.textContent = `
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 18px;
+      background: #333;
+      color: #fff;
+      border-radius: 4px;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 9999;
+    }
+    .toast--visible {
+      opacity: 1;
+    }
+    .toast--error {
+      background: #c0392b;
+    }
+  `;
+  document.head.appendChild(style);
+});
+</script>
+<!-- mark individual notificaion as read -->
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const container = document.querySelector('.container');
+
+  if (!container) {
+    console.error('❌ Notification container not found.');
+    return;
+  }
+
+  // Delegate clicks on the eye button to mark individual notifications as read
+  container.addEventListener('click', e => {
+    const btn = e.target.closest('.notification-action');
+    if (!btn) return;
+
+    const notificationId = btn.dataset.id;
+    if (!notificationId) {
+      console.error('❌ No notification ID found on button.');
+      return;
+    }
+
+    fetch('/api/v1/users/notification/mark-as-read', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ notificationId })
+    })
+    .then(res => res.json())
+    .then(json => {
+      if (json.success && json.data.isRead) {
+        // Update the UI: remove "unread" class from this card
+        const card = btn.closest('.notification-card');
+        if (card) card.classList.remove('unread');
+
+        showToast('Notification marked as read.');
+      } else {
+        showToast('Failed to mark notification as read.', 'error');
+        console.error('API error:', json.message || json);
+      }
+    })
+    .catch(err => {
+      showToast('Error marking notification as read.', 'error');
+      console.error('Fetch error:', err);
+    });
+  });
+
+  // Simple toast implementation (if not already defined globally)
+  function showToast(message, type = 'success') {
+    const toast = document.createElement('div');
+    toast.className = `toast toast--${type}`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    // trigger fade-in
+    setTimeout(() => toast.classList.add('toast--visible'), 10);
+    // remove after 3s
+    setTimeout(() => {
+      toast.classList.remove('toast--visible');
+      setTimeout(() => toast.remove(), 300);
+    }, 3000);
+  }
+});
+</script>
+
+
+
+</body>
+</html>

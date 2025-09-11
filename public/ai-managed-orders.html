@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <link rel="stylesheet" href="./css/homepage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/ai-managed-orders.css">
+    <link rel="icon" type="image/x-icon" href="./Images/favicon.ico">
+</head>
+<body>
+
+    <header id="header">
+    <div class="header-container">
+        <div class="nav-menu">
+            <div class="logo-container">
+               <a href="./"> <img src="./Images/home_logo.png" alt="Company Logo"> </a>
+            </div>
+            <nav class="desktop-nav">
+                <a href="./" class="nav-item">Home</a>
+                <a href="./market.html" class="nav-item">Market</a>
+                <a href="./ai-finance.html" class="nav-item">AI Finance</a>
+                <a href="./loan.html" class="nav-item">Loans</a>
+                <a href="./profile.html" class="nav-item">Account</a>
+            </nav>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+
+        <button class="mobile-menu-toggle">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+         <a href="./" class="nav-item">Home</a>
+         <a href="./market.html" class="nav-item">Market</a>
+         <a href="./ai-finance.html" class="nav-item">AI Finance</a>
+         <a href="./loan.html" class="nav-item">Loans</a>
+         <a href="./profile.html" class="nav-item">Account</a>
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">  Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+    </nav>
+  </header>    
+
+
+    <div class="orders-container">
+        <!-- Tabs -->
+        <div class="orders-tabs">
+            <button class="tab active">In custody</button>
+            <button class="tab">Completed</button>
+            <!-- <button class="tab">Redemption</button> -->
+            <button class="tab">Redeemed</button>
+        </div>
+
+        <!-- Order List -->
+        <div class="orders-list">
+            <!-- Order Card 1 -->
+            <div class="order-card">
+                <div class="order-main">
+                    <div class="order-header">
+                        <div class="order-id">202525BZ1105212215</div>
+                        <div class="order-status in-custody">In custody</div>
+                    </div>
+                    <div class="order-amount">
+                        <div class="amount">50000.0000 USDT</div>
+                        <div class="cycle">Cycle: 2 Day</div>
+                    </div>
+                    <div class="order-meta">
+                        <span class="rate-of-return">Rate of return: 1.2-1.7%</span>
+                        <button class="expand-btn">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Expandable Details -->
+                <div class="order-details">
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <span class="label">Name:</span>
+                            <span class="value">BTC</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Estimated earnings today:</span>
+                            <span class="value">600.0000 USD</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Profited:</span>
+                            <span class="value">0.0000 USD</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Remaining days:</span>
+                            <span class="value">2</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Order time:</span>
+                            <span class="value">2025-05-12 09:28:02</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Running:</span>
+                            <span class="value">0Day 00:00:02</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Finish:</span>
+                            <span class="value">2025-05-14 09:28:02</span>
+                        </div>
+                    </div>
+                    <div class="order-actions">
+                        <button class="action-btn redemption">Redemption</button>
+                        <button class="action-btn details">Revenue Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more order cards as needed -->
+        </div>
+    </div>
+
+     <!-- Pagination -->
+    <div class="pagination-container">
+      <nav class="pagination">
+        <button class="page-item prev-next" disabled>
+          <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <div class="page-numbers">
+          <button class="page-item active">1</button>
+          <button class="page-item">2</button>
+          <button class="page-item">3</button>
+          <span class="page-dots">...</span>
+          <button class="page-item">8</button>
+        </div>
+
+        <button class="page-item prev-next">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </nav>
+    </div>
+
+     <footer class="footer">
+    <div class="footer-content">
+      <!-- Logo / Brand -->
+      <div class="footer-section logo-section">
+        <img src="./Images/logo_foot.png" alt="Global Assets Logo" class="footer-logo">
+      </div>
+      <!-- Company -->
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./team.html">About the Team</a></li>
+          <li><a href="./faq.html">Help Center</a></li>
+          <li><a href="#">Email support</a></li>
+          <li><a href="mailto:service@global-assets.com">service@global‑assets.io</a></li>
+        </ul>
+      </div>
+      <!-- Product -->
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="./market.html">Market List</a></li>
+          <li><a href="./loan.html">Investment loans</a></li>
+          <li><a href="./ai-finance.html">AI Finance</a></li>
+        </ul>
+      </div>
+      <!-- Policy -->
+      <div class="footer-section">
+        <h4>Policy</h4>
+        <ul>
+          <li><a href="./agrt.html">User Services Agreement</a></li>
+          <li><a href="./loan-agrt.html">Loan agreement</a></li>
+          <li><a href="./loan-explain.html">Loan rules explanation</a></li>
+          <li><a href="./legal-liability.html">Legal liability</a></li>
+        </ul>
+      </div>
+      <!-- Statement -->
+      <div class="footer-section">
+        <h4>Statement</h4>
+        <ul>
+          <li><a href="./risk.html">Risk Warning</a></li>
+          <li><a href="./privacy-statement.html">Privacy Statement</a></li>
+          <li><a href="./anti-laundaring.html">Anti‑Money Laundering Policy</a></li>
+          <li><a href="./rglt-licence.html">Regulatory license</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; Copyright 2016 – 2025 Global Assets. All rights reserved.
+    </div>
+  </footer>
+  <script src="./javascript/common-script.js"></script>
+  <script src="./javascript/loing-check.js"></script>
+    <script>
+        // Expand/Collapse functionality
+        document.querySelectorAll('.expand-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const card = e.target.closest('.order-card');
+                const details = card.querySelector('.order-details');
+                const icon = button.querySelector('i');
+                
+                details.classList.toggle('active');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+                
+                // Smooth scroll to keep card in view when expanding
+                if(details.classList.contains('active')) {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            });
+        });
+    </script>
+<script>
+  // --- Helper functions ---
+  const statusDisplayMap = {
+    Running: "In custody",
+    Completed: "Completed",
+    Cancelled: "Redemption",
+    Redeemed: "Redeemed",
+  };
+
+  function formatDate(dateStr) {
+    if (!dateStr) return "--";
+    const d = new Date(dateStr);
+    return (
+      d.getFullYear() +
+      "-" +
+      String(d.getMonth() + 1).padStart(2, "0") +
+      "-" +
+      String(d.getDate()).padStart(2, "0") +
+      " " +
+      String(d.getHours()).padStart(2, "0") +
+      ":" +
+      String(d.getMinutes()).padStart(2, "0") +
+      ":" +
+      String(d.getSeconds()).padStart(2, "0")
+    );
+  }
+
+  function formatAmount(amount, decimals = 4) {
+    return Number(amount).toLocaleString("en-US", {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
+    });
+  }
+
+  function getRunningTime(startTime) {
+    if (!startTime) return "--";
+    const now = new Date();
+    const start = new Date(startTime);
+    let diff = Math.max(0, now - start);
+    const days = Math.floor(diff / (24 * 3600 * 1000));
+    diff -= days * 24 * 3600 * 1000;
+    const hours = Math.floor(diff / (3600 * 1000));
+    diff -= hours * 3600 * 1000;
+    const minutes = Math.floor(diff / (60 * 1000));
+    diff -= minutes * 60 * 1000;
+    const seconds = Math.floor(diff / 1000);
+    return `${days}Day ${String(hours).padStart(2, "0")}:${String(
+      minutes
+    ).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  }
+
+  function getRemainingDays(endTime) {
+    if (!endTime) return "--";
+    const now = new Date();
+    const end = new Date(endTime);
+    const diff = end - now;
+    return diff > 0
+      ? Math.ceil(diff / (24 * 3600 * 1000))
+      : 0;
+  }
+
+  function sumProfited(dailyRevenueHistory) {
+    if (!Array.isArray(dailyRevenueHistory)) return 0;
+    return dailyRevenueHistory.reduce(
+      (sum, item) => sum + Number(item.amount || 0),
+      0
+    );
+  }
+
+  function getTodayEarnings(dailyRevenueHistory) {
+    if (!Array.isArray(dailyRevenueHistory)) return 0;
+    const today = new Date();
+    return dailyRevenueHistory
+      .filter((item) => {
+        const d = new Date(item.date);
+        return (
+          d.getFullYear() === today.getFullYear() &&
+          d.getMonth() === today.getMonth() &&
+          d.getDate() === today.getDate()
+        );
+      })
+      .reduce((sum, item) => sum + Number(item.amount || 0), 0);
+  }
+
+  function showToast(message, type = "success") {
+    let toast = document.createElement("div");
+    toast.className =
+      "custom-toast " +
+      (type === "success"
+        ? "toast-success"
+        : type === "error"
+        ? "toast-error"
+        : "");
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+      toast.classList.add("show");
+    }, 10);
+    setTimeout(() => {
+      toast.classList.remove("show");
+      setTimeout(() => document.body.removeChild(toast), 300);
+    }, 2500);
+  }
+
+  function showModal(message, onClose) {
+    let oldModal = document.getElementById("custom-modal");
+    if (oldModal) oldModal.remove();
+
+    let modal = document.createElement("div");
+    modal.id = "custom-modal";
+    modal.innerHTML = `
+      <div class="modal-backdrop"></div>
+      <div class="modal-content">
+        <div class="modal-icon">
+          <svg width="48" height="48" fill="none" stroke="#2ecc40" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="#eafaf1"/>
+            <path d="M8 12l2 2 4-4" stroke="#2ecc40" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="modal-message">${message}</div>
+        <button class="modal-btn" id="modal-ok-btn">OK</button>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    document.getElementById("modal-ok-btn").onclick = () => {
+      modal.remove();
+      if (onClose) onClose();
+    };
+  }
+
+  // --- Modal and Toast CSS ---
+  const style = document.createElement("style");
+  style.textContent = `
+    .custom-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 40px;
+      transform: translateX(-50%) scale(0.95);
+      background: #222;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .custom-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+      pointer-events: auto;
+    }
+    .toast-success { background: #2ecc40; }
+    .toast-error { background: #ff4136; }
+
+    #custom-modal {
+      position: fixed;
+      z-index: 10000;
+      left: 0; top: 0; right: 0; bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #custom-modal .modal-backdrop {
+      position: absolute;
+      left: 0; top: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.35);
+    }
+    #custom-modal .modal-content {
+      position: relative;
+      background: #fff;
+      border-radius: 16px;
+      padding: 36px 32px 28px 32px;
+      min-width: 340px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: modalIn 0.2s;
+    }
+    #custom-modal .modal-icon {
+      margin-bottom: 18px;
+    }
+    #custom-modal .modal-message {
+      font-size: 1.15rem;
+      color: #222;
+      margin-bottom: 22px;
+      text-align: center;
+      font-weight: 500;
+    }
+    #custom-modal .modal-btn {
+      padding: 10px 32px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: #2ecc40;
+      color: #fff;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    #custom-modal .modal-btn:hover {
+      background: #27ae60;
+    }
+    @keyframes modalIn {
+      from { transform: translateY(30px) scale(0.98); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    .order-card .order-details { display: none; }
+    .order-card .order-details.active { display: block; }
+    .action-btn[disabled] {
+      opacity: 0.5;
+      pointer-events: none;
+      background: #ccc !important;
+      color: #888 !important;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // --- Main logic ---
+  document.addEventListener("DOMContentLoaded", function () {
+    const tabs = document.querySelectorAll(".orders-tabs .tab");
+    const ordersList = document.querySelector(".orders-list");
+    const paginationContainer = document.querySelector(".pagination-container");
+    const pageNumbersDiv = document.querySelector(".pagination .page-numbers");
+    const prevBtn = document.querySelector(".pagination .prev-next:first-child");
+    const nextBtn = document.querySelector(".pagination .prev-next:last-child");
+
+    let currentStatus = "Running"; // Default: In custody
+    let currentPage = 1;
+    let totalPages = 1;
+    const limit = 10; // Orders per page
+
+    let allOrders = []; // All orders fetched for current status
+
+    // Tab click handler
+    tabs.forEach((tab, idx) => {
+      tab.addEventListener("click", () => {
+        tabs.forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+        switch (idx) {
+          case 0:
+            currentStatus = "Running";
+            break;
+          case 1:
+            currentStatus = "Completed";
+            break;
+          case 2:
+            currentStatus = "Redeemed";
+            break;
+        }
+        currentPage = 1;
+        fetchAndRenderOrders();
+      });
+    });
+
+    // Pagination click handler
+    paginationContainer.addEventListener("click", function (e) {
+      if (e.target.closest(".page-item")) {
+        const btn = e.target.closest(".page-item");
+        if (btn.classList.contains("prev-next")) {
+          if (btn === prevBtn && currentPage > 1) {
+            currentPage--;
+            renderOrdersAndPagination();
+          }
+          if (btn === nextBtn && currentPage < totalPages) {
+            currentPage++;
+            renderOrdersAndPagination();
+          }
+        } else if (!btn.classList.contains("active")) {
+          const page = Number(btn.textContent);
+          if (!isNaN(page)) {
+            currentPage = page;
+            renderOrdersAndPagination();
+          }
+        }
+      }
+    });
+
+    // Fetch and render orders (fetch all, paginate in frontend)
+    async function fetchAndRenderOrders() {
+      ordersList.innerHTML =
+        '<div style="padding:2em;text-align:center;color:#888;">Loading...</div>';
+      try {
+        const body =
+          currentStatus === "Running"
+            ? {}
+            : { status: currentStatus };
+        const res = await fetch("/api/v1/users/get-my-robots", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+        const data = await res.json();
+        if (
+          !data.success ||
+          !data.data ||
+          !Array.isArray(data.data.orders)
+        ) {
+          allOrders = [];
+          ordersList.innerHTML =
+            '<div style="padding:2em;text-align:center;color:#888;">No orders found.</div>';
+          renderPagination(1, 1);
+          return;
+        }
+        allOrders = data.data.orders;
+        totalPages = Math.max(1, Math.ceil(allOrders.length / limit));
+        renderOrdersAndPagination();
+      } catch (e) {
+        allOrders = [];
+        ordersList.innerHTML =
+          '<div style="padding:2em;text-align:center;color:#f44;">Failed to load orders.</div>';
+        renderPagination(1, 1);
+      }
+    }
+
+    // Render orders for current page and pagination
+    function renderOrdersAndPagination() {
+      const startIdx = (currentPage - 1) * limit;
+      const endIdx = startIdx + limit;
+      const pageOrders = allOrders.slice(startIdx, endIdx);
+      renderOrders(pageOrders);
+      renderPagination(currentPage, totalPages);
+    }
+
+    // Render order cards
+    function renderOrders(orders) {
+      if (!orders.length) {
+        ordersList.innerHTML =
+          '<div style="padding:2em;text-align:center;color:#888;">No orders found.</div>';
+        return;
+      }
+      ordersList.innerHTML = "";
+      orders.forEach((order) => {
+        const {
+          _id,
+          packageId,
+          investmentAmount,
+          selectedAssetName,
+          minDailyReturnPercentage,
+          maxDailyReturnPercentage,
+          cycleDurationDays,
+          startTime,
+          endTime,
+          status,
+          dailyRevenueHistory,
+          createdAt,
+        } = order;
+
+        // Order card fields
+        const orderId = _id;
+        const cycle = cycleDurationDays || (packageId && packageId.cycleDurationDays) || "--";
+        const rateOfReturn =
+          (minDailyReturnPercentage || (packageId && packageId.minDailyReturnPercentage) || "--") +
+          "-" +
+          (maxDailyReturnPercentage || (packageId && packageId.maxDailyReturnPercentage) || "--") +
+          "%";
+        const name = selectedAssetName || "--";
+        const amount = formatAmount(investmentAmount) + " USDT";
+        const estimatedToday = formatAmount(getTodayEarnings(dailyRevenueHistory)) + " USD";
+        const profited = formatAmount(sumProfited(dailyRevenueHistory)) + " USD";
+        const remainingDays = getRemainingDays(endTime);
+        const orderTime = formatDate(startTime || createdAt);
+        const runningTime = getRunningTime(startTime || createdAt);
+        const finishTime = formatDate(endTime);
+
+        // Status display
+        const statusDisplay = statusDisplayMap[status] || status;
+
+        // Redemption button
+        const canRedeem = status === "Completed";
+        const redemptionBtn = `<button class="action-btn redemption" data-orderid="${orderId}" ${
+          canRedeem ? "" : "disabled"
+        }>Redemption</button>`;
+
+        // Revenue details button
+        const detailsBtn = `<button class="action-btn details" data-orderid="${orderId}">Revenue Details</button>`;
+
+        // Expandable details
+        const detailsHtml = `
+          <div class="order-details">
+            <div class="details-grid">
+              <div class="detail-item">
+                <span class="label">Name:</span>
+                <span class="value">${name}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Estimated earnings today:</span>
+                <span class="value">${estimatedToday}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Profited:</span>
+                <span class="value">${profited}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Remaining days:</span>
+                <span class="value">${remainingDays}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Order time:</span>
+                <span class="value">${orderTime}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Running:</span>
+                <span class="value">${runningTime}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Finish:</span>
+                <span class="value">${finishTime}</span>
+              </div>
+            </div>
+            <div class="order-actions">
+              ${redemptionBtn}
+              ${detailsBtn}
+            </div>
+          </div>
+        `;
+
+        // Main card
+        const card = document.createElement("div");
+        card.className = "order-card";
+        card.innerHTML = `
+          <div class="order-main">
+            <div class="order-header">
+              <div class="order-id">${orderId}</div>
+              <div class="order-status ${status === "Running" ? "in-custody" : status.toLowerCase()}">${statusDisplay}</div>
+            </div>
+            <div class="order-amount">
+              <div class="amount">${amount}</div>
+              <div class="cycle">Cycle: ${cycle} Day</div>
+            </div>
+            <div class="order-meta">
+              <span class="rate-of-return">Rate of return: ${rateOfReturn}</span>
+              <button class="expand-btn">
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+          </div>
+          ${detailsHtml}
+        `;
+        ordersList.appendChild(card);
+      });
+
+      // Expand/Collapse functionality
+      document.querySelectorAll(".expand-btn").forEach((button) => {
+        button.addEventListener("click", (e) => {
+          const card = e.target.closest(".order-card");
+          const details = card.querySelector(".order-details");
+          const icon = button.querySelector("i");
+          details.classList.toggle("active");
+          icon.classList.toggle("fa-chevron-down");
+          icon.classList.toggle("fa-chevron-up");
+          if (details.classList.contains("active")) {
+            card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          }
+        });
+      });
+
+      // Redemption button handler
+      document.querySelectorAll(".action-btn.redemption").forEach((btn) => {
+        if (btn.hasAttribute("disabled")) return;
+        btn.addEventListener("click", async function () {
+          const orderId = btn.getAttribute("data-orderid");
+          btn.disabled = true;
+          btn.textContent = "Processing...";
+          try {
+            const res = await fetch("/api/v1/users/redeem-investment", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ orderId }),
+            });
+            const data = await res.json();
+            if (data.success) {
+              showModal(
+                "AI Robot investment redeemed successfully!",
+                fetchAndRenderOrders
+              );
+            } else {
+              showToast(data.message || "Redemption failed.", "error");
+              btn.disabled = false;
+              btn.textContent = "Redemption";
+            }
+          } catch (e) {
+            showToast("Redemption failed.", "error");
+            btn.disabled = false;
+            btn.textContent = "Redemption";
+          }
+        });
+      });
+
+      // Revenue details button handler
+      document.querySelectorAll(".action-btn.details").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const orderId = btn.getAttribute("data-orderid");
+          window.location.href = `/ai-order-revenue-details/${orderId}`;
+        });
+      });
+    }
+
+    // Render pagination
+    function renderPagination(current, total) {
+      // Remove all page numbers
+      pageNumbersDiv.innerHTML = "";
+
+      // Helper to create a page button
+      function pageBtn(page, isActive = false) {
+        return `<button class="page-item${isActive ? " active" : ""}">${page}</button>`;
+      }
+
+      // If only one page, just show 1
+      if (total <= 1) {
+        pageNumbersDiv.innerHTML = pageBtn(1, true);
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        return;
+      }
+
+      let html = "";
+      if (total <= 6) {
+        for (let i = 1; i <= total; i++) {
+          html += pageBtn(i, i === current);
+        }
+      } else {
+        if (current <= 3) {
+          for (let i = 1; i <= 4; i++) html += pageBtn(i, i === current);
+          html += `<span class="page-dots">...</span>`;
+          html += pageBtn(total);
+        } else if (current >= total - 2) {
+          html += pageBtn(1);
+          html += `<span class="page-dots">...</span>`;
+          for (let i = total - 3; i <= total; i++)
+            html += pageBtn(i, i === current);
+        } else {
+          html += pageBtn(1);
+          html += `<span class="page-dots">...</span>`;
+          for (let i = current - 1; i <= current + 1; i++)
+            html += pageBtn(i, i === current);
+          html += `<span class="page-dots">...</span>`;
+          html += pageBtn(total);
+        }
+      }
+      pageNumbersDiv.innerHTML = html;
+      prevBtn.disabled = current === 1;
+      nextBtn.disabled = current === total;
+    }
+
+    // Initial fetch
+    fetchAndRenderOrders();
+  });
+</script>
+
+</body>
+</html>

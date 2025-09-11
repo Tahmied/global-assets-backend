@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw Funds | Crypto Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="./Images/favicon.ico">
+    <link rel="stylesheet" href="./css/homepage.css">
+    <style>
+        /* Modern Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --background: #F8FAFC;
+            --surface: #FFFFFF;
+            --text-primary: #0F172A;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+            --success: #10B981;
+            --error: #EF4444;
+            --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.03);
+            --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.07);
+            --shadow-lg: 0 8px 24px rgba(15, 23, 42, 0.1);
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: flex-end;
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 800px;
+            margin: 100px auto 40px;
+            padding: 0 1.5rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title {
+            font-size: 2.25rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+            letter-spacing: -0.025em;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-description {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Currency Grid */
+        .currency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .currency-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .currency-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .currency-card.selected {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.03);
+        }
+
+        .currency-card.selected::after {
+            content: '\f058';
+            font-family: 'Font Awesome 5 Free';
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .currency-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--primary);
+        }
+
+        .currency-network {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Withdrawal Form */
+        .withdrawal-form {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            margin-top: 2rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            outline: none;
+        }
+
+        .balance-text {
+            display: block;
+            margin-top: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Confirmation Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: 1.125rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                margin-top: 90px;
+                padding: 0 1rem;
+            }
+
+            .withdrawal-form {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 1.75rem;
+            }
+            
+            .currency-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Add these CSS rules to your existing styles */
+
+/* Chain Select Styling */
+.chain-select {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    background: var(--surface);
+    color: var(--text-primary);
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236466F1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+    transition: all 0.2s ease;
+}
+
+.chain-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    outline: none;
+}
+
+/* Info Grid Styling */
+.info-grid {
+    background: var(--background);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    display: grid;
+    gap: 1rem;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-label {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.info-value {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+    .info-grid {
+        padding: 1rem;
+    }
+    
+    .info-value {
+        font-size: 0.875rem;
+    }
+}
+    </style>
+   <style>
+    /* Status Modal */
+    .status-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.7);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+    
+    .status-content {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 16px;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    
+    /* Icons */
+    .status-icon {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 1.5rem;
+        display: none; /* Hidden by default */
+    }
+    
+    .status-icon.active {
+        display: block;
+    }
+    
+    .icon-bg {
+        fill: none;
+        stroke-width: 4;
+    }
+    
+    /* Success Styling */
+    .success .icon-bg {
+        stroke: #d1fae5;
+    }
+    
+    .success .checkmark {
+        fill: none;
+        stroke: #10B981;
+        stroke-width: 8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+    
+    /* Error Styling */
+    .error .icon-bg {
+        stroke: #fee2e2;
+    }
+    
+    .error .cross {
+        fill: none;
+        stroke: #EF4444;
+        stroke-width: 8;
+        stroke-linecap: round;
+    }
+    
+    /* Text Elements */
+    .status-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+        color: #1f2937;
+    }
+    
+    .status-message {
+        color: #6b7280;
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+    }
+    
+    .modal-close-btn {
+        background: #3B82F6;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+    
+    .modal-close-btn:hover {
+        background: #2563EB;
+    }
+    </style>
+    
+</head>
+<body>
+
+
+     <header id="header">
+    <div class="header-container">
+        <div class="nav-menu">
+            <div class="logo-container">
+               <a href="./"> <img src="./Images/home_logo.png" alt="Company Logo"> </a>
+            </div>
+            <nav class="desktop-nav">
+                <a href="./" class="nav-item">Home</a>
+                <a href="./market.html" class="nav-item">Market</a>
+                <a href="./ai-finance.html" class="nav-item">AI Finance</a>
+                <a href="./loan.html" class="nav-item">Loans</a>
+                <a href="./profile.html" class="nav-item">Account</a>
+            </nav>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+
+        <button class="mobile-menu-toggle">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+         <a href="./" class="nav-item">Home</a>
+         <a href="./market.html" class="nav-item">Market</a>
+         <a href="./ai-finance.html" class="nav-item">AI Finance</a>
+         <a href="./loan.html" class="nav-item">Loans</a>
+         <a href="./profile.html" class="nav-item">Account</a>
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">  Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+    </nav>
+  </header>
+    
+<div class="status-modal" id="statusModal">
+    <div class="status-content">
+        <!-- Success Icon -->
+        <div class="status-icon success">
+            <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="48" class="icon-bg"/>
+                <path class="checkmark" d="M28 52.8l13.4 13.4 30.2-30.2"/>
+            </svg>
+        </div>
+
+        <!-- Error Icon -->
+        <div class="status-icon error">
+            <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="48" class="icon-bg"/>
+                <path class="cross" d="M35 35l30 30m0-30l-30 30"/>
+            </svg>
+        </div>
+
+        <h2 class="status-title"></h2>
+        <p class="status-message"></p>
+        <button class="modal-close-btn">Continue</button>
+    </div>
+</div>
+    <main class="container">
+        <div class="page-header">
+            <h1 class="page-title">Withdraw Funds</h1>
+            <p class="page-description">Select currency and enter withdrawal details</p>
+        </div>
+
+        <div class="currency-grid">
+            <div class="currency-card" data-currency="btc">
+                <div class="currency-name">Bitcoin (BTC)</div>
+                <div class="currency-network">Bitcoin Network</div>
+            </div>
+
+            <div class="currency-card" data-currency="eth">
+                <div class="currency-name">Ethereum (ETH)</div>
+                <div class="currency-network">ERC20 Network</div>
+            </div>
+
+            <div class="currency-card" data-currency="usdt">
+                <div class="currency-name">Tether (USDT)</div>
+                <div class="currency-network">TRC20 Network</div>
+            </div>
+        </div>
+
+        <form class="withdrawal-form">
+
+            <div class="form-group">
+                <label class="input-label">Network Chain</label>
+                <select class="chain-select">
+                    <option value="">Select Network Chain</option>
+                    <option value="BTC">Bitcoin Network</option>
+                    <option value="ERC20">Ethereum ERC20</option>
+                    <option value="TRC20">Tether TRC20</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="input-label modify-this">Withdrawal Amount</label>
+                <input type="number" class="form-input" placeholder="0.00">
+                <span class="balance-text">Available: Loading...</span>
+            </div>
+
+            <div class="form-group">
+                <label class="input-label">Destination Address</label>
+                <input type="text" class="form-input" placeholder="Enter crypto address">
+            </div>
+
+            <div class="form-group">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Account Balance</span>
+                        <span class="info-value">Loading...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Fee</span>
+                        <span class="info-value">Loading...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Actual Arrival</span>
+                        <span class="info-value">Loading...</span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="submit-btn" id="initiateWithdrawal">
+                Continue to Withdraw
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </form>
+
+        <!-- Confirmation Modal -->
+        <div class="modal-overlay" id="confirmationModal">
+            <div class="modal-content">
+                <h2 class="modal-title">Confirm Withdrawal</h2>
+                <input type="password" class="password-input" placeholder="Transaction Password">
+                <button type="button" class="submit-btn" id="confirmWithdrawal">
+                    Confirm Withdrawal
+                    <i class="fas fa-lock"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+     <footer class="footer">
+    <div class="footer-content">
+      <!-- Logo / Brand -->
+      <div class="footer-section logo-section">
+        <img src="./Images/logo_foot.png" alt="Global Assets Logo" class="footer-logo">
+      </div>
+      <!-- Company -->
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./team.html">About the Team</a></li>
+          <li><a href="./faq.html">Help Center</a></li>
+          <li><a href="#">Email support</a></li>
+          <li><a href="mailto:service@global-assets.com">service@global‑assets.io</a></li>
+        </ul>
+      </div>
+      <!-- Product -->
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="./market.html">Market List</a></li>
+          <li><a href="./loan.html">Investment loans</a></li>
+          <li><a href="./ai-finance.html">AI Finance</a></li>
+        </ul>
+      </div>
+      <!-- Policy -->
+      <div class="footer-section">
+        <h4>Policy</h4>
+        <ul>
+          <li><a href="./agrt.html">User Services Agreement</a></li>
+          <li><a href="./loan-agrt.html">Loan agreement</a></li>
+          <li><a href="./loan-explain.html">Loan rules explanation</a></li>
+          <li><a href="./legal-liability.html">Legal liability</a></li>
+        </ul>
+      </div>
+      <!-- Statement -->
+      <div class="footer-section">
+        <h4>Statement</h4>
+        <ul>
+          <li><a href="./risk.html">Risk Warning</a></li>
+          <li><a href="./privacy-statement.html">Privacy Statement</a></li>
+          <li><a href="./anti-laundaring.html">Anti‑Money Laundering Policy</a></li>
+          <li><a href="./rglt-licence.html">Regulatory license</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; Copyright 2016 – 2025 Global Assets. All rights reserved.
+    </div>
+  </footer>
+
+    <script src="./javascript/common-script.js"></script>
+    <script src="./javascript/loing-check.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // API and caching constants
+  const API_KEY = 'e83643f2821847128602cdb2b61731d4';
+  const CACHE_TTL = 30_000; 
+  const DECIMALS = { BTC: 8, ETH: 6, SOL: 6, USDT: 6 };
+  const priceCache = new Map();
+
+  // DOM elements
+  const currencyGrid = document.querySelector('.currency-grid');
+  const chainSelect = document.querySelector('.chain-select');
+  const amountInput = document.querySelector('.withdrawal-form input[type="number"]');
+  const balanceText = document.querySelector('.balance-text');
+  const withdrawalAmountLabel = document.querySelector('.modify-this');
+
+  // Find info elements
+  let accountBalanceElem, feeElem, arrivalElem;
+  document.querySelectorAll('.info-item').forEach(item => {
+    const label = item.querySelector('.info-label').textContent.trim();
+    const valEl = item.querySelector('.info-value');
+    if (label === 'Account Balance') accountBalanceElem = valEl;
+    if (label === 'Fee') feeElem = valEl;
+    if (label === 'Actual Arrival') arrivalElem = valEl;
+  });
+
+  // Global state
+  let currencies = [];
+  let profile = {};
+  let selectedCurrency = null;
+
+  // Utility functions
+  function formatCrypto(v, decimals) {
+    if (v === null || v === undefined || Number.isNaN(+v)) return '—';
+    return Number(v).toFixed(decimals);
+  }
+
+  function formatUSD(v) {
+    if (v === null || v === undefined || Number.isNaN(+v)) return '—';
+    return Number(v).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function baseFromCurrencyName(name) {
+    if (!name) return null;
+    const paren = name.match(/\(([A-Za-z0-9]+)\)/);
+    if (paren) return paren[1].toUpperCase();
+    const up = name.match(/\b([A-Z]{2,6})\b/);
+    if (up) return up[1].toUpperCase();
+    const first = name.match(/[A-Za-z0-9]+/);
+    return first ? first[0].toUpperCase() : name.toUpperCase();
+  }
+
+  function debounce(fn, wait) {
+    let t;
+    return function (...a) {
+      clearTimeout(t);
+      t = setTimeout(() => fn.apply(this, a), wait);
+    };
+  }
+
+  // Price fetching
+  async function fetchPriceFor(symbol) {
+    if (!symbol) return null;
+    const cached = priceCache.get(symbol);
+    const now = Date.now();
+    if (cached && (now - cached.ts) < CACHE_TTL) return cached.price;
+
+    if (/^USDT\/USD$/i.test(symbol) || /^USD\/USD$/i.test(symbol)) {
+      priceCache.set(symbol, { price: 1, ts: now });
+      return 1;
+    }
+
+    const url = `https://api.twelvedata.com/price?symbol=${encodeURIComponent(symbol)}&apikey=${API_KEY}`;
+    try {
+      const res = await fetch(url);
+      const j = await res.json();
+      if (j && (j.price || j.value)) {
+        const p = parseFloat(j.price ?? j.value);
+        priceCache.set(symbol, { price: p, ts: now });
+        return p;
+      } else {
+        console.warn('TwelveData price response error', j);
+        if (cached) return cached.price;
+        return null;
+      }
+    } catch (err) {
+      console.error('Error fetching price', err);
+      if (cached) return cached.price;
+      return null;
+    }
+  }
+
+  // Data fetching
+  async function fetchData() {
+    try {
+      const [currRes, profRes] = await Promise.all([
+        fetch('/api/v1/admin/get-supported-currencies'),
+        fetch('/api/v1/users/profile')
+      ]);
+      const currJson = await currRes.json();
+      const profJson = await profRes.json();
+      currencies = currJson.data;
+      profile = profJson.data;
+      renderCurrencyCards();
+      selectCurrency(currencies[0]);
+    } catch (err) {
+      console.error('Error fetching data:', err);
+    }
+  }
+
+  // Currency card rendering
+  function renderCurrencyCards() {
+    currencyGrid.innerHTML = '';
+    currencies.forEach(curr => {
+      const card = document.createElement('div');
+      card.classList.add('currency-card');
+      card.dataset.currency = curr.currencyName;
+      card.innerHTML = `
+        <div class="currency-name">${curr.currencyName}</div>
+        <div class="currency-network">${curr.chainNames.join(', ')}</div>
+      `;
+      card.addEventListener('click', () => selectCurrency(curr));
+      currencyGrid.appendChild(card);
+    });
+  }
+
+  // Currency selection
+  function selectCurrency(curr) {
+    selectedCurrency = curr;
+    document.querySelectorAll('.currency-card').forEach(c => {
+      c.classList.toggle('selected', c.dataset.currency === curr.currencyName);
+    });
+    updateChainOptions(curr.chainNames);
+    updateWithdrawalLabel();
+    updateInfo();
+    recalcArrival();
+  }
+
+  function updateChainOptions(chains) {
+    chainSelect.innerHTML = '<option value="">Select Network Chain</option>';
+    chains.forEach(chain => {
+      const opt = document.createElement('option');
+      opt.value = chain;
+      opt.textContent = chain;
+      chainSelect.appendChild(opt);
+    });
+  }
+
+  // Update withdrawal amount label
+  function updateWithdrawalLabel() {
+    if (selectedCurrency && withdrawalAmountLabel) {
+      const base = baseFromCurrencyName(selectedCurrency.currencyName);
+      withdrawalAmountLabel.textContent = `Withdrawal Amount (In ${base})`;
+    }
+  }
+
+  // Main display update with price conversion
+  async function updateInfo() {
+    if (!selectedCurrency || !profile) return;
+
+    const usdBalance = parseFloat(profile.accountBalance) || 0;
+    const base = baseFromCurrencyName(selectedCurrency.currencyName);
+    const symbol = base ? `${base}/USD` : null;
+    const decimals = DECIMALS[base] ?? 6;
+    const price = await fetchPriceFor(symbol);
+
+    let cryptoBal = null;
+    if (price && price > 0) cryptoBal = usdBalance / price;
+
+    // Update available balance
+    if (cryptoBal !== null) {
+      balanceText.textContent = `Available: ${formatCrypto(cryptoBal, decimals)} ${base}`;
+    } else {
+      balanceText.textContent = `Available: $${formatUSD(usdBalance)} (${base})`;
+    }
+
+    // Update account balance info
+    if (cryptoBal !== null) {
+      accountBalanceElem.textContent = `${formatCrypto(cryptoBal, decimals)} ${base}`;
+    } else {
+      accountBalanceElem.textContent = `$${formatUSD(usdBalance)}`;
+    }
+
+    // Update fee display
+    const feePercent = Number(selectedCurrency.fee) || 0;
+    const typedAmount = parseFloat(amountInput.value) || 0;
+    if (typedAmount > 0) {
+      const feeAbs = typedAmount * feePercent / 100;
+      feeElem.textContent = `${feePercent}% (${formatCrypto(feeAbs, decimals)} ${base})`;
+    } else {
+      feeElem.textContent = `${feePercent}%`;
+    }
+  }
+
+  function recalcArrival() {
+    if (!selectedCurrency) return;
+    const amount = parseFloat(amountInput.value) || 0;
+    const feePercent = selectedCurrency.fee;
+    const arrival = amount * (1 - feePercent / 100);
+    const base = baseFromCurrencyName(selectedCurrency.currencyName);
+    const decimals = DECIMALS[base] ?? 6;
+    arrivalElem.textContent = `${formatCrypto(arrival, decimals)} ${base}`;
+  }
+
+  // Status modal functions
+  function showStatusModal(type, title, message) {
+    const modal = document.getElementById('statusModal');
+    const successIcon = modal.querySelector('.status-icon.success');
+    const errorIcon = modal.querySelector('.status-icon.error');
+
+    successIcon.classList.remove('active');
+    errorIcon.classList.remove('active');
+
+    if (type === 'success') {
+      successIcon.classList.add('active');
+    } else {
+      errorIcon.classList.add('active');
+    }
+
+    modal.querySelector('.status-title').textContent = title;
+    modal.querySelector('.status-message').textContent = message;
+    modal.style.display = 'flex';
+    document.getElementById('confirmationModal').classList.remove('active');
+  }
+
+  // Event listeners
+  amountInput.addEventListener('input', debounce(async () => {
+    await updateInfo();
+    recalcArrival();
+  }, 120));
+
+  // Modal event listeners
+  document.getElementById('initiateWithdrawal').addEventListener('click', () => {
+    document.getElementById('confirmationModal').classList.add('active');
+  });
+
+  document.getElementById('confirmationModal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('confirmationModal')) {
+      document.getElementById('confirmationModal').classList.remove('active');
+    }
+  });
+
+  document.querySelector('.modal-close-btn').addEventListener('click', () => {
+    document.getElementById('statusModal').style.display = 'none';
+    window.history.back();
+  });
+
+  document.getElementById('statusModal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('statusModal')) {
+      document.getElementById('statusModal').style.display = 'none';
+      window.history.back();
+    }
+  });
+
+  // Withdrawal confirmation handler
+  document.getElementById('confirmWithdrawal').addEventListener('click', async function() {
+    const passwordInput = document.querySelector('.password-input');
+    const trxPass = passwordInput.value.trim();
+    const confirmBtn = this;
+
+    if (!trxPass) {
+      showStatusModal('error', 'Security Required', 'Please enter your transaction password.');
+      return;
+    }
+
+    confirmBtn.disabled = true;
+    try {
+      const checkRes = await fetch('/api/v1/users/check-trx-pass', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ trxPass })
+      });
+      let checkJson = {};
+      try { checkJson = await checkRes.json(); } catch {}
+
+      if (!checkRes.ok || !checkJson.success) {
+        showStatusModal('error', 'Verification Failed', checkJson.message || 'Transaction password is incorrect.');
+        return;
+      }
+
+      const selectedCard = document.querySelector('.currency-card.selected');
+      const currency = selectedCard?.dataset.currency;
+      const chainName = document.querySelector('.chain-select').value;
+      const amount = parseFloat(document.querySelector('.withdrawal-form input[type="number"]').value);
+      const toAddress = document.querySelector('.withdrawal-form input[type="text"]').value.trim();
+
+      if (!currency || !chainName || !amount || !toAddress) {
+        showStatusModal('error', 'Validation Error', 'Withdrawal details are incomplete or invalid.');
+        return;
+      }
+
+      const withdrawRes = await fetch('/api/v1/users/withdraw', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount, toAddress, currency, chainName })
+      });
+      const withdrawJson = await withdrawRes.json();
+
+      if (!withdrawRes.ok) {
+        showStatusModal('error', 'Transaction Failed', withdrawJson.message || 'Withdrawal request failed.');
+        return;
+      }
+
+      showStatusModal('success', 'Transaction Initiated', withdrawJson.message || 'Withdrawal request created successfully.');
+    } catch (err) {
+      console.error('Unexpected error:', err);
+      showStatusModal('error', 'System Error', 'An unexpected error occurred. Please try again.');
+    } finally {
+      confirmBtn.disabled = false;
+    }
+  });
+
+  // Periodic price refresh
+  setInterval(async () => {
+    priceCache.clear();
+    if (selectedCurrency) {
+      await updateInfo();
+      recalcArrival();
+    }
+  }, 30_000);
+
+  // Initialize
+  fetchData();
+});
+</script>
+    
+        
+    
+</body>
+</html>

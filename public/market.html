@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market - Global Assets</title>
+    <link rel="stylesheet" href="./css/homepage.css">
+    <link rel="stylesheet" href="./css/market.css">
+    <link rel="icon" type="image/x-icon" href="./Images/favicon.ico">
+</head>
+<body>
+
+<header id="header">
+    <div class="header-container">
+        <div class="nav-menu">
+            <div class="logo-container">
+               <a href="./"> <img src="./Images/home_logo.png" alt="Company Logo"> </a>
+            </div>
+            <nav class="desktop-nav">
+                <a href="./" class="nav-item">Home</a>
+                <a href="./market.html" class="nav-item">Market</a>
+                <a href="./ai-finance.html" class="nav-item">AI Finance</a>
+                <a href="./loan.html" class="nav-item">Loans</a>
+                <a href="./profile.html" class="nav-item">Account</a>
+            </nav>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+
+        <button class="mobile-menu-toggle">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+         <a href="./" class="nav-item">Home</a>
+         <a href="./market.html" class="nav-item">Market</a>
+         <a href="./ai-finance.html" class="nav-item">AI Finance</a>
+         <a href="./loan.html" class="nav-item">Loans</a>
+         <a href="./profile.html" class="nav-item">Account</a>
+        <div class="nav-buttons">
+            <button class="nav-btn sign-up-btn">  Sign Up</button>
+            <button id="nav-black-btn" class="nav-btn sign-in-btn">Sign In</button>
+        </div>
+    </nav>
+  </header>
+
+    <main class="market-container">
+      <!-- Filter Section -->
+      <div class="asset-filters">
+          <!-- <button class="filter-btn">Favorites</button> -->
+          <button class="filter-btn active">Forex</button>
+          <button class="filter-btn">Digital Assets</button>
+          <button class="filter-btn">Stock</button>
+          <button class="filter-btn">ETF</button>
+      </div>
+      
+      <!-- Empty containers that will be populated by JavaScript -->
+      <div class="loader-wrapper">
+          <div class="loader-overlay"><div class="spinner"></div></div>
+          <div class="top-assets-grid"></div>
+      </div>
+      
+      <div class="loader-wrapper">
+          <div class="loader-overlay"><div class="spinner"></div></div>
+          <div class="market-table">
+              <div class="table-header">
+                  <div>Name</div>
+                  <div>24h %</div>
+                  <div>Chart</div>
+                  <div>Price</div>
+              </div>
+          </div>
+      </div>
+      
+      <!-- Pagination -->
+      <div class="pagination">
+          <button class="page-btn">← Previous</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn">4</button>
+          <button class="page-btn">Next →</button>
+      </div>
+    </main>
+
+    <!-- footer -->
+
+     <footer class="footer">
+    <div class="footer-content">
+      <!-- Logo / Brand -->
+      <div class="footer-section logo-section">
+        <img src="./Images/logo_foot.png" alt="Global Assets Logo" class="footer-logo">
+      </div>
+      <!-- Company -->
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./team.html">About the Team</a></li>
+          <li><a href="./faq.html">Help Center</a></li>
+          <li><a href="#">Email support</a></li>
+          <li><a href="mailto:service@global-assets.com">service@global‑assets.io</a></li>
+        </ul>
+      </div>
+      <!-- Product -->
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="./market.html">Market List</a></li>
+          <li><a href="./loan.html">Investment loans</a></li>
+          <li><a href="./ai-finance.html">AI Finance</a></li>
+        </ul>
+      </div>
+      <!-- Policy -->
+      <div class="footer-section">
+        <h4>Policy</h4>
+        <ul>
+          <li><a href="./agrt.html">User Services Agreement</a></li>
+          <li><a href="./loan-agrt.html">Loan agreement</a></li>
+          <li><a href="./loan-explain.html">Loan rules explanation</a></li>
+          <li><a href="./legal-liability.html">Legal liability</a></li>
+        </ul>
+      </div>
+      <!-- Statement -->
+      <div class="footer-section">
+        <h4>Statement</h4>
+        <ul>
+          <li><a href="./risk.html">Risk Warning</a></li>
+          <li><a href="./privacy-statement.html">Privacy Statement</a></li>
+          <li><a href="./anti-laundaring.html">Anti‑Money Laundering Policy</a></li>
+          <li><a href="./rglt-licence.html">Regulatory license</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; Copyright 2016 – 2025 Global Assets. All rights reserved.
+    </div>
+  </footer>
+  
+    <script src="./javascript/common-script.js"></script>
+    <script>
+      (() => {
+        function showLoader(container) {
+          container.parentNode.querySelector('.loader-overlay').style.display = 'flex';
+        }
+        function hideLoader(container) {
+          container.parentNode.querySelector('.loader-overlay').style.display = 'none';
+        }
+
+          function disableFilters() {
+          document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.disabled = true;
+          });
+        }
+
+        function enableFilters() {
+          document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.disabled = false;
+          });
+        }
+    
+        document.querySelectorAll('.loader-overlay').forEach(loader => {
+          loader.style.display = 'flex';
+        });
+    
+        const API_KEY = 'e83643f2821847128602cdb2b61731d4';
+const typeMap = {
+  Forex:         'forex',
+  Stock:         'stock',
+  'Digital Assets':'crypto',
+  ETF:           'etf'
+};
+
+const defaultInterval   = '1day';
+const defaultOutputSize = '100';
+
+    
+        const dataCache = new Map();
+        async function getData(symbol) {
+          if (dataCache.has(symbol)) return dataCache.get(symbol);
+          const d = await fetchData(symbol);
+          dataCache.set(symbol, d);
+          return d;
+        }
+    
+        // 1) Reference endpoints
+        const endpoints = {
+          Forex:            `https://api.twelvedata.com/forex_pairs?apikey=${API_KEY}`,
+          Stock:            `https://api.twelvedata.com/stocks?apikey=${API_KEY}&exchange=NASDAQ`,
+          "Digital Assets": `https://api.twelvedata.com/cryptocurrencies?apikey=${API_KEY}`,
+          ETF:              `https://api.twelvedata.com/etf?apikey=${API_KEY}`
+        };
+    
+        // 2) Top‑players to pin on page 1
+        const topForexSymbols  = ['EUR/USD','GBP/USD','AUD/USD','XAUT/USD','NZD/USD','USD/JPY','USD/CHF','USD/CAD','GBP/JPY','GBP/AUD'];
+        const topStockSymbols  = ['AAPL:NASDAQ','MSFT:NASDAQ','GOOGL:NASDAQ','AMZN:NASDAQ','TSLA:NASDAQ','ABBV/USDT','ABT/USDT','NVDA/USDT','JPM/USDT','TSLA/USDT','WMT/USDT','MA/USDT','MCD/USDT','WFC/USDT'];
+        const topCryptoSymbols = ['BTC/USD','ETH/USD','XRP/USD', 'XAUT/USD' , 'FIL/USDT', 'TRX/USDT', 'UNI/USDT', 'LINK/USDT', 'SOL/USDT', 'ADA/USDT', 'LTC/USD','BCH/USD' ];
+        const topEtfSymbols    = ['PICK/USDT','ASIA/USDT','JMBS/USDT','FTWO/USDT','HOMZ/USDT','ZTAX/USDT','ASHR/USDT','DAT/USDT','FCUS/USDT','FIGB/USDT'];
+    
+        // 3) State
+        let filterSymbols   = { Forex: [], Stock: [], ETF: [], "Digital Assets": [] };
+        let currentCategory = 'Forex';
+        let currentPage     = 1;
+        const rowsPerPage   = 10;
+    
+        // 4) Load symbol+display lists and pin top items
+        async function loadFilterSymbols() {
+          const entries = await Promise.all(Object.entries(endpoints).map(async ([cat, url]) => {
+            const res  = await fetch(url);
+            const json = await res.json();
+            const list = Array.isArray(json.data) ? json.data : json;
+    
+            let items = list.map(item => {
+              if (cat === 'Forex') return { symbol: item.symbol, display: item.symbol };
+              if (cat === 'Stock') return { symbol: `${item.symbol}:${item.exchange}`, display: `${item.symbol}/USDT` };
+              if (cat === 'Digital Assets') return { symbol: item.symbol, display: item.symbol };
+              return { symbol: `${item.symbol}:${item.exchange}`, display: item.name || item.symbol };
+            });
+    
+            if (cat === 'Forex') {
+              const top  = topForexSymbols.map(s => items.find(i => i.symbol === s)).filter(Boolean);
+              const rest = items.filter(i => !topForexSymbols.includes(i.symbol));
+              items = [...top, ...rest];
+            }
+            if (cat === 'Stock') {
+              const pinned = [];
+              topStockSymbols.forEach(s => {
+                const found = items.find(i => i.symbol.split(/[:/]/)[0] === s.split(/[:/]/)[0]);
+                if (found) pinned.push(s.includes('/') ? { ...found, display: s } : found);
+              });
+              const pinnedSyms = new Set(pinned.map(p => p.symbol));
+              items = [...pinned, ...items.filter(i => !pinnedSyms.has(i.symbol))];
+            }
+            if (cat === 'Digital Assets') {
+  const usd = list.filter(item => item.currency_quote === 'US Dollar');
+  const constructed = usd.map(item => {
+    const base = item.symbol.split('/')[0];
+    return { symbol: item.symbol, display: `${base}/USDT`, exchangeCount: item.available_exchanges?.length || 0 };
+  });
+  constructed.sort((a,b)=>b.exchangeCount - a.exchangeCount);
+
+  const symbolSet = new Set(constructed.map(i => i.symbol));
+
+  // Add pinned even if missing from top 100
+  const pinned = topCryptoSymbols.map(s => {
+    const found = constructed.find(p => p.symbol === s);
+    if (found) return found;
+
+    // fallback: force include if API provides it
+    const orig = list.find(i => i.symbol === s);
+    if (orig) return {
+      symbol: orig.symbol,
+      display: `${orig.symbol.split('/')[0]}/USDT`,
+      exchangeCount: orig.available_exchanges?.length || 0
+    };
+    return null;
+  }).filter(Boolean);
+
+  const ps = new Set(pinned.map(p => p.symbol));
+  const rest = constructed.filter(p => !ps.has(p.symbol));
+  items = [...pinned, ...rest].slice(0, 100);
+}
+
+            if (cat === 'ETF') {
+              const pinned = topEtfSymbols.map(s => {
+                const base = s.split('/')[0];
+                const found = items.find(i => i.symbol.split(':')[0] === base);
+                return found && { ...found, display: s };
+              }).filter(Boolean);
+              const ps = new Set(pinned.map(p=>p.symbol));
+              items = [...pinned, ...items.filter(i=>!ps.has(i.symbol))];
+            }
+    
+            items = items.slice(0,100);
+            return [cat, items];
+          }));
+    
+          filterSymbols = Object.fromEntries(entries);
+        }
+    
+        // 5) Fetch price + sparkline
+        async function fetchData(symbol) {
+          const url = `https://api.twelvedata.com/time_series?symbol=${encodeURIComponent(symbol)}&interval=1h&outputsize=10&apikey=${API_KEY}`;
+          const r   = await fetch(url);
+          const j   = await r.json();
+          if (j.status === 'error') throw new Error(j.message);
+          const closes = j.values.map(p=>+p.close);
+          const latest = closes[0], oldest = closes[closes.length-1];
+          return {
+            symbol,
+            values: closes.reverse(),
+            price: latest.toFixed(4),
+            change: ((latest-oldest)/oldest*100).toFixed(2),
+            positive: latest>=oldest
+          };
+        }
+    
+        // 6) Logo lookup
+        async function fetchLogoUrl(symbol) {
+          try {
+            const r = await fetch(`https://api.twelvedata.com/logo?symbol=${encodeURIComponent(symbol)}&apikey=${API_KEY}`);
+            const j = await r.json();
+            return j.logo_base||j.logo_quote||j.url||j.logo||null;
+          } catch {
+            return null;
+          }
+        }
+    
+        // 7) Sparkline drawer
+        function drawSparkline(canvas, values, positive) {
+          const ctx = canvas.getContext('2d'), w=canvas.width, h=canvas.height;
+          const min = Math.min(...values), max = Math.max(...values), range = max-min||1;
+          ctx.clearRect(0,0,w,h);
+          ctx.beginPath();
+          values.forEach((v,i)=>{
+            const x=i/(values.length-1)*w, y=h-((v-min)/range)*h;
+            i?ctx.lineTo(x,y):ctx.moveTo(x,y);
+          });
+          ctx.strokeStyle=positive? '#26a69a':'#ef5350';
+          ctx.lineWidth=1.5; ctx.stroke();
+        }
+    
+        // 8) Render top‑3 cards, but fill up to 3 successes
+        async function renderTop(items) {
+  const grid = document.querySelector('.top-assets-grid');
+  grid.innerHTML = '';
+  showLoader(grid);
+
+  const results = [];
+  for (const item of items) {
+    if (results.length >= 3) break;
+    try {
+      const d = await getData(item.symbol);
+      results.push({ d, item });
+    } catch (_e) {
+      console.warn(`Failed to load data for symbol: ${item.symbol}`);
+
+    }
+  }
+
+  // now render whichever succeeded (up to 3)
+  results.forEach(({ d, item }) => {
+    const card = document.createElement('article');
+    card.className = 'asset-card';
+    card.innerHTML = `
+      <div class="asset-header">
+        <div class="asset-icon loading-spinner"></div>
+        <div>
+          <div class="asset-name">${item.display}</div>
+          <div class="asset-price">$${d.price}</div>
+        </div>
+      </div>
+      <div class="asset-info">
+        <div class="asset-change ${d.positive?'positive':'negative'}">
+          ${d.positive?'▲':'▼'} ${Math.abs(d.change)}%
+        </div>
+        <div class="card-chart-container">
+          <canvas class="mkt-sparkline" width="100" height="30"></canvas>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+
+    card.style.cursor = 'pointer'; 
+    card.addEventListener('click', () => {
+      const symbol = encodeURIComponent(item.symbol);
+      const type   = typeMap[currentCategory]; 
+      window.location.href =
+        `/asset-detail?symbol=${symbol}`
+       + `&type=${type}`
+       + `&interval=${defaultInterval}`
+       + `&outputsize=${defaultOutputSize}`;
+    });
+
+    fetchLogoUrl(item.symbol).then(u => {
+      if (u) {
+        const ph = card.querySelector('.asset-icon');
+        const img = document.createElement('img');
+        img.src = u; img.alt = item.display; img.className = 'asset-icon';
+        ph.replaceWith(img);
+      }
+    });
+
+    drawSparkline(card.querySelector('canvas'), d.values, d.positive);
+  });
+
+  hideLoader(grid);
+}
+
+
+    
+        // 9) Modified renderTable
+        async function renderTable(items) {
+  const table = document.querySelector('.market-table');
+  table.querySelectorAll('.table-row').forEach(r=>r.remove());
+  showLoader(table);
+
+  const settles = await Promise.allSettled(items.map(i=>getData(i.symbol)));
+  const dataArr = settles
+    .map((s,idx)=> s.status==='fulfilled'?{d:s.value, item:items[idx]}:null)
+    .filter(x=>x);
+
+  dataArr.forEach(({d,item})=>{
+    const row=document.createElement('div');
+    row.className='table-row';
+    row.innerHTML=`
+      <div class="asset-name-cell">
+        <div class="asset-icon loading-spinner"></div>
+        <span>${item.display}</span>
+      </div>
+      <div class="${d.positive?'positive':'negative'}">
+        ${d.positive?'▲':'▼'} ${Math.abs(d.change)}%
+      </div>
+      <div class="chart-container">
+        <canvas class="mkt-sparkline" width="100" height="30"></canvas>
+      </div>
+      <div>$${d.price}</div>`;
+    table.appendChild(row);
+
+    row.style.cursor = 'pointer'; 
+    row.addEventListener('click', () => {
+      const symbol = encodeURIComponent(item.symbol);
+      const type   = typeMap[currentCategory];
+       window.location.href =
+        `/asset-detail?symbol=${symbol}`
+       + `&type=${type}`
+       + `&interval=${defaultInterval}`
+       + `&outputsize=${defaultOutputSize}`;
+    });
+
+    fetchLogoUrl(item.symbol).then(u=>{
+      if(u){
+        const ph=row.querySelector('.asset-icon');
+        const img=new Image();
+        img.src=u; img.alt=item.display; img.className='asset-icon';
+        ph.replaceWith(img);
+      }
+    });
+    drawSparkline(row.querySelector('canvas'), d.values, d.positive);
+  });
+
+  hideLoader(table);
+}
+
+    
+        // 10) Pagination helpers
+        function makeBtn(label,page){
+          const b=document.createElement('button');
+          b.className='page-btn'+(page===currentPage?' active':'');
+          b.textContent=label; b.dataset.page=page;
+          const total=Math.ceil(filterSymbols[currentCategory].length/rowsPerPage);
+          if(page<1||page>total) b.disabled=true;
+          return b;
+        }
+        function renderPagination(){
+          const c=document.querySelector('.pagination');
+          c.innerHTML='';
+          const total=Math.ceil(filterSymbols[currentCategory].length/rowsPerPage);
+          c.appendChild(makeBtn('← Previous',currentPage-1));
+          for(let p=Math.max(1,currentPage-2);p<=Math.min(total,currentPage+2);p++)
+            c.appendChild(makeBtn(p,p));
+          c.appendChild(makeBtn('Next →',currentPage+1));
+        }
+    
+        // 11) Load & display one page
+       async function loadFilterPage(cat,page=1){
+          disableFilters();
+          currentCategory=cat; currentPage=page;
+          document.querySelectorAll('.filter-btn')
+            .forEach(b=>b.classList.toggle('active',b.textContent===cat));
+          const all=filterSymbols[cat],
+                slice=all.slice((page-1)*rowsPerPage,page*rowsPerPage);
+       
+          try {
+            await renderTop(all);
+            await renderTable(slice);
+            renderPagination();
+            document.querySelector('.market-container').classList.add('loaded');
+          } finally {
+            enableFilters();
+          }
+        }
+    
+        // 12) Initial load & events
+        document.addEventListener('DOMContentLoaded',async()=>{
+          disableFilters();
+          try {
+            await loadFilterSymbols();
+            await loadFilterPage('Forex',1);
+          } finally {
+            enableFilters();
+          }
+        });
+        document.querySelectorAll('.filter-btn').forEach(btn=>{
+          btn.addEventListener('click',()=>!btn.classList.contains('active')&&loadFilterPage(btn.textContent,1));
+        });
+        document.querySelector('.pagination').addEventListener('click',e=>{
+          if(e.target.classList.contains('page-btn')&&!e.target.disabled)
+            loadFilterPage(currentCategory,Number(e.target.dataset.page));
+        });
+      })();
+    </script>
+
+</body>
+</html>
