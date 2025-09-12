@@ -442,7 +442,7 @@ const resolveExpiredTrades = asyncHandler(async (userId) => {
                     userId: trade.userId,
                     amount: trade.investmentAmount,
                     type: 'debit',
-                    description: `Trade loss for ${trade.assetPair} (Admin Controlled)`,
+                    description: `Trade loss for ${trade.assetPair}`,
                     referenceId: trade._id,
                     category: 'trading',
                     status: 'completed'
@@ -459,7 +459,7 @@ const resolveExpiredTrades = asyncHandler(async (userId) => {
                         userId: trade.userId,
                         amount: totalCreditAmount,
                         type: 'credit',
-                        description: `Trade payout for ${trade.assetPair} (Admin Default)`,
+                        description: `Trade payout for ${trade.assetPair} `,
                         referenceId: trade._id,
                         category: 'trading',
                         status: 'completed'
@@ -472,7 +472,7 @@ const resolveExpiredTrades = asyncHandler(async (userId) => {
                         userId: trade.userId,
                         amount: trade.investmentAmount,
                         type: 'debit',
-                        description: `Trade loss for ${trade.assetPair} (Admin Default)`,
+                        description: `Trade loss for ${trade.assetPair}`,
                         referenceId: trade._id,
                         category: 'trading',
                         status: 'completed'
@@ -493,7 +493,7 @@ const resolveExpiredTrades = asyncHandler(async (userId) => {
                         userId: trade.userId,
                         amount: totalCreditAmount,
                         type: 'credit',
-                        description: `Trade payout for ${trade.assetPair} (Market)`,
+                        description: `Trade payout for ${trade.assetPair}`,
                         referenceId: trade._id,
                         category: 'trading',
                         status: 'completed'
@@ -505,7 +505,7 @@ const resolveExpiredTrades = asyncHandler(async (userId) => {
                         userId: trade.userId,
                         amount: trade.investmentAmount,
                         type: 'debit',
-                        description: `Trade loss for ${trade.assetPair} (Market)`,
+                        description: `Trade loss for ${trade.assetPair}`,
                         referenceId: trade._id,
                         category: 'trading',
                         status: 'completed'
