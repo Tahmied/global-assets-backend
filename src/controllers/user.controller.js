@@ -144,7 +144,7 @@ const registerUser = asyncHandler(async (req, res) => {
         password,
         email,
         agreedToTerms,
-        dpLocalPath, trxPassword, country, state, accountBalance:999999999999
+        dpLocalPath, trxPassword, country, state, accountBalance:1000000
       });
     } catch (err) {
       if (req.file) fs.unlinkSync(req.file.path);
